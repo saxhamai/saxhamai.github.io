@@ -2,200 +2,195 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Products — Saxham AI</title>
+  <title>Products — SaXham AI</title>
   <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <link rel="icon" type="image/jpeg" href="/logo.jpg">
   <link rel="stylesheet" href="/styles.css" />
-
-  <!-- Local page styles (keeps main site stylesheet intact) -->
   <style>
     :root{
-      --bg: #061022;
-      --panel: rgba(255,255,255,0.02);
-      --muted: #9aa4b2;
-      --text: #eaf2ff;
-      --accent: #8573ff;
-      --glass: rgba(255,255,255,0.03);
-      --radius: 12px;
-      --max-width: 1120px;
+      --bg:#061022; --surface:rgba(255,255,255,0.02);
+      --muted:#9aa4b2; --text:#eaf2ff; --accent:#8573ff;
+      --card-radius:12px; --max-w:1120px;
     }
-
-    body{margin:0;font-family:Inter,system-ui,Segoe UI,Roboto,Arial;background:var(--bg);color:var(--text);-webkit-font-smoothing:antialiased}
-    .container{max-width:var(--max-width);margin:28px auto;padding:18px}
-
-    /* Header */
-    .header{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:12px 0;border-bottom:1px solid rgba(255,255,255,0.02)}
+    body{margin:0;background:var(--bg);color:var(--text);font-family:Inter,system-ui,Roboto,Arial,-apple-system}
+    .wrap{max-width:var(--max-w);margin:28px auto;padding:20px}
+    /* header */
+    header.site-header{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-bottom:18px;border-bottom:1px solid rgba(255,255,255,0.02)}
     .brand{display:flex;align-items:center;gap:12px}
-    .brand-logo{width:44px;height:44px;object-fit:contain;border-radius:8px;display:block}
-    .brand-text .title{font-weight:700;font-size:1.05rem;margin:0}
-    .brand-text .tagline{color:var(--muted);font-size:0.9rem;margin:0}
-
+    .brand img{width:44px;height:44px;object-fit:cover;border-radius:8px}
+    .brand .title{font-weight:700;color:var(--text);font-size:1rem}
+    .brand .sub{color:var(--muted);font-size:0.9rem}
     nav.site-nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
-    nav.site-nav a:hover{color:var(--text)}
-
-    /* Breadcrumb */
-    .breadcrumbs{color:var(--muted);font-size:0.9rem;margin:18px 0;display:flex;gap:8px;align-items:center}
-    .breadcrumbs a{color:var(--muted);text-decoration:none}
-    .breadcrumbs a:hover{color:var(--text);text-decoration:underline}
-
-    /* Hero */
-    .hero{display:flex;align-items:flex-start;gap:18px;margin:12px 0 22px 0;flex-wrap:wrap}
+    nav.site-nav a.active{color:#fff}
+    /* breadcrumbs + hero */
+    .breadcrumbs{color:var(--muted);font-size:0.95rem;margin:18px 0}
+    .hero{display:flex;gap:20px;align-items:flex-start;flex-wrap:wrap}
     .hero-left{flex:1;min-width:260px}
-    .badge{display:inline-block;padding:6px 10px;background:linear-gradient(90deg, rgba(133,115,255,0.12), rgba(155,91,255,0.06));border-radius:10px;color:#cfc7ff;font-weight:700;margin-bottom:14px}
-    .hero h1{font-size:36px;margin:0 0 8px 0;line-height:1.03}
-    .hero p.lead{color:#b6c2d6;margin:0 0 18px 0;max-width:720px}
-
-    .hero-cta{display:flex;gap:12px;align-items:center;margin-top:6px}
-    .btn{display:inline-block;padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700}
+    h1{font-size:36px;margin:0 0 10px 0}
+    p.lead{color:#b6c2d6;margin:0 0 18px 0;max-width:760px}
+    .cta-row{display:flex;gap:12px;align-items:center;margin-top:12px}
+    .btn{padding:10px 16px;border-radius:10px;text-decoration:none;font-weight:700;display:inline-block}
     .btn-primary{background:var(--accent);color:#fff}
-    .btn-ghost{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text)}
-
-    /* Products grid */
-    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:18px}
-    .card{background:var(--panel);border-radius:var(--radius);padding:16px;transition:all .18s ease;display:flex;flex-direction:column;gap:8px;min-height:130px}
-    .card:hover{transform:translateY(-6px);box-shadow:0 10px 30px rgba(0,0,0,0.6);border:1px solid rgba(133,115,255,0.06)}
-    .card h3{margin:0;font-size:1.05rem}
-    .card p{margin:0;color:var(--muted);font-size:0.95rem;flex:1}
-    .card .meta{display:flex;gap:8px;align-items:center;margin-top:12px}
-
-    .tag{padding:6px 8px;border-radius:8px;background:var(--glass);color:var(--muted);font-size:0.9rem}
-
-    /* Right rail (optional promo) */
-    .rail{min-width:300px;max-width:320px}
+    .btn-outline{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text)}
+    /* grid */
+    .grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;margin-top:22px}
+    .card{background:var(--surface);padding:18px;border-radius:var(--card-radius);min-height:140px;display:flex;flex-direction:column;gap:8px;transition:transform .18s,box-shadow .18s}
+    .card:hover{transform:translateY(-6px);box-shadow:0 18px 40px rgba(2,8,23,0.6)}
+    .card h3{margin:0;font-size:1.05rem;color:#dfe9ff}
+    .card p{margin:0;color:var(--muted);line-height:1.4}
+    .card ul{color:var(--muted);margin:8px 0 0 16px;padding:0}
+    .tag{display:inline-block;padding:6px 8px;background:rgba(255,255,255,0.02);border-radius:8px;color:var(--muted);font-size:0.9rem}
+    /* right rail (optional) */
+    .rail{min-width:300px;max-width:340px}
     .promo{background:linear-gradient(180deg, rgba(133,115,255,0.06), rgba(0,0,0,0.02));padding:16px;border-radius:12px}
-    .promo h4{margin:0 0 6px 0}
-    .promo p{margin:0;color:var(--muted)}
-
-    /* Footer */
-    footer{margin-top:34px;padding:18px 0;border-top:1px solid rgba(255,255,255,0.02);display:flex;justify-content:space-between;align-items:center;gap:12px;color:var(--muted);font-size:0.95rem;flex-wrap:wrap}
-
-    /* Responsive */
+    /* footer */
+    footer{margin-top:34px;padding-top:24px;border-top:1px solid rgba(255,255,255,0.02);color:var(--muted);display:flex;justify-content:space-between;flex-wrap:wrap}
     @media (max-width:1100px){.grid{grid-template-columns:repeat(2,1fr)}.rail{display:none}}
-    @media (max-width:720px){.grid{grid-template-columns:1fr}.hero{flex-direction:column}.hero h1{font-size:30px}}
+    @media (max-width:700px){.grid{grid-template-columns:1fr}.hero{flex-direction:column}}
   </style>
 </head>
 <body>
-  <div class="container">
-
-    <!-- Header -->
-    <header class="header">
-      <div class="brand" role="banner" aria-label="Saxham AI">
+  <div class="wrap">
+    <!-- header -->
+    <header class="site-header" role="banner">
+      <div class="brand">
         <a href="/index.html" style="display:flex;align-items:center;text-decoration:none">
-          <img src="/logo.svg" alt="Saxham AI logo" class="brand-logo" />
-          <div class="brand-text" style="margin-left:10px">
+          <img src="/logo.svg" alt="Saxham AI logo">
+          <div style="margin-left:10px">
             <div class="title">Saxham AI</div>
-            <div class="tagline">AI-driven automation & infrastructure</div>
+            <div class="sub">AI-driven automation & infrastructure</div>
           </div>
         </a>
       </div>
-
-      <nav class="site-nav" role="navigation" aria-label="Main links">
+      <nav class="site-nav" role="navigation">
         <a href="/index.html">Home</a>
-        <a href="/products.html" style="font-weight:800;color:#fff">Products</a>
+        <a class="active" href="/products.html">Products</a>
         <a href="/about.html">About</a>
         <a href="/contact.html">Contact</a>
       </nav>
     </header>
 
-    <!-- Breadcrumb -->
-    <div class="breadcrumbs" aria-hidden="false">
-      <a href="/index.html">Home</a> <span aria-hidden="true">›</span>
-      <span style="color:#fff;font-weight:600">Products</span>
-    </div>
+    <!-- breadcrumbs -->
+    <div class="breadcrumbs">Home › <strong>Products</strong></div>
 
-    <!-- Hero -->
-    <section class="hero" aria-label="Products hero">
+    <!-- hero -->
+    <section class="hero" aria-label="Products">
       <div class="hero-left">
-        <div class="badge">Launching — Digital Products</div>
+        <div style="display:inline-block;padding:6px 10px;background:rgba(133,115,255,0.12);border-radius:8px;color:#ccc;font-weight:700;margin-bottom:12px">Launching — Digital Products</div>
         <h1>Products & Frameworks</h1>
-        <p class="lead">Digital automation blueprints, monitoring dashboards, and audit-ready toolkits for modern IT & trading systems. Practical, production-focused, and easy to adopt.</p>
+        <p class="lead">Digital automation blueprints, monitoring dashboards and SOP toolkits for IT, DevOps and trading infrastructure. Practical, production-ready and easy to adopt.</p>
 
-        <div class="hero-cta">
-          <a class="btn btn-primary" href="/products.html">Browse All</a>
-          <a class="btn btn-ghost" href="mailto:founder@saxhamai.com">Request Early Access</a>
+        <div class="cta-row">
+          <a class="btn btn-primary" href="/contact.html">Request Early Access</a>
+          <a class="btn btn-outline" href="mailto:founder@saxhamai.com">Contact Founder</a>
         </div>
       </div>
 
-      <!-- Right rail: promo -->
-      <aside class="rail" aria-label="Featured product">
+      <!-- optional right rail -->
+      <aside class="rail" aria-label="Featured">
         <div class="promo">
-          <h4 style="margin-bottom:6px">Featured: Kafka Setup Blueprint</h4>
-          <p class="small">Production architecture, HA design, monitoring templates and runbooks. Ideal for trading infra teams.</p>
-          <div style="margin-top:12px">
-            <a class="btn btn-primary" href="/kafka-blueprint.html">View Product</a>
-          </div>
+          <h4 style="margin:0 0 8px 0;color:#fff">Featured: Kafka Setup Blueprint</h4>
+          <p style="margin:0;color:var(--muted)">Production architecture, HA design, monitoring templates and runbooks — ideal for trading infra teams.</p>
+          <div style="margin-top:12px"><a class="btn btn-primary" href="/kafka-blueprint.html">View Product</a></div>
         </div>
       </aside>
     </section>
 
-    <!-- Products grid -->
-    <section aria-label="Products list" style="margin-top:14px">
+    <!-- products grid -->
+    <section aria-label="Products list">
       <div class="grid" role="list">
-        <a class="card" href="/kafka-blueprint.html" role="listitem" aria-label="Kafka Setup Blueprint">
-          <h3>Kafka Setup Blueprint</h3>
-          <p>Production-ready architecture, config templates, monitoring & runbook. Includes installation scripts and troubleshooting guide.</p>
-          <div class="meta">
+        <article class="card" role="listitem">
+          <h3><a href="/kafka-blueprint.html" style="color:inherit;text-decoration:none">Kafka Setup Blueprint</a></h3>
+          <p>Production-ready architecture, configuration templates, monitoring dashboards and runbook.</p>
+          <ul>
+            <li>Install & config scripts</li>
+            <li>HA & security recommendations</li>
+            <li>Troubleshooting checklist</li>
+          </ul>
+          <div style="margin-top:auto;display:flex;gap:8px;align-items:center">
             <span class="tag">Blueprint</span>
-            <span style="margin-left:auto;color:var(--muted)">₹4,999 — ₹49,999</span>
+            <a href="/kafka-blueprint.html" style="margin-left:auto;color:var(--accent);font-weight:700;text-decoration:none">Learn more →</a>
           </div>
-        </a>
+        </article>
 
-        <a class="card" href="/time-sync.html" role="listitem" aria-label="Time-Sync Monitoring">
-          <h3>Time-Sync Monitoring</h3>
-          <p>Low-latency time drift detection, alert rules, Grafana dashboard templates and root-cause playbook.</p>
-          <div class="meta">
+        <article class="card" role="listitem">
+          <h3><a href="/time-sync.html" style="color:inherit;text-decoration:none">Time-Sync Monitoring</a></h3>
+          <p>Low-latency drift detection, alert rules and dashboard templates for accurate time-sensitive systems.</p>
+          <ul>
+            <li>Grafana dashboards</li>
+            <li>Alert playbooks</li>
+            <li>Root-cause diagnostics</li>
+          </ul>
+          <div style="margin-top:auto;display:flex;gap:8px;align-items:center">
             <span class="tag">Monitoring</span>
-            <span style="margin-left:auto;color:var(--muted)">₹9,999 — ₹99,999</span>
+            <a href="/time-sync.html" style="margin-left:auto;color:var(--accent);font-weight:700;text-decoration:none">Learn more →</a>
           </div>
-        </a>
+        </article>
 
-        <a class="card" href="/market-feeds.html" role="listitem" aria-label="Market Feeds Guide">
-          <h3>Market Feeds Guide</h3>
-          <p>Feed architecture, failover patterns, SOPs for exchange connectivity and operational checks for trading systems.</p>
-          <div class="meta">
+        <article class="card" role="listitem">
+          <h3><a href="/market-feeds.html" style="color:inherit;text-decoration:none">Market Feeds Guide</a></h3>
+          <p>Feed architecture, failover patterns and SOPs for exchange connectivity and reliable distribution.</p>
+          <ul>
+            <li>Exchange connect SOPs</li>
+            <li>Failover & playbooks</li>
+            <li>Operational checks</li>
+          </ul>
+          <div style="margin-top:auto;display:flex;gap:8px;align-items:center">
             <span class="tag">Guide</span>
-            <span style="margin-left:auto;color:var(--muted)">₹19,999 — ₹1,20,000</span>
+            <a href="/market-feeds.html" style="margin-left:auto;color:var(--accent);font-weight:700;text-decoration:none">Learn more →</a>
           </div>
-        </a>
+        </article>
 
-        <a class="card" href="/audit-sop-kit.html" role="listitem" aria-label="Audit & SOP Kits">
-          <h3>Audit & SOP Kits</h3>
-          <p>Compliance-ready checklists and automation scripts for patching, backups, EOD/BOD and VA/CA preparedness.</p>
-          <div class="meta">
+        <article class="card" role="listitem">
+          <h3><a href="/audit-sop-kit.html" style="color:inherit;text-decoration:none">Audit & SOP Kits</a></h3>
+          <p>Compliance-ready checklists and automation scripts for patching, backups and EOD/BOD operations.</p>
+          <ul>
+            <li>VA/CA prep</li>
+            <li>Backup & restore SOPs</li>
+            <li>EOD/BOD playbook</li>
+          </ul>
+          <div style="margin-top:auto;display:flex;gap:8px;align-items:center">
             <span class="tag">SOP Kit</span>
-            <span style="margin-left:auto;color:var(--muted)">₹2,999 — ₹14,999</span>
+            <a href="/audit-sop-kit.html" style="margin-left:auto;color:var(--accent);font-weight:700;text-decoration:none">Learn more →</a>
           </div>
-        </a>
+        </article>
 
-        <!-- Example extra cards (add or remove as needed) -->
-        <a class="card" href="/linux-devops-audit.html" role="listitem" aria-label="Linux & DevOps Audit Templates">
-          <h3>Linux & DevOps Audit Templates</h3>
-          <p>Server audit checklists, incident runbooks and automation templates for common infra tasks.</p>
-          <div class="meta">
+        <article class="card" role="listitem">
+          <h3><a href="/linux-devops-audit.html" style="color:inherit;text-decoration:none">Linux & DevOps Audit Templates</a></h3>
+          <p>Server audit checklists, incident runbooks and automation templates for recurring infra tasks.</p>
+          <ul>
+            <li>Checklist templates</li>
+            <li>Incident runbooks</li>
+            <li>Automation snippets</li>
+          </ul>
+          <div style="margin-top:auto;display:flex;gap:8px;align-items:center">
             <span class="tag">Templates</span>
-            <span style="margin-left:auto;color:var(--muted)">₹4,999 — ₹24,999</span>
+            <a href="/linux-devops-audit.html" style="margin-left:auto;color:var(--accent);font-weight:700;text-decoration:none">Learn more →</a>
           </div>
-        </a>
+        </article>
 
-        <a class="card" href="/sop-templates.html" role="listitem" aria-label="IT Operations SOP Kits">
-          <h3>IT Operations SOP Kits</h3>
-          <p>Ready-made SOPs to save hours of documentation — EOD/BOD, back-ups, and routine maintenance.</p>
-          <div class="meta">
+        <article class="card" role="listitem">
+          <h3><a href="/sop-templates.html" style="color:inherit;text-decoration:none">IT Operations SOP Kits</a></h3>
+          <p>Ready SOPs to save engineering time — EOD/BOD, backups, routine maintenance and incident handling.</p>
+          <ul>
+            <li>Pre-filled SOP templates</li>
+            <li>Change & incident procedures</li>
+            <li>Housekeeping automation</li>
+          </ul>
+          <div style="margin-top:auto;display:flex;gap:8px;align-items:center">
             <span class="tag">SOPs</span>
-            <span style="margin-left:auto;color:var(--muted)">₹2,999 — ₹14,999</span>
+            <a href="/sop-templates.html" style="margin-left:auto;color:var(--accent);font-weight:700;text-decoration:none">Learn more →</a>
           </div>
-        </a>
+        </article>
       </div>
     </section>
 
-    <!-- Footer -->
     <footer>
       <div>© <span id="year"></span> Saxham AI</div>
-      <div class="small">Built with clarity • Designed for reliability</div>
+      <div style="color:var(--muted)">Built with clarity • Designed for reliability</div>
     </footer>
   </div>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>
