@@ -1,54 +1,62 @@
 <!doctype html>
-<html>
+<html lang="en">
 <head>
   <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Contact — Saxham AI</title>
+  <link rel="icon" href="/logo.jpg">
   <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
-<div class="wrap">
+  <div class="container">
 
-<header class="site-header">
-  <div class="brand">
-    <a href="/index.html">
-      <img src="/logo.svg" style="width:44px;height:44px;border-radius:8px">
-      <div style="margin-left:10px">
-        <div class="title">Saxham AI</div>
-        <div class="sub">AI-driven automation & infrastructure</div>
+    <header class="header">
+      <a class="brand" href="/index.html">
+        <div class="logo"><img src="/logo.svg" alt="Saxham AI" style="width:42px;height:42px"></div>
+        <div>
+          <div class="title">Saxham AI</div>
+          <div class="sub">AI-driven automation & infrastructure</div>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="/index.html" class="nav-home">Home</a>
+        <a href="/products.html" class="nav-products">Products</a>
+        <a href="/about.html" class="nav-about">About</a>
+        <a href="/contact.html" class="nav-contact active">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Contact</h1>
+      <p class="lead">For product inquiries, early access or partnerships, reach out:</p>
+
+      <div class="grid" style="margin-top:18px">
+        <div class="card">
+          <h3>Email</h3>
+          <p><a href="mailto:founder@saxhamai.com" style="color:var(--accent)">founder@saxhamai.com</a></p>
+          <h3>Social</h3>
+          <p>
+            <a href="https://www.linkedin.com" target="_blank" rel="noopener">LinkedIn</a> •
+            <a href="https://x.com" target="_blank" rel="noopener">X</a> •
+            <a href="https://github.com/saxhamai" target="_blank" rel="noopener">GitHub</a> •
+            <a href="https://www.youtube.com" target="_blank" rel="noopener">YouTube</a>
+          </p>
+        </div>
+
+        <div class="card">
+          <h3>Request early access</h3>
+          <p class="lead">Want early builds or to trial a product? Send a mail with "Early access" subject and brief requirements.</p>
+        </div>
       </div>
-    </a>
+    </main>
+
+    <footer class="footer">
+      <div class="left">© <span id="year"></span> Saxham AI</div>
+      <div class="right"><a href="/index.html">Home</a></div>
+    </footer>
   </div>
-  <nav class="site-nav">
-    <a href="/index.html">Home</a>
-    <a href="/products.html">Products</a>
-    <a href="/about.html">About</a>
-    <a class="nav-contact" href="/contact.html">Contact</a>
-  </nav>
-</header>
 
-<h1>Contact Us</h1>
-
-<p class="lead">For product inquiries, early access or collaboration opportunities, reach out using the details below.</p>
-
-<div class="card" style="padding:20px;margin-top:20px">
-  <h3>Email</h3>
-  <p><a href="mailto:founder@saxhamai.com">founder@saxhamai.com</a></p>
-
-  <h3>Social Links</h3>
-  <p>
-    <a href="https://linkedin.com" target="_blank">LinkedIn</a> • 
-    <a href="https://x.com" target="_blank">X</a> • 
-    <a href="https://github.com/saxhamai" target="_blank">GitHub</a> • 
-    <a href="https://youtube.com" target="_blank">YouTube</a>
-  </p>
-</div>
-
-<footer>
-  <div>© <span id="year"></span> Saxham AI</div>
-  <div>Built with clarity • Designed for reliability</div>
-</footer>
-
-</div>
-<script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
 </body>
 </html>
