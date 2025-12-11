@@ -6,66 +6,23 @@
   <title>Saxham AI — Smart Systems. Smarter Decisions.</title>
   <meta name="description" content="Saxham AI — Digital automation blueprints, DevOps guides and infrastructure frameworks for modern IT teams." />
   <link rel="icon" href="/favicon.ico">
-
-  <!-- Google font (optional) -->
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
-
-  <style>
-    :root{
-      --bg:#0b0f1a;
-      --card:#0f1724;
-      --muted:#9aa4b2;
-      --accent:#6c7cff;
-      --glass: rgba(255,255,255,0.04);
-      color-scheme: dark;
-      font-family: "Inter", system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial;
-    }
-    html,body{height:100%;margin:0;background:linear-gradient(180deg,#030414 0%, #07102a 100%);color:#e6eef8;}
-    .container{max-width:1100px;margin:0 auto;padding:28px;}
-    header{display:flex;align-items:center;justify-content:space-between;gap:16px}
-    .brand{display:flex;align-items:center;gap:12px}
-    .logo{
-      width:48px;height:48px;border-radius:10px;background:linear-gradient(135deg,#5b6bff 0%, #9b5bff 100%);
-      display:flex;align-items:center;justify-content:center;font-weight:700;font-size:18px;color:white;box-shadow:0 6px 18px rgba(92,95,255,0.12);
-    }
-    nav a{color:var(--muted);text-decoration:none;margin-left:18px;font-weight:600}
-    .hero{display:grid;grid-template-columns:1fr 420px;gap:28px;align-items:center;margin-top:48px}
-    .kicker{color:var(--accent);font-weight:700;letter-spacing:0.6px}
-    h1{font-size:32px;margin:8px 0 10px;line-height:1.05}
-    p.lead{color:var(--muted);margin:0 0 20px}
-    .cta{display:flex;gap:12px}
-    .btn{background:var(--accent);border:0;padding:12px 16px;border-radius:10px;color:white;font-weight:700;cursor:pointer;box-shadow:0 8px 24px rgba(108,124,255,0.12)}
-    .btn.ghost{background:transparent;border:1px solid rgba(255,255,255,0.06);color:var(--muted);font-weight:600}
-    .card{background:var(--card);padding:18px;border-radius:12px;box-shadow:0 6px 30px rgba(2,6,23,0.6);border:1px solid rgba(255,255,255,0.03)}
-    .products{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:22px}
-    .prod{padding:16px;border-radius:10px;background:linear-gradient(180deg, rgba(255,255,255,0.01), rgba(255,255,255,0.00));border:1px solid rgba(255,255,255,0.02)}
-    .prod h4{margin:0 0 6px}
-    .footer{margin-top:48px;padding:28px 0;border-top:1px solid rgba(255,255,255,0.03);display:flex;justify-content:space-between;align-items:center;color:var(--muted);font-size:14px}
-
-    /* responsive */
-    @media (max-width:880px){
-      .hero{grid-template-columns:1fr;gap:18px}
-      nav{display:none}
-      .products{grid-template-columns:1fr}
-    }
-    a.social{color:var(--muted);text-decoration:none;margin-left:12px}
-    .small{font-size:13px;color:var(--muted)}
-    .badge{display:inline-block;padding:6px 10px;border-radius:999px;background:rgba(255,255,255,0.03);color:var(--accent);font-weight:700;font-size:12px}
-  </style>
+  <link rel="stylesheet" href="/styles.css">
 </head>
 <body>
   <div class="container">
-    <header>
+    <header class="header">
       <div class="brand">
-        <div class="logo">SX</div>
+        <div class="logo-wrap">
+          <img src="/logo.svg" alt="Saxham AI logo">
+        </div>
         <div>
-          <div style="font-weight:700">Saxham AI</div>
-          <div class="small">AI-driven automation & infrastructure</div>
+          <div class="site-title">Saxham AI</div>
+          <div class="tagline">AI-driven automation & infrastructure</div>
         </div>
       </div>
-
       <nav>
-        <a href="#products">Products</a>
+        <a href="/products.html">Products</a>
         <a href="#about">About</a>
         <a href="#contact">Contact</a>
       </nav>
@@ -74,24 +31,23 @@
     <main class="hero">
       <section>
         <div class="kicker badge">Launching — Digital Products</div>
-        <h1>Smart systems. Smarter decisions.</h1>
+        <h1 class="h1 fade-up">Smart systems. Smarter decisions.</h1>
         <p class="lead">Saxham AI builds automation blueprints, monitoring dashboards and DevOps-ready templates that save weeks of engineering time and reduce operational risk.</p>
-
         <div class="cta">
-          <a class="btn" href="#products">Explore Products</a>
-          <a class="btn ghost" href="mailto:founder@saxhamai.com">Contact Us</a>
+          <a class="btn" href="/products.html">Explore Products</a>
+          <a class="btn ghost" href="#contact">Contact Us</a>
         </div>
 
-        <div class="card" style="margin-top:20px">
+        <div class="card" style="margin-top:18px">
           <strong>Who this is for</strong>
           <p class="small" style="margin:8px 0 0">DevOps engineers, infra teams, trading & capital-market operations, and engineering managers who need predictable, production-ready frameworks.</p>
         </div>
 
-        <div style="margin-top:18px" class="small">Follow us:
-          <a class="social" href="https://www.linkedin.com/company/saxhamai" target="_blank">LinkedIn</a>
-          <a class="social" href="https://x.com/saxhamai" target="_blank">X</a>
-          <a class="social" href="https://github.com/saxhamai" target="_blank">GitHub</a>
-          <a class="social" href="https://www.youtube.com/@saxhamai" target="_blank">YouTube</a>
+        <div style="margin-top:16px" class="small">Follow us:
+          <a href="https://www.linkedin.com/company/saxhamai" target="_blank">LinkedIn</a> •
+          <a href="https://x.com/saxhamai" target="_blank">X</a> •
+          <a href="https://github.com/saxhamai" target="_blank">GitHub</a> •
+          <a href="https://www.youtube.com/@saxhamai" target="_blank">YouTube</a>
         </div>
       </section>
 
@@ -120,35 +76,29 @@
           </div>
 
           <div style="margin-top:12px;text-align:center">
-            <a class="btn" href="#contact">Request Access</a>
+            <a class="btn" href="/waitlist.html">Request Access</a>
           </div>
         </div>
 
-        <div style="height:18px"></div>
-
-        <div class="card" style="margin-top:12px;text-align:center">
-          <div style="font-size:13px;color:var(--muted)">Launch newsletter</div>
-          <div style="margin-top:6px"><small class="small">Get product updates & early access</small></div>
+        <div class="card" style="margin-top:18px;text-align:center">
+          <div class="small">Launch newsletter</div>
           <div style="margin-top:10px">
-            <a class="btn" href="mailto:founder@saxhamai.com?subject=Newsletter%20Signup">Join Waitlist</a>
+            <a class="btn" href="/waitlist.html">Join Waitlist</a>
           </div>
         </div>
       </aside>
     </main>
 
-    <section id="about" style="margin-top:34px">
-      <div class="card">
-        <h3 style="margin:0 0 6px">About Saxham AI</h3>
-        <p class="small" style="margin:0">
-          Saxham AI is a digital-first technology brand focused on building intelligent, scalable and automation-driven solutions for modern IT environments.
-          We create practical blueprints, observability dashboards and SOP toolkits that help organizations simplify operations, improve system reliability and accelerate digital transformation.
-        </p>
+    <section id="about" class="section">
+      <div class="panel">
+        <h3>About Saxham AI</h3>
+        <p class="small">Saxham AI is a digital-first technology brand focused on building intelligent, scalable and automation-driven solutions for modern IT environments. We create practical blueprints, observability dashboards and SOP toolkits that help organizations simplify operations, improve system reliability and accelerate digital transformation.</p>
       </div>
     </section>
 
-    <section id="products" style="margin-top:22px">
-      <div class="card">
-        <h3 style="margin:0 0 10px">Products & Resources</h3>
+    <section id="products" class="section">
+      <div class="panel">
+        <h3>Products & Resources</h3>
         <ul style="margin:0;padding-left:18px;color:var(--muted)">
           <li><strong>Kafka Setup Blueprint</strong> — Production architecture, config templates, monitoring & runbook.</li>
           <li><strong>Time-Sync Monitoring Dashboard</strong> — Low-latency time drift detection & alerts.</li>
@@ -159,11 +109,11 @@
       </div>
     </section>
 
-    <section id="contact" style="margin-top:22px">
-      <div class="card">
-        <h3 style="margin:0 0 10px">Contact</h3>
-        <p class="small" style="margin:0 0 10px">For product inquiries, early access, or partnership: <strong><a href="mailto:founder@saxhamai.com" style="color:var(--accent);text-decoration:none">founder@saxhamai.com</a></strong></p>
-        <p class="small" style="margin:0">Company: Saxham AI • Industry: IT Services & Consulting</p>
+    <section id="contact" class="section">
+      <div class="panel">
+        <h3>Contact</h3>
+        <p class="small">For product inquiries, early access, or partnership: <strong><a href="mailto:founder@saxhamai.com" style="color:var(--accent)">founder@saxhamai.com</a></strong></p>
+        <p class="small">Company: Saxham AI • Industry: IT Services & Consulting</p>
       </div>
     </section>
 
@@ -173,8 +123,6 @@
     </footer>
   </div>
 
-  <script>
-    document.getElementById('year').textContent = new Date().getFullYear();
-  </script>
+  <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>
