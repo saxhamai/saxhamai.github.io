@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Products — Saxham AI</title>
+  <link rel="icon" href="/logo.jpg">
+  <link rel="stylesheet" href="/styles.css">
+</head>
+<body>
+  <div class="container">
+
+    <header class="header">
+      <a class="brand" href="/index.html">
+        <div class="logo"><img src="/logo.svg" alt="Saxham AI" style="width:42px;height:42px"></div>
+        <div>
+          <div class="title">Saxham AI</div>
+          <div class="sub">AI-driven automation & infrastructure</div>
+        </div>
+      </a>
+
+      <nav class="nav">
+        <a href="/index.html" class="nav-home">Home</a>
+        <a href="/products.html" class="nav-products active">Products</a>
+        <a href="/about.html" class="nav-about">About</a>
+        <a href="/contact.html" class="nav-contact">Contact</a>
+      </nav>
+    </header>
+
+    <main>
+      <h1>Products & Frameworks</h1>
+      <p class="lead">Digital automation blueprints, observability dashboards and operational playbooks — ready to deploy and customize.</p>
+
+      <div class="grid" style="margin-top:24px">
+        <a class="card" href="/kafka-blueprint.html">
+          <h3>Kafka Setup Blueprint</h3>
+          <p>Production-ready architecture, HA design, configuration templates and monitoring runbook.</p>
+          <span class="badge">Blueprint</span>
+        </a>
+
+        <a class="card" href="/time-sync.html">
+          <h3>Time-Drift Monitoring</h3>
+          <p>Detect clock drift with low latency alerts and Grafana dashboards.</p>
+          <span class="badge">Monitoring</span>
+        </a>
+
+        <a class="card" href="/market-feeds.html">
+          <h3>Market Feeds Guide</h3>
+          <p>Exchange feed handling, failover patterns and SOPs for trading infra.</p>
+          <span class="badge">Guide</span>
+        </a>
+
+        <a class="card" href="/audit-sop-kit.html">
+          <h3>Audit & SOP Kits</h3>
+          <p>Templates and checklists for patching, backups, VA/CA, EOD/BOD operations.</p>
+          <span class="badge">SOP Kit</span>
+        </a>
+      </div>
+    </main>
+
+    <footer class="footer">
+      <div class="left">© <span id="year"></span> Saxham AI</div>
+      <div class="right"><a href="/contact.html">Contact</a></div>
+    </footer>
+  </div>
+
+  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+</body>
+</html>
