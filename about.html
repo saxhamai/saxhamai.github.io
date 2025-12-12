@@ -1,136 +1,183 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>About — Saxham AI</title>
-
-  <link rel="icon" href="/logo.jpg">
-  <link rel="stylesheet" href="/styles.css">
+  <link rel="icon" href="/logo.jpg" />
+  <meta name="description" content="About Saxham AI — automation blueprints, observability, and operational SOP toolkits for IT & DevOps." />
 
   <style>
     :root{
-      --bg:#071126;
-      --card:#081427;
-      --muted:rgba(255,255,255,0.72);
-      --muted2:rgba(255,255,255,0.56);
-      --accent:#7b66ff;
-      --text:#eef5ff;
+      --bg-1:#05060a;
+      --bg-2:#071029;
+      --panel: rgba(255,255,255,0.03);
+      --muted: rgba(255,255,255,0.72);
+      --muted-2: rgba(255,255,255,0.50);
+      --neon:#7b66ff;
+      --neon-2:#2ed1ff;
+      --accent: linear-gradient(90deg,var(--neon),var(--neon-2));
+      --radius:14px;
+      --maxw:1100px;
+      --text:#ecf5ff;
+      --glass-border: rgba(255,255,255,0.04);
+      --card-shadow: 0 12px 40px rgba(2,8,20,0.6);
+      --soft-shadow: 0 6px 18px rgba(2,8,20,0.55);
     }
-
+    *{box-sizing:border-box}
+    html,body{height:100%; margin:0; font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial; -webkit-font-smoothing:antialiased;}
     body{
-      margin:0;
-      background:linear-gradient(180deg,#061024 0%, #07102a 100%);
-      font-family:Inter, system-ui;
+      background:
+        radial-gradient(900px 400px at 18% 12%, rgba(46,209,255,0.03), transparent),
+        radial-gradient(700px 300px at 88% 82%, rgba(123,102,255,0.04), transparent),
+        linear-gradient(180deg,var(--bg-1),var(--bg-2));
       color:var(--text);
+      line-height:1.5;
+      -webkit-font-smoothing:antialiased;
     }
 
-    .wrap{max-width:1100px; margin:auto; padding:26px;}
+    .wrap{max-width:var(--maxw); margin:28px auto; padding:22px;}
 
-    /* Section container */
-    .section{
-      background:rgba(255,255,255,0.03);
-      padding:22px;
-      border-radius:16px;
-      margin-top:26px;
-      box-shadow:0 6px 22px rgba(2,6,23,0.55);
+    /* header */
+    .header{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:6px 0}
+    .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
+    .logo-box{width:56px;height:56px;border-radius:12px;padding:6px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,0.6)}
+    .logo-box img{width:44px;height:44px;object-fit:contain;display:block}
+    .brand .title{font-weight:800;font-size:18px}
+    .brand .sub{font-size:12px;color:var(--muted-2);margin-top:3px}
+
+    nav.nav{display:flex;gap:12px;align-items:center}
+    nav.nav a{color:var(--muted);text-decoration:none;font-weight:700;padding:8px 12px;border-radius:10px;transition:all .12s}
+    nav.nav a:hover{color:var(--text);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));transform:translateY(-2px)}
+    nav.nav a.active{color:var(--text);background:linear-gradient(90deg, rgba(123,102,255,0.12), rgba(46,209,255,0.06));box-shadow:var(--soft-shadow)}
+
+    /* page title / intro */
+    header.page-head{margin-top:18px}
+    header.page-head h1{font-size:40px;margin:6px 0 6px}
+    header.page-head .lead{color:var(--muted);font-size:16px;max-width:72ch}
+
+    /* Glass content card */
+    .card{
+      background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
+      border-radius:12px;
+      padding:20px;
+      margin-top:18px;
+      border:1px solid var(--glass-border);
+      box-shadow:var(--card-shadow);
     }
+    .card h3{margin-top:0;font-size:20px}
+    .card p{color:var(--muted);margin:10px 0;font-size:15px}
+    .card ul{margin:8px 0 0 18px;color:var(--muted)}
+    .card li{margin:8px 0;font-size:15px}
 
-    h1{
-      font-size:40px;
-      margin-bottom:10px;
+    /* small utilities */
+    .muted {color:var(--muted-2);font-size:14px}
+    .two-col{display:grid;grid-template-columns:1fr 360px;gap:18px;align-items:start}
+
+    /* Right aside small feature */
+    .aside-mini{padding:14px;border-radius:10px;background:linear-gradient(180deg, rgba(46,209,255,0.02), rgba(123,102,255,0.02));border:1px solid rgba(255,255,255,0.02)}
+    .aside-mini h4{margin:0 0 8px}
+    .aside-mini p{color:var(--muted);font-size:14px;margin:0}
+
+    /* footer */
+    .footer{display:flex;justify-content:space-between;align-items:center;margin-top:36px;color:var(--muted-2);padding-bottom:40px}
+    .footer a{color:var(--muted);text-decoration:none;margin-left:14px}
+
+    /* responsive */
+    @media (max-width:980px){
+      .two-col{grid-template-columns:1fr}
+      .aside-mini{order:2}
     }
-
-    .lead{
-      font-size:16px;
-      color:var(--muted);
-      max-width:75ch;
-      margin-bottom:12px;
+    @media (max-width:520px){
+      header.page-head h1{font-size:28px}
+      .logo-box{width:48px;height:48px}
     }
-
-    h3{margin-top:20px;}
-
-    ul li{
-      margin:6px 0;
-      color:var(--muted);
-      font-size:15px;
-    }
-
-    /* Footer */
-    .footer{
-      margin-top:40px;
-      display:flex;
-      justify-content:space-between;
-      color:var(--muted2);
-      padding-bottom:40px;
-    }
-    .footer a{text-decoration:none;color:var(--muted);margin-left:12px;}
   </style>
 </head>
 <body>
+  <div class="wrap" role="document">
 
-<div class="wrap">
+    <!-- TOP NAV / BRAND -->
+    <header class="header" role="banner">
+      <a class="brand" href="/index.html" aria-label="Saxham AI home">
+        <div class="logo-box"><img src="/logo.svg" alt="Saxham AI logo"></div>
+        <div>
+          <div class="title">Saxham AI</div>
+          <div class="sub">AI-driven automation &amp; infrastructure</div>
+        </div>
+      </a>
 
-  <!-- HEADER -->
-  <header class="header">
-    <a class="brand" href="/index.html">
-      <div class="logo"><img src="/logo.svg" alt="Saxham AI" style="width:48px;height:48px"></div>
-      <div>
-        <div class="title">Saxham AI</div>
-        <div class="sub">AI-driven automation & infrastructure</div>
-      </div>
-    </a>
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="/index.html">Home</a>
+        <a href="/products.html">Products</a>
+        <a href="/technostar.html">TechnoStar</a>
+        <a href="/about.html" class="active">About</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </header>
 
-    <nav class="nav">
-      <a href="/index.html">Home</a>
-      <a href="/products.html">Products</a>
-      <a href="/about.html" class="active">About</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
-  </header>
+    <!-- PAGE HEADING -->
+    <header class="page-head" role="region" aria-label="About heading">
+      <h1>About Saxham AI</h1>
+      <p class="lead">Saxham AI builds practical automation blueprints, monitoring dashboards, and SOP toolkits for modern IT and DevOps teams.</p>
+    </header>
 
-  <!-- MAIN -->
-  <main>
-    <h1>About Saxham AI</h1>
-    <p class="lead">
-      Saxham AI builds practical automation blueprints, monitoring dashboards,
-      and SOP toolkits for modern IT and DevOps teams.
-    </p>
+    <!-- MAIN CONTENT (two column) -->
+    <main class="two-col" role="main">
+      <section>
+        <div class="card" role="article" aria-labelledby="what-we-do">
+          <h3 id="what-we-do">What we do</h3>
+          <p class="muted">We deliver production-ready artifacts and runbooks that make operations reliable, repeatable and auditable.</p>
 
-    <!-- What we do section -->
-    <div class="section">
-      <h3>What we do</h3>
-      <ul>
-        <li>Production-ready infrastructure blueprints (Kafka, Redis, HA systems, etc.)</li>
-        <li>Monitoring dashboards & alert playbooks</li>
-        <li>Operational SOPs for EOD/BOD & audit readiness</li>
-      </ul>
-    </div>
+          <ul>
+            <li>Production-ready infrastructure blueprints (Kafka, Redis, HA systems, etc.)</li>
+            <li>Monitoring dashboards, Grafana templates and alert playbooks</li>
+            <li>Operational SOPs for EOD/BOD, backups and audit readiness</li>
+            <li>Incident runbooks, troubleshooting guides and observability designs</li>
+          </ul>
+        </div>
 
-    <!-- Why choose us -->
-    <div class="section">
-      <h3>Why Saxham AI</h3>
-      <p class="lead">
-        We focus on clarity, reliability, and practical automation—deliverables that reduce time-to-production,
-        improve engineering efficiency, and lower operational risks.
-      </p>
-    </div>
-  </main>
+        <div class="card" role="article" aria-labelledby="why-choose">
+          <h3 id="why-choose">Why Saxham AI</h3>
+          <p class="muted">
+            We focus on clarity, reliability and practical automation — deliverables that reduce time-to-production,
+            improve engineering efficiency and lower operational risk for infra and trading teams.
+          </p>
 
-  <!-- FOOTER -->
-  <footer class="footer">
-    <div>© <span id="year"></span> Saxham AI</div>
-    <div>
-      <a href="/products.html">Products</a>
-      <a href="/contact.html">Contact</a>
-    </div>
-  </footer>
+          <p style="margin-top:12px" class="muted">
+            If you want a reproducible, tested approach to infrastructure and monitoring that your team can adopt quickly,
+            we can help with templates, automation scripts and documentation.
+          </p>
+        </div>
+      </section>
 
-</div>
+      <aside class="aside-mini" role="complementary" aria-labelledby="connect">
+        <h4 id="connect">Get in touch</h4>
+        <p class="muted" style="margin-bottom:10px">For product inquiries, early access, or partnership: <br />
+          <a href="mailto:founder@saxhamai.com" style="color:var(--neon);text-decoration:underline">founder@saxhamai.com</a>
+        </p>
 
-<script>
-  document.getElementById("year").textContent = new Date().getFullYear();
-</script>
+        <div style="margin-top:12px">
+          <strong style="display:block;margin-bottom:8px">Also follow</strong>
+          <div class="muted">
+            <a href="https://www.linkedin.com/company/saxhamai" target="_blank" rel="noopener" style="color:var(--muted)">LinkedIn</a> •
+            <a href="https://x.com/search?q=%40saxhamai" target="_blank" rel="noopener" style="color:var(--muted)">X</a> •
+            <a href="https://github.com/saxhamai" target="_blank" rel="noopener" style="color:var(--muted)">GitHub</a>
+          </div>
+        </div>
+      </aside>
+    </main>
 
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo">
+      <div>© <span id="year"></span> Saxham AI</div>
+      <div><a href="/products.html">Products</a> <a href="/contact.html">Contact</a></div>
+    </footer>
+
+  </div>
+
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
