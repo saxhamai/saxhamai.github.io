@@ -6,55 +6,123 @@
   <title>Kafka Setup Blueprint — Saxham AI</title>
   <link rel="icon" href="/logo.jpg">
   <link rel="stylesheet" href="/styles.css">
+  <style>
+    /* Small page-specific tweaks (optional) */
+    .breadcrumb { color: rgba(255,255,255,0.65); font-size:13px; margin-bottom:10px; }
+    .page-hero { display:flex; gap:20px; align-items:flex-start; margin-top:8px; }
+    .page-main { flex:1; }
+    .meta-card { width:320px; min-width:220px; background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); padding:16px; border-radius:12px; box-shadow:0 10px 30px rgba(2,6,23,0.45); border:1px solid rgba(255,255,255,0.02); }
+    .meta-card h4{margin:0 0 8px;}
+    .include-list { margin:0; padding-left:18px; color:rgba(255,255,255,0.9); }
+    .meta-row { display:flex; gap:10px; margin-top:10px; align-items:center; flex-wrap:wrap; }
+    .muted { color: rgba(255,255,255,0.72); font-size:14px; }
+    .small { font-size:13px; color:rgba(255,255,255,0.6); }
+    .top-cta { margin-top:14px; display:flex; gap:10px; flex-wrap:wrap; }
+    .download-link { background:transparent; border:1px dashed rgba(255,255,255,0.06); padding:8px 12px; border-radius:10px; color:var(--muted); text-decoration:none; font-weight:700; }
+    @media (max-width:980px){ .page-hero{flex-direction:column} .meta-card{width:100%} }
+  </style>
 </head>
 <body>
-  <div class="container">
-    <header class="header">
-      <a class="brand" href="/index.html">
-        <div class="logo"><img src="/logo.svg" alt="Saxham AI" style="width:42px;height:42px"></div>
-        <div>
+  <div class="wrap">
+
+    <!-- HEADER -->
+    <header class="header" role="banner">
+      <a class="brand" href="/index.html" aria-label="Saxham AI home">
+        <div class="logo"><img src="/logo.svg" alt="Saxham AI logo"></div>
+        <div class="info">
           <div class="title">Saxham AI</div>
-          <div class="sub">AI-driven automation & infrastructure</div>
+          <div class="sub">AI-driven automation &amp; infrastructure</div>
         </div>
       </a>
 
-      <nav class="nav">
+      <nav class="nav" role="navigation" aria-label="Main navigation">
         <a href="/index.html" class="nav-home">Home</a>
         <a href="/products.html" class="nav-products active">Products</a>
+        <a href="/technostar.html" class="nav-service">TechnoStar</a>
         <a href="/about.html" class="nav-about">About</a>
         <a href="/contact.html" class="nav-contact">Contact</a>
       </nav>
     </header>
 
-    <main>
-      <h1>Kafka Setup Blueprint</h1>
-      <p class="lead">Production-ready Kafka architecture, install scripts, configuration templates, monitoring and troubleshooting playbook.</p>
+    <!-- BREADCRUMB -->
+    <div class="breadcrumb"><a href="/index.html" style="color:inherit; text-decoration:none;">Home</a> &nbsp;›&nbsp; <a href="/products.html" style="color:inherit; text-decoration:none;">Products</a> &nbsp;›&nbsp; Kafka Setup Blueprint</div>
 
-      <div style="margin-top:18px" class="grid">
-        <div class="card">
-          <h3>What's included</h3>
-          <ul>
-            <li>HA cluster recommended design</li>
-            <li>Broker config templates</li>
-            <li>Zookeeper/raft setup guidance</li>
-            <li>Monitoring dashboards & alert rules</li>
-            <li>Step-by-step install scripts</li>
-          </ul>
-        </div>
-        <div class="card">
-          <h3>How to get it</h3>
-          <p>Send an inquiry to <a href="mailto:founder@saxhamai.com">founder@saxhamai.com</a> and mention "Kafka Blueprint". We'll share pricing and trial access.</p>
+    <!-- HERO / TOP -->
+    <section class="page-hero" aria-labelledby="page-heading">
+      <div class="page-main">
+        <h1 id="page-heading" style="margin:0 0 6px; font-size:36px;">Kafka Setup Blueprint</h1>
+        <div class="muted">Production-ready Kafka architecture, broker configuration templates, install scripts, monitoring dashboards and troubleshooting runbook.</div>
+
+        <div class="top-cta">
           <a class="btn btn-primary" href="/contact.html">Request Access</a>
+          <a class="download-link" href="/kafka-sample.pdf" target="_blank" rel="noopener">Download sample PDF</a>
+        </div>
+
+        <!-- MAIN CONTENT -->
+        <div style="margin-top:18px;">
+          <div style="display:grid; grid-template-columns:1fr; gap:16px;">
+            <article class="card" style="padding:18px;">
+              <h3 style="margin-top:0;">Overview</h3>
+              <p class="muted" style="margin-bottom:8px;">
+                This blueprint helps infra teams deploy production-grade Kafka clusters with sensible defaults for reliability, security and monitoring.
+                It includes operator-friendly install scripts, IAC snippets, example Prometheus/Grafana dashboards and an operational runbook for common failures.
+              </p>
+
+              <h4 style="margin:12px 0 8px;">Who it's for</h4>
+              <p class="small">DevOps teams, platform engineers and SREs running mission-critical streaming pipelines or exchange-level message buses.</p>
+            </article>
+
+            <article class="card" style="padding:18px;">
+              <h3 style="margin-top:0;">What's included</h3>
+              <ul class="include-list">
+                <li>Reference HA cluster architecture & recommended sizing</li>
+                <li>Broker configuration files (server.properties) and comments</li>
+                <li>Zookeeper / KRaft guidance & migration notes</li>
+                <li>Installation scripts & idempotent playbook examples</li>
+                <li>Prometheus metrics & Grafana dashboards, alerting rules</li>
+                <li>Troubleshooting runbook & post-mortem checklist</li>
+              </ul>
+            </article>
+          </div>
         </div>
       </div>
-    </main>
 
-    <footer class="footer">
-      <div class="left">© <span id="year"></span> Saxham AI</div>
-      <div class="right"><a href="/products.html">Back to products</a></div>
+      <!-- RIGHT META / CTA CARD -->
+      <aside class="meta-card" aria-labelledby="meta-heading">
+        <h4 id="meta-heading">Quick details</h4>
+        <div class="small">Delivery</div>
+        <div style="font-weight:800; margin-top:6px;">Blueprint + scripts (digital)</div>
+
+        <div class="meta-row">
+          <div class="small">Support</div>
+          <div class="muted">Documentation + 7 days email support</div>
+        </div>
+
+        <div style="margin-top:10px;" class="meta-row">
+          <a class="btn btn-primary" href="/contact.html">Request access</a>
+          <a class="download-link" href="/kafka-sample.pdf" target="_blank" rel="noopener">Sample PDF</a>
+        </div>
+
+        <div style="margin-top:12px;">
+          <div class="small">Need a customised deployment or hands-on help?</div>
+          <div style="margin-top:8px;"><a href="/contact.html" class="contact-link" style="color:var(--accent); font-weight:700;">Contact us for consulting</a></div>
+        </div>
+      </aside>
+    </section>
+
+    <!-- FOOTER -->
+    <footer class="footer" role="contentinfo" style="margin-top:30px;">
+      <div>© <span id="year"></span> Saxham AI</div>
+      <div>
+        <a href="/products.html">Products</a>
+        <a href="/index.html">Home</a>
+      </div>
     </footer>
+
   </div>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <script>
+    document.getElementById('year').textContent = new Date().getFullYear();
+  </script>
 </body>
 </html>
