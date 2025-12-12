@@ -24,19 +24,53 @@
       radial-gradient(800px 500px at 90% 80%, rgba(46,209,255,0.05), transparent),
       linear-gradient(180deg,var(--bg-1),var(--bg-2));
     overflow-x:hidden;
+    position:relative;
   }
 
-  /* skip link */
-  .skip { position:fixed; left:12px; top:12px; background:#07132a; color:var(--text); padding:8px 10px; border-radius:8px; z-index:9999; transform:translateY(-200%); transition:transform .18s; }
-  .skip:focus{ transform:translateY(0); outline:none }
+  /* ---------- FUTURISTIC LAYERS ---------- */
+  /* animated subtle moving gradient overlay */
+  .bg-overlay {
+    position:fixed; inset:0; pointer-events:none; z-index:0;
+    background:
+      linear-gradient(120deg, rgba(123,102,255,0.04), rgba(46,209,255,0.02));
+    mix-blend-mode:overlay; opacity:0.85;
+    animation: slowSlide 16s linear infinite;
+    transform-origin:center;
+    filter:blur(24px) saturate(1.1);
+  }
+  @keyframes slowSlide {
+    0%{ transform:translateY(0) rotate(0deg); }
+    50%{ transform:translateY(-12px) rotate(2deg); }
+    100%{ transform:translateY(0) rotate(0deg); }
+  }
 
-  /* cursor glow + particles (reduced for small screens) */
-  #cursor-glow{ position:fixed; width:220px; height:220px; border-radius:50%; background:radial-gradient(circle, rgba(46,209,255,0.22), transparent 70%); pointer-events:none; filter:blur(40px); opacity:0.36; z-index:0; transition:transform .1s linear; mix-blend-mode:screen }
-  .particle{ position:fixed; border-radius:50%; filter:blur(8px); opacity:0.6; animation: drift 12s infinite ease-in-out; z-index:0 }
-  @keyframes drift{ 0%{transform:translateY(0)} 50%{transform:translateY(-12px)} 100%{transform:translateY(0)} }
+  /* faint animated grid lines (SVG fallback used) */
+  .grid-lines {
+    position:fixed; inset:0; pointer-events:none; z-index:0; opacity:0.06;
+    background-image: linear-gradient(transparent 0, transparent 14px, rgba(255,255,255,0.02) 15px),
+                      linear-gradient(90deg, transparent 0, transparent 14px, rgba(255,255,255,0.02) 15px);
+    background-size: 100% 30px, 30px 100%;
+    transform: translateZ(0);
+    animation: gridMove 14s linear infinite;
+  }
+  @keyframes gridMove{ from{transform:translateY(0)} to{transform:translateY(-30px)} }
 
-  /* wrapper */
-  .wrap{ max-width:var(--maxw); margin:24px auto; padding:18px; position:relative; z-index:2 }
+  /* subtle particle layer for depth */
+  .particles { position:fixed; inset:0; pointer-events:none; z-index:0 }
+  .particle {
+    position:absolute; border-radius:50%; filter:blur(6px); opacity:0.6;
+    will-change:transform, opacity;
+    animation: particleFloat linear infinite;
+    mix-blend-mode:screen;
+  }
+  @keyframes particleFloat {
+    0% { transform: translateY(0) scale(1); opacity:0.6; }
+    50% { transform: translateY(-22px) scale(1.08); opacity:0.45; }
+    100% { transform: translateY(0) scale(1); opacity:0.6; }
+  }
+
+  /* ---------- WRAPPER ---------- */
+  .wrap{max-width:var(--maxw);margin:24px auto;padding:18px;position:relative;z-index:3}
 
   /* header */
   .header{ display:flex; align-items:center; justify-content:space-between; gap:14px; padding:6px 4px; }
@@ -46,206 +80,202 @@
   .brand .title{ font-weight:800; font-size:18px }
   .brand .sub{ font-size:12px; color:var(--muted-2) }
 
-  /* responsive nav (hamburger) */
-  .nav { display:flex; gap:12px; align-items:center }
+  /* nav */
+  .nav { display:flex; gap:12px; align-items:center; z-index:4 }
   .nav a { color:var(--muted); text-decoration:none; padding:8px 12px; border-radius:10px; font-weight:700; transition:all .14s }
   .nav a:hover { color:var(--text); background:rgba(255,255,255,0.04); transform:translateY(-2px) }
   .nav a.active{ color:var(--text); background:rgba(123,102,255,0.18); box-shadow:0 8px 22px rgba(10,24,60,0.25) }
 
-  /* hamburger toggle (hidden on desktop) */
-  .nav-toggle { display:none; }
-  .hamburger {
-    display:none;
-    width:44px; height:40px; border-radius:10px; background:transparent; border:1px solid rgba(255,255,255,0.03);
-    align-items:center; justify-content:center; cursor:pointer;
-  }
-  .hamburger span{ display:block; width:20px; height:2px; background:var(--muted); border-radius:2px; position:relative }
-  .hamburger span::before, .hamburger span::after{ content:""; position:absolute; left:0; width:20px; height:2px; background:var(--muted); border-radius:2px }
-  .hamburger span::before{ top:-6px } .hamburger span::after{ top:6px }
-
   /* hero */
-  .hero{ margin-top:18px; animation:fadeIn .9s ease both }
+  .hero{ margin-top:18px; animation:fadeIn .9s ease both; position:relative; z-index:3 }
   @keyframes fadeIn{ from{opacity:0; transform:translateY(12px)} to{opacity:1; transform:none} }
-  .tag{ display:inline-block; padding:6px 12px; border-radius:999px; background:rgba(123,102,255,0.14); color:var(--neon); font-weight:800; font-size:13px }
-  h1{ font-size:clamp(28px, 7vw, 48px); line-height:1.02; margin:12px 0 }
+
+  .tag{ display:inline-block; padding:6px 12px; border-radius:999px; background:linear-gradient(90deg, rgba(123,102,255,0.12), rgba(46,209,255,0.06)); color:var(--neon); font-weight:800; font-size:13px; letter-spacing:0.6px; }
+  h1{ font-size:clamp(28px, 7vw, 48px); line-height:1.02; margin:12px 0; background:linear-gradient(90deg, #fff, rgba(255,255,255,0.85)); -webkit-background-clip:text; background-clip:text; color:transparent; filter:drop-shadow(0 6px 30px rgba(0,0,0,0.6)) }
   .lead{ color:var(--muted); font-size:clamp(14px, 2.2vw, 17px); max-width:70ch }
 
-  /* technostar highlight */
-  .technostar{ margin-top:22px; padding:14px; border-radius:14px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.06); backdrop-filter:blur(8px); display:flex; gap:12px; align-items:center; box-shadow:var(--shadow); overflow:hidden; position:relative }
-  .technostar .icon{ flex:0 0 64px }
-  .technostar .icon img{ width:64px; height:64px; border-radius:12px; object-fit:cover }
+  /* hero text reveal (futuristic) */
+  .reveal {
+    overflow:hidden; display:inline-block; position:relative;
+  }
+  .reveal::after{
+    content:""; position:absolute; left:0; top:0; height:100%; width:100%;
+    background:linear-gradient(90deg, rgba(255,255,255,0.08), rgba(255,255,255,0.18), rgba(255,255,255,0.08));
+    transform:translateX(-110%); animation: sweep 2.4s ease forwards .4s;
+    mix-blend-mode:overlay; pointer-events:none;
+  }
+  @keyframes sweep{ to{ transform:translateX(110%); } }
+
+  /* technostar card with neon animated border */
+  .technostar{
+    margin-top:22px; padding:14px; border-radius:14px; background:rgba(255,255,255,0.03);
+    border:1px solid rgba(255,255,255,0.04); backdrop-filter:blur(8px);
+    display:flex; gap:12px; align-items:center; box-shadow:var(--shadow); overflow:hidden;
+    position:relative; isolation:isolate;
+  }
+  .technostar:before{
+    content:""; position:absolute; inset:-2px; border-radius:16px; padding:2px;
+    background: linear-gradient(90deg, rgba(123,102,255,0.35), rgba(46,209,255,0.25), rgba(123,102,255,0.12));
+    -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor; mask-composite: exclude;
+    opacity:0; transition:opacity .25s;
+    animation: borderPulse 3.8s linear infinite;
+    pointer-events:none;
+  }
+  @keyframes borderPulse{ 0%{opacity:0} 25%{opacity:1} 60%{opacity:0.6} 100%{opacity:0} }
+
+  .technostar .icon{ flex:0 0 64px; transform:translateZ(0) }
+  .technostar .icon img{ width:64px; height:64px; border-radius:12px; object-fit:cover; display:block; transition:transform .35s ease; box-shadow:0 8px 30px rgba(46,209,255,0.06) }
+  .technostar:hover .icon img{ transform:rotate(-6deg) scale(1.04) }
   .technostar .meta{ flex:1; min-width:0 }
   .technostar .meta .ts-title{ font-weight:900; font-size:16px; margin-bottom:4px }
   .technostar .meta .ts-desc{ color:var(--muted); font-size:14px; margin-bottom:8px }
-  .ts-cta{ display:inline-block; padding:10px 14px; border-radius:12px; background:linear-gradient(90deg,var(--neon),var(--cyan)); color:#fff; font-weight:800; text-decoration:none; box-shadow:0 12px 28px rgba(60,40,180,0.12) }
+  .ts-cta{ display:inline-block; padding:10px 14px; border-radius:12px; background:linear-gradient(90deg,var(--neon),var(--cyan)); color:#fff; font-weight:800; text-decoration:none; box-shadow:0 12px 28px rgba(60,40,180,0.12); transform:translateZ(0) }
 
-  /* panels grid */
+  /* panels grid with neon hover */
   .info-grid{ margin-top:24px; display:grid; grid-template-columns:repeat(auto-fit,minmax(240px,1fr)); gap:16px }
-  .panel{ padding:18px; border-radius:12px; background:rgba(255,255,255,0.03); border:1px solid rgba(255,255,255,0.04); box-shadow:var(--shadow); transition:transform .18s, box-shadow .18s }
-  .panel:hover{ transform:translateY(-6px) }
+  .panel{ padding:18px; border-radius:12px; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.04); box-shadow:0 8px 26px rgba(0,0,0,0.45); transition:transform .22s, box-shadow .22s, background .22s }
+  .panel:hover{ transform:translateY(-8px); box-shadow:0 22px 58px rgba(80,46,200,0.22); background:linear-gradient(180deg, rgba(123,102,255,0.02), rgba(46,209,255,0.02)) }
   .panel h3{ font-size:16px; margin-bottom:8px }
   .panel p{ color:var(--muted); font-size:14px }
 
-  /* footer */
-  .footer{ margin-top:34px; text-align:center; color:var(--muted-2) }
+  /* glowing streak when panel is hovered (accessible) */
+  .panel:after{
+    content:""; position:absolute; inset:0; pointer-events:none; border-radius:12px;
+    background:linear-gradient(90deg, rgba(123,102,255,0.08), rgba(46,209,255,0.06));
+    opacity:0; transform:translateY(6px); transition:all .28s;
+  }
+  .panel:hover:after{ opacity:1; transform:none }
 
-  /* small screens: show hamburger, hide nav links in header by default */
+  /* footer */
+  .footer{ margin-top:34px; text-align:center; color:var(--muted-2); z-index:3 }
+
+  /* small screens: reduce heavy effects */
   @media (max-width:900px){
-    .nav { display:none }               /* hidden on mobile, toggle will show overlay */
-    .hamburger{ display:flex; }        /* show hamburger button */
-    .logo-box{ width:48px; height:48px } 
+    .nav { display:none }
+    .logo-box{ width:48px; height:48px }
     .brand .title{ font-size:16px }
     .wrap{ padding:16px }
-    .technostar{ padding:12px }
+    .technostar .icon img{ width:52px; height:52px }
   }
-
-  /* mobile nav overlay */
-  .mobile-nav {
-    position:fixed; inset:0; top:60px; left:0; right:0; height:calc(100% - 60px);
-    background:linear-gradient(180deg, rgba(3,6,12,0.9), rgba(3,6,12,0.96));
-    backdrop-filter:blur(6px); z-index:9998; display:none; padding:24px;
-  }
-  .mobile-nav.open{ display:block }
-  .mobile-nav a { display:block; padding:12px 16px; border-radius:10px; color:var(--muted); text-decoration:none; margin-bottom:8px; font-weight:800 }
-  .mobile-nav a.active{ color: #fff; background: rgba(123,102,255,0.18) }
-
-  /* hide heavy effects on very small screens for clarity */
   @media (max-width:420px){
-    #cursor-glow, .particle { display:none }
     h1{ font-size: clamp(22px, 8vw, 32px) }
     .lead{ font-size:14px }
-    .technostar .icon img{ width:52px; height:52px }
-    .technostar .meta .ts-title{ font-size:15px }
+    #cursor-glow, .particles, .grid-lines, .bg-overlay { display:none }
   }
 
-  /* focus outlines for accessibility */
+  /* accessible focus outlines */
   a:focus, button:focus { outline: 3px solid rgba(123,102,255,0.18); outline-offset:4px; border-radius:8px }
+
+  /* prefers-reduced-motion */
+  @media (prefers-reduced-motion: reduce) {
+    .particles, .bg-overlay, .grid-lines, .reveal::after, .technostar:before, .panel:hover { animation: none !important; transition: none !important; }
+    .technostar .icon img, .panel { transform: none !important; }
+  }
 </style>
 </head>
 <body>
 
-<a class="skip" href="#main">Skip to content</a>
+  <!-- decorative layers -->
+  <div class="bg-overlay" aria-hidden="true"></div>
+  <div class="grid-lines" aria-hidden="true"></div>
 
-<!-- decorative layers -->
-<div id="cursor-glow" aria-hidden="true"></div>
-<div class="particle" style="width:18px;height:18px;left:18%;top:28%;background:var(--neon);animation-duration:11s" aria-hidden="true"></div>
-<div class="particle" style="width:14px;height:14px;left:72%;top:18%;background:var(--cyan);animation-duration:13s" aria-hidden="true"></div>
+  <div class="particles" aria-hidden="true">
+    <div class="particle" style="width:20px;height:20px;left:12%;top:30%;background:var(--neon);animation-duration:10s;"></div>
+    <div class="particle" style="width:14px;height:14px;left:70%;top:18%;background:var(--cyan);animation-duration:12s;"></div>
+    <div class="particle" style="width:28px;height:28px;left:48%;top:78%;background:var(--neon);animation-duration:9s;"></div>
+    <div class="particle" style="width:8px;height:8px;left:85%;top:55%;background:var(--cyan);animation-duration:16s;"></div>
+    <div class="particle" style="width:12px;height:12px;left:22%;top:72%;background:var(--neon);animation-duration:13s;"></div>
+  </div>
 
-<div class="wrap" id="main" role="document">
-  <header class="header" role="banner">
-    <a class="brand" href="/index.html" aria-label="Saxham AI home">
-      <div class="logo-box"><img src="/logo.svg" alt="Saxham AI logo"></div>
-      <div>
-        <div class="title">Saxham AI</div>
-        <div class="sub">AI-driven automation &amp; infrastructure</div>
+  <div class="wrap" id="main" role="document">
+    <header class="header" role="banner">
+      <a class="brand" href="/index.html" aria-label="Saxham AI home">
+        <div class="logo-box"><img src="/logo.svg" alt="Saxham AI logo"></div>
+        <div>
+          <div class="title">Saxham AI</div>
+          <div class="sub">AI-driven automation &amp; infrastructure</div>
+        </div>
+      </a>
+
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="/index.html" class="active">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/products.html">Products</a>
+        <a href="/contact.html">Contact</a>
+      </nav>
+    </header>
+
+    <!-- HERO -->
+    <section class="hero" aria-labelledby="heroTitle">
+      <span class="tag" aria-hidden="true">Launching • Digital Products</span>
+      <h1 id="heroTitle"><span class="reveal">Smart systems.</span><br><span class="reveal">Smarter decisions.</span></h1>
+      <p class="lead">Saxham AI builds automation blueprints, observability dashboards and runbooks that reduce engineering time and operational risk.</p>
+
+      <div class="technostar" role="region" aria-label="TechnoStar Infotech">
+        <div class="icon"><img src="/technostar-logo.png" alt="TechnoStar logo" loading="lazy"></div>
+        <div class="meta">
+          <div class="ts-title">🚀 TechnoStar Infotech</div>
+          <div class="ts-desc">Professional doorstep laptop &amp; PC repair — now serving Navi Mumbai.</div>
+          <a class="ts-cta" href="/technostar.html">Visit TechnoStar Service</a>
+        </div>
       </div>
-    </a>
+    </section>
 
-    <!-- desktop nav -->
-    <nav class="nav" role="navigation" aria-label="Main navigation">
-      <a href="/index.html" class="active">Home</a>
-      <a href="/about.html">About</a>
-      <a href="/products.html">Products</a>
-      <a href="/contact.html">Contact</a>
-    </nav>
-
-    <!-- hamburger shown on mobile -->
-    <button class="hamburger" id="hamburger" aria-controls="mobileNav" aria-expanded="false" aria-label="Open menu">
-      <span></span>
-    </button>
-  </header>
-
-  <!-- mobile nav overlay -->
-  <nav id="mobileNav" class="mobile-nav" aria-hidden="true">
-    <a href="/index.html" class="active">Home</a>
-    <a href="/about.html">About</a>
-    <a href="/products.html">Products</a>
-    <a href="/contact.html">Contact</a>
-  </nav>
-
-  <!-- HERO -->
-  <section class="hero" aria-labelledby="heroTitle">
-    <span class="tag" aria-hidden="true">Launching • Digital Products</span>
-    <h1 id="heroTitle">Smart systems.<br>Smarter decisions.</h1>
-    <p class="lead">Saxham AI builds automation blueprints, observability dashboards and runbooks that reduce engineering time and operational risk.</p>
-
-    <div class="technostar" role="region" aria-label="TechnoStar Infotech">
-      <div class="icon"><img src="/technostar-logo.png" alt="TechnoStar logo"></div>
-      <div class="meta">
-        <div class="ts-title">🚀 TechnoStar Infotech</div>
-        <div class="ts-desc">Professional doorstep laptop &amp; PC repair — now serving Navi Mumbai.</div>
-        <a class="ts-cta" href="/technostar.html">Visit TechnoStar Service</a>
+    <!-- PANELS -->
+    <section class="info-grid" aria-label="Products">
+      <div class="panel" role="article" tabindex="0">
+        <h3>Kafka Setup Blueprint</h3>
+        <p>Production architecture, install templates and monitoring runbook.</p>
       </div>
-    </div>
-  </section>
 
-  <!-- PANELS -->
-  <section class="info-grid" aria-label="Products">
-    <div class="panel" role="article">
-      <h3>Kafka Setup Blueprint</h3>
-      <p>Production architecture, install templates and monitoring runbook.</p>
-    </div>
+      <div class="panel" role="article" tabindex="0">
+        <h3>Time-Drift Monitoring</h3>
+        <p>Low-latency drift detection and alerting for distributed systems.</p>
+      </div>
 
-    <div class="panel" role="article">
-      <h3>Time-Drift Monitoring</h3>
-      <p>Low-latency drift detection and alerting for distributed systems.</p>
-    </div>
+      <div class="panel" role="article" tabindex="0">
+        <h3>Market Feeds Guide</h3>
+        <p>Exchange feed handling, failover patterns and operational SOPs.</p>
+      </div>
 
-    <div class="panel" role="article">
-      <h3>Market Feeds Guide</h3>
-      <p>Exchange feed handling, failover patterns and operational SOPs.</p>
-    </div>
+      <div class="panel" role="article" tabindex="0">
+        <h3>Audit &amp; SOP Kits</h3>
+        <p>Compliance-ready checklists and automation scripts.</p>
+      </div>
+    </section>
 
-    <div class="panel" role="article">
-      <h3>Audit &amp; SOP Kits</h3>
-      <p>Compliance-ready checklists and automation scripts.</p>
-    </div>
-  </section>
-
-  <footer class="footer" role="contentinfo">
-    © <span id="year"></span> Saxham AI • All rights reserved
-    <div style="margin-top:8px"><a href="/about.html">About</a> • <a href="/contact.html">Contact</a></div>
-  </footer>
-</div>
+    <footer class="footer" role="contentinfo">
+      © <span id="year"></span> Saxham AI • All rights reserved
+      <div style="margin-top:8px"><a href="/about.html">About</a> • <a href="/contact.html">Contact</a></div>
+    </footer>
+  </div>
 
 <script>
-  // year
+  // set year
   document.getElementById('year').textContent = new Date().getFullYear();
 
-  // cursor glow follow (reduced on small screens via CSS)
-  const glow = document.getElementById('cursor-glow');
-  document.addEventListener('mousemove', e => {
-    glow.style.transform = `translate(${e.clientX - 110}px, ${e.clientY - 110}px)`;
-  });
-
-  // mobile nav toggle
-  const hamburger = document.getElementById('hamburger');
-  const mobileNav = document.getElementById('mobileNav');
-  function toggleMobileNav(open) {
-    const isOpen = open ?? !mobileNav.classList.contains('open');
-    mobileNav.classList.toggle('open', isOpen);
-    mobileNav.setAttribute('aria-hidden', String(!isOpen));
-    hamburger.setAttribute('aria-expanded', String(isOpen));
-    // trap focus lightly by setting focus to first link when opened
-    if(isOpen) {
-      const first = mobileNav.querySelector('a');
-      if(first) first.focus();
-    }
+  // Optimize animation based on prefers-reduced-motion
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  if(prefersReduced){
+    document.querySelectorAll('.particles, .bg-overlay, .grid-lines').forEach(n => n && (n.style.display = 'none'));
+    document.querySelectorAll('.reveal::after, .reveal').forEach(n => n && (n.style.animation = 'none'));
   }
-  hamburger.addEventListener('click', ()=> toggleMobileNav());
-  // close mobile nav when clicking outside or pressing Escape
-  document.addEventListener('keydown', (e)=> { if(e.key === 'Escape') toggleMobileNav(false); });
-  document.addEventListener('click', (e)=>{
-    if(mobileNav.classList.contains('open') && !mobileNav.contains(e.target) && !hamburger.contains(e.target)){
-      toggleMobileNav(false);
-    }
-  });
 
-  // respect reduced-motion preference
-  const mq = window.matchMedia('(prefers-reduced-motion: reduce)');
-  if (mq.matches) {
-    document.querySelectorAll('.particle, #cursor-glow').forEach(el => el.style.display = 'none');
+  // small lazy parallax for hero (only when not reduced)
+  if(!prefersReduced){
+    const hero = document.querySelector('.hero');
+    window.addEventListener('scroll', () => {
+      const y = Math.min(window.scrollY, 300);
+      hero.style.transform = `translateY(${y * -0.02}px)`;
+    }, { passive:true });
   }
+
+  // accessibility: allow keyboard hover effect on panels
+  document.querySelectorAll('.panel').forEach(panel => {
+    panel.addEventListener('focus', () => panel.classList.add('focused'));
+    panel.addEventListener('blur', () => panel.classList.remove('focused'));
+  });
 </script>
 </body>
 </html>
