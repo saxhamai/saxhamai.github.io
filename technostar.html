@@ -7,107 +7,130 @@
   <meta name="viewport" content="width=device-width, initial-scale=1">
 
   <!-- Google Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
+    :root {
+      --primary: #0A2342;
+      --primary-light: #0f3060;
+      --accent: #25D366;
+      --card-bg: #ffffff;
+      --bg: #eef3ff;
+      --text-dark: #0A2342;
+      --text-light: #ffffff;
+      --muted: #4a5568;
+      --radius: 16px;
+      --shadow: 0 8px 22px rgba(0, 0, 0, 0.12);
+    }
+
     body {
       margin: 0;
       font-family: 'Inter', sans-serif;
-      background: #f3f6fc;
-      color: #1d1d1f;
+      background: var(--bg);
+      color: var(--text-dark);
     }
 
     /* HEADER */
     .header {
-      background: #0A2342;
-      padding: 14px 28px;
+      background: var(--primary);
+      padding: 14px 30px;
       display: flex;
       align-items: center;
       justify-content: space-between;
       position: sticky;
       top: 0;
-      z-index: 100;
-      box-shadow: 0 2px 6px rgba(0, 0, 0, 0.18);
+      z-index: 200;
+      box-shadow: 0 3px 10px rgba(0, 0, 0, 0.22);
     }
 
     .brand-box {
       display: flex;
       align-items: center;
       gap: 12px;
-      color: white;
+      color: var(--text-light);
     }
 
     .brand-box img {
-      height: 42px;
-      width: 42px;
-      border-radius: 6px;
+      height: 48px;
+      width: 48px;
+      border-radius: 10px;
       object-fit: contain;
     }
 
     .brand-title {
-      font-size: 20px;
-      font-weight: 700;
-      letter-spacing: 0.3px;
+      font-size: 22px;
+      font-weight: 800;
+      letter-spacing: 0.2px;
     }
 
     nav a {
       color: #dfe8ff;
-      margin-left: 18px;
-      font-size: 15px;
+      margin-left: 20px;
+      font-size: 16px;
       text-decoration: none;
+      font-weight: 600;
+      transition: 0.2s;
     }
 
     nav a:hover {
       color: white;
     }
 
-    /* HERO SECTION */
+    /* HERO */
     .hero {
-      padding: 60px 20px;
+      padding: 70px 20px;
       text-align: center;
-      background: white;
+      background: linear-gradient(135deg, #0A2342 0%, #12406f 100%);
+      color: white;
+      border-bottom-left-radius: 30px;
+      border-bottom-right-radius: 30px;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.18);
     }
 
     .hero h1 {
-      font-size: 34px;
-      font-weight: 700;
-      color: #0A2342;
-      margin-bottom: 10px;
+      font-size: 38px;
+      font-weight: 800;
+      margin-bottom: 12px;
     }
 
     .hero p {
-      max-width: 620px;
+      max-width: 720px;
       margin: 0 auto;
-      font-size: 16px;
-      opacity: 0.85;
+      font-size: 17px;
+      opacity: 0.9;
+      line-height: 1.6;
     }
 
     .cta-btn {
       display: inline-block;
-      background: #25D366;
-      padding: 14px 26px;
-      border-radius: 10px;
+      background: var(--accent);
+      padding: 14px 28px;
+      border-radius: 12px;
       color: white;
       text-decoration: none;
-      font-size: 17px;
-      font-weight: 600;
-      margin-top: 20px;
+      font-size: 18px;
+      margin-top: 24px;
+      font-weight: 700;
+      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
       transition: 0.25s;
     }
 
     .cta-btn:hover {
-      background: #1ebb5c;
-      transform: translateY(-2px);
+      background: #1bb858;
+      transform: translateY(-3px);
     }
 
-    /* SECTIONS */
+    /* SECTION */
     .section {
-      padding: 45px 26px;
+      padding: 60px 26px;
+      max-width: 1200px;
+      margin: auto;
     }
 
     .section h2 {
-      color: #0A2342;
-      font-size: 26px;
+      font-size: 30px;
+      font-weight: 800;
+      color: var(--primary);
       margin-bottom: 14px;
     }
 
@@ -115,57 +138,63 @@
     .services {
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      gap: 22px;
+      margin-top: 20px;
     }
 
     .card {
-      background: white;
-      padding: 24px;
-      border-radius: 14px;
-      box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+      background: var(--card-bg);
+      padding: 22px;
+      border-radius: var(--radius);
+      box-shadow: var(--shadow);
       transition: 0.25s;
+      border-left: 6px solid var(--primary);
     }
 
     .card:hover {
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.18);
       transform: translateY(-4px);
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.20);
     }
 
     .card h3 {
-      margin: 0;
-      margin-bottom: 8px;
+      margin: 0 0 8px;
       font-size: 18px;
-      color: #0A2342;
+      color: var(--primary);
+      font-weight: 700;
     }
 
     .card p {
-      opacity: 0.75;
+      opacity: 0.85;
       margin-bottom: 8px;
+      font-size: 15px;
     }
 
     .card strong {
       font-size: 15px;
-      color: #0A2342;
+      color: var(--primary-light);
     }
 
-    /* WORKFLOW */
+    /* PROCESS FLOW */
     .flow-step {
       background: white;
-      padding: 12px 18px;
-      margin: 10px 0;
-      border-left: 4px solid #0A2342;
-      border-radius: 6px;
+      padding: 14px 18px;
+      margin: 12px 0;
+      border-left: 5px solid var(--primary);
+      border-radius: 10px;
       font-size: 15px;
+      box-shadow: var(--shadow);
     }
 
-    /* FOOTER */
-    .footer {
-      background: #0A2342;
-      color: white;
-      text-align: center;
-      padding: 20px;
-      font-size: 14px;
-      margin-top: 40px;
+    /* CONTACT */
+    #contact p {
+      font-size: 16px;
+      margin: 8px 0;
+    }
+
+    #contact a {
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: none;
     }
 
     /* FLOATING WHATSAPP BUTTON */
@@ -173,19 +202,38 @@
       position: fixed;
       bottom: 18px;
       right: 18px;
-      background: #25D366;
-      height: 58px;
-      width: 58px;
+      background: var(--accent);
+      height: 60px;
+      width: 60px;
       border-radius: 50%;
       display: flex;
       justify-content: center;
       align-items: center;
       color: white;
-      font-size: 28px;
+      font-size: 30px;
       text-decoration: none;
       box-shadow: 0 4px 14px rgba(0, 0, 0, 0.25);
-      z-index: 200;
+      z-index: 300;
+      transition: 0.2s;
     }
+
+    .float-whatsapp:hover {
+      background: #1bb858;
+      transform: scale(1.06);
+    }
+
+    /* FOOTER */
+    .footer {
+      background: var(--primary);
+      color: white;
+      text-align: center;
+      padding: 20px;
+      font-size: 14px;
+      margin-top: 40px;
+      border-top-left-radius: 20px;
+      border-top-right-radius: 20px;
+    }
+
   </style>
 
 </head>
@@ -209,9 +257,10 @@
   <!-- HERO -->
   <section class="hero">
     <h1>Expert Doorstep Laptop & PC Repair</h1>
-    <p>Fast, reliable and professional computer repair in Navi Mumbai. Transparent pricing, certified technicians and 30-day warranty.</p>
+    <p>Fast, reliable and professional computer repair in Navi Mumbai. Affordable pricing, trusted technicians and 30-day warranty.</p>
+
     <a class="cta-btn" href="https://wa.me/917498380071?text=Hi%20TechnoStar!%20I%20need%20laptop/PC%20repair%20service.">
-      Book on WhatsApp
+      💬 Book on WhatsApp
     </a>
   </section>
 
@@ -223,43 +272,43 @@
 
       <div class="card">
         <h3>💻 Laptop Repair</h3>
-        <p>Diagnosis, heating issues, slow performance, WiFi issues.</p>
+        <p>Diagnosis, heating issues, slow performance, WiFi problems.</p>
         <strong>₹99 Diagnosis</strong>
       </div>
 
       <div class="card">
         <h3>🔧 Motherboard Repair</h3>
-        <p>Chip-level: no power, liquid damage, charging issues.</p>
+        <p>Chip-level repair: no power, liquid damage, charging faults.</p>
         <strong>₹1499 – ₹2999</strong>
       </div>
 
       <div class="card">
         <h3>🖥 Screen Replacement</h3>
-        <p>Broken screen, flickering, black display.</p>
+        <p>Broken screen, flickering, lines, black display.</p>
         <strong>₹2499 – ₹6999</strong>
       </div>
 
       <div class="card">
         <h3>⚡ SSD Upgrade</h3>
-        <p>Upgrade speed 10× with SSD + OS installation.</p>
+        <p>Boost performance 10× with SSD + Windows setup.</p>
         <strong>₹1699 – ₹3999</strong>
       </div>
 
       <div class="card">
         <h3>🪟 Windows Installation</h3>
-        <p>Genuine OS setup, drivers, basic software.</p>
+        <p>Genuine OS installation, drivers & essential software.</p>
         <strong>₹499 – ₹699</strong>
       </div>
 
       <div class="card">
         <h3>🧹 Cleaning + Thermal Paste</h3>
-        <p>Internal cleaning, fan service, premium thermal paste.</p>
+        <p>Internal cleaning, fan service, high-quality thermal paste.</p>
         <strong>₹499</strong>
       </div>
 
       <div class="card">
         <h3>🖨 Printer Repair</h3>
-        <p>Paper jam, cartridge issue, not printing.</p>
+        <p>Paper jam, cartridge issues, printing errors.</p>
         <strong>₹199 Visit</strong>
       </div>
 
@@ -271,11 +320,11 @@
     <h2>How It Works</h2>
 
     <div class="flow-step">1️⃣ Share your issue on WhatsApp</div>
-    <div class="flow-step">2️⃣ Technician assigned immediately</div>
-    <div class="flow-step">3️⃣ Doorstep diagnosis & transparent estimate</div>
-    <div class="flow-step">4️⃣ On-site repair or pickup</div>
-    <div class="flow-step">5️⃣ Before/after photo confirmation</div>
-    <div class="flow-step">6️⃣ Delivery + Warranty</div>
+    <div class="flow-step">2️⃣ Technician assigned instantly</div>
+    <div class="flow-step">3️⃣ Doorstep diagnosis & final estimate</div>
+    <div class="flow-step">4️⃣ Repair on-site or pickup</div>
+    <div class="flow-step">5️⃣ Before/after repair proof</div>
+    <div class="flow-step">6️⃣ Delivery + 30-day warranty</div>
   </section>
 
   <!-- CONTACT -->
@@ -284,10 +333,10 @@
 
     <p><strong>📱 WhatsApp:</strong> <a href="https://wa.me/917498380071">+91 7498380071</a></p>
     <p><strong>📧 Email:</strong> technostarinfotechindia@gmail.com</p>
-    <p><strong>📍 Areas:</strong> Ghansoli · Rabale · Koparkhairne · Airoli · Vashi</p>
+    <p><strong>📍 Service Areas:</strong> Ghansoli · Rabale · Koparkhairne · Airoli · Vashi</p>
   </section>
 
-  <!-- FLOATING WHATSAPP BUTTON -->
+  <!-- Floating WhatsApp -->
   <a class="float-whatsapp" href="https://wa.me/917498380071">💬</a>
 
   <!-- FOOTER -->
@@ -296,5 +345,4 @@
   </footer>
 
 </body>
-
 </html>
