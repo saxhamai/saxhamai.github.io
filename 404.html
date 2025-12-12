@@ -2,16 +2,139 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8" />
-<title>Page Not Found — Saxham AI</title>
-<link rel="stylesheet" href="styles.css">
+<title>404 — Page Not Found | Saxham AI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="icon" href="/logo.jpg">
+
 <style>
-    body { text-align: center; padding: 80px 20px; }
-    h1 { font-size: 3rem; margin-bottom: 10px; }
+  :root{
+    --bg-1:#02040a;
+    --bg-2:#07142d;
+    --text:#eaf4ff;
+    --muted:rgba(255,255,255,0.6);
+    --neon:#7b66ff;
+    --cyan:#2ed1ff;
+    --glass:rgba(255,255,255,0.06);
+  }
+
+  *{margin:0;padding:0;box-sizing:border-box;}
+  body{
+    font-family:Inter,system-ui;
+    text-align:center;
+    padding:80px 20px;
+    background:
+      radial-gradient(900px 600px at 10% 10%, rgba(123,102,255,0.08), transparent),
+      radial-gradient(800px 500px at 90% 80%, rgba(46,209,255,0.05), transparent),
+      linear-gradient(180deg,var(--bg-1),var(--bg-2));
+    color:var(--text);
+    overflow:hidden;
+  }
+
+  /* Cursor Glow */
+  #cursor-glow{
+    position:fixed;
+    width:240px;
+    height:240px;
+    background:radial-gradient(circle, rgba(46,209,255,0.22), transparent 70%);
+    border-radius:50%;
+    pointer-events:none;
+    filter:blur(40px);
+    opacity:0.4;
+    z-index:-1;
+    transition:transform .1s linear;
+  }
+
+  /* Floating particles */
+  .particle{
+    position:fixed;
+    border-radius:50%;
+    filter:blur(8px);
+    opacity:0.6;
+    animation: drift 12s infinite ease-in-out;
+  }
+  @keyframes drift{
+    0%{transform:translateY(0);}
+    50%{transform:translateY(-20px);}
+    100%{transform:translateY(0);}
+  }
+
+  /* Glass Card */
+  .box{
+    display:inline-block;
+    padding:40px 28px;
+    border-radius:20px;
+    background:var(--glass);
+    backdrop-filter:blur(12px);
+    border:1px solid rgba(255,255,255,0.14);
+    box-shadow:0 14px 40px rgba(0,0,0,0.4);
+    position:relative;
+  }
+
+  .box::before{
+    content:"";
+    position:absolute;
+    inset:0;
+    border-radius:inherit;
+    padding:2px;
+    background:linear-gradient(120deg,var(--neon),var(--cyan),transparent);
+    -webkit-mask:linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+    -webkit-mask-composite:xor;
+    mask-composite:exclude;
+    animation:borderGlow 6s linear infinite;
+  }
+
+  @keyframes borderGlow{
+    0%{transform:rotate(0deg);}
+    100%{transform:rotate(360deg);}
+  }
+
+  h1{
+    font-size:60px;
+    font-weight:900;
+    margin-bottom:10px;
+    text-shadow:0 0 20px rgba(123,102,255,0.5);
+  }
+
+  p{color:var(--muted);margin-bottom:20px;font-size:16px;}
+
+  a{
+    display:inline-block;
+    padding:12px 20px;
+    text-decoration:none;
+    font-weight:800;
+    border-radius:12px;
+    background:linear-gradient(90deg,var(--neon),var(--cyan));
+    color:#fff;
+    box-shadow:0 12px 30px rgba(46,209,255,0.25);
+    transition:.25s;
+  }
+  a:hover{
+    transform:translateY(-4px);
+  }
 </style>
 </head>
+
 <body>
-    <h1>404</h1>
-    <p>The page you're looking for doesn't exist.</p>
-    <a href="index.html">Return to Home →</a>
+
+<div id="cursor-glow"></div>
+
+<!-- Floating particles -->
+<div class="particle" style="width:18px;height:18px;left:20%;top:35%;background:var(--neon);animation-duration:10s;"></div>
+<div class="particle" style="width:12px;height:12px;left:70%;top:25%;background:var(--cyan);animation-duration:13s;"></div>
+<div class="particle" style="width:22px;height:22px;left:50%;top:75%;background:var(--neon);animation-duration:9s;"></div>
+
+<div class="box">
+  <h1>404</h1>
+  <p>The page you're looking for doesn’t exist.</p>
+  <a href="/index.html">Return Home →</a>
+</div>
+
+<script>
+const glow=document.getElementById("cursor-glow");
+document.addEventListener("mousemove",e=>{
+  glow.style.transform=`translate(${e.clientX-120}px,${e.clientY-120}px)`;
+});
+</script>
+
 </body>
 </html>
