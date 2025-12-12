@@ -1,219 +1,304 @@
 <!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width,initial-scale=1" />
+<title>Saxham AI — Automation Blueprints</title>
+<link rel="icon" href="/logo.jpg" />
 
-<html lang="en">  
-<head>  
-  <meta charset="utf-8" />  
-  <meta name="viewport" content="width=device-width,initial-scale=1" />  
-  <title>Saxham AI — Automation Blueprints</title>  
-  <link rel="icon" href="/logo.jpg" />  
-  <meta name="description" content="Saxham AI — automation blueprints, observability dashboards and operational runbooks for modern IT & DevOps." />  
-  <style>  
-    /* ---------- Variables ---------- */  
-    :root{  
-      --bg-1:#05060a;  
-      --bg-2:#071029;  
-      --panel: rgba(255,255,255,0.03);  
-      --glass: rgba(255,255,255,0.02);  
-      --muted: rgba(255,255,255,0.72);  
-      --muted-2: rgba(255,255,255,0.50);  
-      --neon:#7b66ff;          /* purple neon */  
-      --neon-2:#2ed1ff;        /* cyan neon */  
-      --accent: linear-gradient(90deg,var(--neon),var(--neon-2));  
-      --radius:14px;  
-      --maxw:1180px;  
-      --text:#ecf5ff;  
-      --glass-border: rgba(255,255,255,0.04);  
-      --card-shadow: 0 12px 40px rgba(2,8,20,0.6);  
-      --soft-shadow: 0 6px 18px rgba(2,8,20,0.55);  
-    }  
-    *{box-sizing:border-box}  
-    html,body{height:100%; margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;}  
-    body{  
-      background: radial-gradient(1200px 600px at 15% 10%, rgba(46,209,255,0.04), transparent),  
-                  radial-gradient(900px 500px at 90% 80%, rgba(123,102,255,0.06), transparent),  
-                  linear-gradient(180deg,var(--bg-1),var(--bg-2));  
-      color:var(--text);  
-      line-height:1.45;  
-    }  
-    a{color:inherit}  
-    .wrap{max-width:var(--maxw); margin:28px auto; padding:22px;}  /* ---------- Header ---------- */
-.header{display:flex;align-items:center;justify-content:space-between;gap:18px;padding:6px 6px;}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
-.logo-box{width:56px;height:56px;border-radius:12px;padding:6px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid var(--glass-border);display:flex;align-items:center;justify-content:center;box-shadow:0 6px 16px rgba(0,0,0,0.6)}
-.logo-box img{width:44px;height:44px;object-fit:contain;display:block}
-.brand .title{font-weight:800;font-size:18px;letter-spacing:0.2px}
-.brand .sub{font-size:12px;color:var(--muted-2);margin-top:3px}
+<style>
+/* ------------------ ROOT VARIABLES ------------------ */
+:root{
+  --bg-1:#02040a;
+  --bg-2:#07142d;
+  --text:#eaf4ff;
+  --muted:rgba(255,255,255,0.7);
+  --muted-2:rgba(255,255,255,0.5);
+  --neon:#7b66ff;
+  --cyan:#2ed1ff;
+  --glass-b:rgba(255,255,255,0.06);
+  --radius:16px;
+  --shadow:0 14px 40px rgba(0,0,0,0.55);
+  --maxw:1180px;
+}
 
-/* ---------- Nav ---------- */
-nav.nav{display:flex;gap:12px;align-items:center}
-nav.nav a{color:var(--muted);text-decoration:none;font-weight:700;padding:8px 12px;border-radius:10px;transition:all .14s ease}
-nav.nav a:hover{color:var(--text);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));transform:translateY(-2px)}
-nav.nav a.active{color:var(--text);background:linear-gradient(90deg, rgba(123,102,255,0.12), rgba(46,209,255,0.06));box-shadow:var(--soft-shadow)}
+*{margin:0;padding:0;box-sizing:border-box;}
+body{
+  font-family:Inter,system-ui;
+  background:
+    radial-gradient(900px 600px at 10% 10%, rgba(123,102,255,0.08), transparent),
+    radial-gradient(800px 500px at 90% 80%, rgba(46,209,255,0.05), transparent),
+    linear-gradient(180deg,var(--bg-1),var(--bg-2));
+  color:var(--text);
+  overflow-x:hidden;
+}
 
-/* ---------- Hero (two column) ---------- */
-.hero{display:grid;grid-template-columns:1fr 380px;gap:28px;align-items:start;margin-top:18px}
-.tag{display:inline-block;background:linear-gradient(90deg, rgba(123,102,255,0.12), rgba(46,209,255,0.06));color:var(--neon);padding:6px 10px;border-radius:999px;font-weight:800;font-size:13px}
-h1{font-size:48px;margin:14px 0 12px;line-height:1.02;letter-spacing:-0.5px;color:var(--text)}
-.lead{color:var(--muted);font-size:16px;max-width:70ch}
+/* ------------------ FLOATING PARTICLES ------------------ */
+.particle{
+  position:fixed;
+  border-radius:50%;
+  filter:blur(8px);
+  opacity:0.6;
+  animation: drift 12s infinite ease-in-out;
+}
+@keyframes drift{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-20px);}
+  100%{transform:translateY(0);}
+}
 
-/* CTA buttons */
-.cta-row{display:flex;gap:12px;margin-top:16px}
-.btn{border-radius:12px;padding:12px 18px;font-weight:800;text-decoration:none;display:inline-block;transition:transform .14s, box-shadow .14s}
-.btn-primary{background:var(--accent);color:#fff;box-shadow:0 12px 32px rgba(80,60,200,0.18)}
-.btn-secondary{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text)}
-.btn-primary:hover{transform:translateY(-4px)}
+/* ------------------ CURSOR GLOW ------------------ */
+#cursor-glow{
+  position:fixed;
+  width:240px;
+  height:240px;
+  background:radial-gradient(circle, rgba(46,209,255,0.22), transparent 70%);
+  border-radius:50%;
+  pointer-events:none;
+  filter:blur(40px);
+  opacity:0.4;
+  z-index:-1;
+  transition:transform .1s linear;
+}
 
-/* TechnoStar highlight — single CTA, neon frame */
+/* ------------------ WRAPPER ------------------ */
+.wrap{max-width:var(--maxw);margin:30px auto;padding:20px;}
+
+/* ------------------ HEADER ------------------ */
+.header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:8px 4px;margin-bottom:20px;
+}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;}
+.logo-box{
+  width:58px;height:58px;padding:6px;
+  border-radius:14px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--glass-b);
+  box-shadow:var(--shadow);
+  display:flex;align-items:center;justify-content:center;
+}
+.logo-box img{width:44px;}
+
+.title{font-size:20px;font-weight:800;}
+.sub{font-size:12px;color:var(--muted-2);}
+
+nav.nav{display:flex;gap:16px;}
+nav.nav a{
+  padding:10px 14px;
+  border-radius:12px;
+  text-decoration:none;
+  color:var(--muted);
+  font-weight:700;
+  transition:.2s;
+}
+nav.nav a:hover{
+  color:white;
+  background:rgba(255,255,255,0.06);
+  transform:translateY(-2px);
+}
+nav.nav a.active{
+  background:rgba(123,102,255,0.18);
+  color:#fff;
+}
+
+/* ------------------ HERO ------------------ */
+.hero{
+  margin-top:20px;
+  animation:fadeIn 1.4s ease;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;}}
+
+.tag{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(123,102,255,0.18);
+  color:var(--neon);
+  font-weight:800;font-size:13px;
+}
+h1{
+  font-size:48px;
+  margin:14px 0;
+  line-height:1.1;
+}
+.lead{
+  color:var(--muted);
+  max-width:70ch;
+  font-size:17px;
+}
+
+/* ------------------ TECHNOSTAR BLOCK ------------------ */
 .technostar{
-display:flex;gap:14px;align-items:center;margin-top:22px;padding:14px;border-radius:12px;
-background: linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-border:1px solid rgba(255,255,255,0.03); box-shadow:var(--card-shadow); position:relative; overflow:hidden;
+  margin-top:30px;
+  padding:18px;
+  border-radius:var(--radius);
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  display:flex;gap:16px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
 }
-.ts-left{flex:0 0 72px;display:flex;align-items:center;justify-content:center}
-.ts-left img{width:64px;height:64px;border-radius:12px;object-fit:contain}
-.ts-body{flex:1;min-width:0}
-.ts-title{font-size:16px;font-weight:900;color:var(--text);margin:0}
-.ts-desc{margin:8px 0;color:var(--muted);font-size:14px}
-.ts-actions{display:flex;gap:12px;align-items:center}
-.ts-cta{background:linear-gradient(90deg,var(--neon),var(--neon-2));padding:10px 16px;border-radius:10px;color:#fff;font-weight:900;text-decoration:none;box-shadow:0 10px 30px rgba(60,40,180,0.12)}
-.ts-cta:hover{transform:translateY(-3px)}
-
-/* ---------- Grid cards ---------- */
-.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px;margin-top:18px}
-.card{background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01)); border-radius:12px;padding:18px;border:1px solid rgba(255,255,255,0.03); box-shadow:0 12px 30px rgba(2,8,20,0.5); text-decoration:none;color:inherit; display:block}
-.card h3{margin:0 0 8px;font-size:18px}
-.card p{margin:0;color:var(--muted);font-size:14px}
-.badge{display:inline-block;margin-top:12px;padding:7px 10px;border-radius:10px;background:rgba(255,255,255,0.02);font-weight:800;font-size:12px;color:var(--muted)}
-
-/* Right column feature panel */
-.feature{background:linear-gradient(180deg, rgba(46,209,255,0.02), rgba(123,102,255,0.02)); padding:18px;border-radius:12px;border:1px solid rgba(255,255,255,0.025);box-shadow:var(--card-shadow)}
-.feature h4{margin:0 0 8px}
-.feature p{color:var(--muted);font-size:14px}
-
-/* Floating subtle animated grid (background decorative) */
-.float-grid{position:fixed;left:0;top:0;width:100%;height:100%;pointer-events:none;mix-blend-mode:overlay;opacity:0.06}
-
-@keyframes floaty { 0%{transform:translateY(0)} 50%{transform:translateY(-12px)} 100%{transform:translateY(0)} }  
-.float-dot{width:6px;height:6px;border-radius:50%;background:var(--neon);position:absolute;opacity:0.9;filter:blur(6px);animation:floaty 6s ease-in-out infinite}
-
-/* Footer */
-.footer{display:flex;justify-content:space-between;align-items:center;margin-top:36px;color:var(--muted);padding:18px 6px}
-
-/* Responsive */
-@media (max-width:980px){
-.hero{grid-template-columns:1fr}
-.grid{grid-template-columns:1fr}
-.feature{order:2}
+.technostar::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  padding:1.5px;
+  background:linear-gradient(120deg,var(--neon),var(--cyan),transparent);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  animation:borderGlow 6s linear infinite;
 }
-@media (max-width:520px){
-h1{font-size:30px}
-.logo-box{width:48px;height:48px}
-.ts-left img{width:52px;height:52px}
+@keyframes borderGlow{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(360deg);}
 }
 
-/* Focus outline for keyboard users */  
-:focus{outline:2px solid rgba(123,102,255,0.22);outline-offset:2px;border-radius:8px}
+.ts-left img{width:70px;height:70px;border-radius:14px;}
 
-  </style>  
-</head>  
-<body>  
-  <!-- decorative floating points (subtle) -->  
-  <div class="float-grid" aria-hidden="true">  
-    <div class="float-dot" style="left:12%;top:18%;width:8px;height:8px;background:var(--neon);animation-duration:7s"></div>  
-    <div class="float-dot" style="left:78%;top:12%;background:var(--neon-2);animation-duration:9s"></div>  
-    <div class="float-dot" style="left:46%;top:82%;background:var(--neon);animation-duration:6s"></div>  
-  </div>    <div class="wrap" role="document">  
-    <!-- header -->  
-    <header class="header" role="banner">  
-      <a class="brand" href="/index.html" aria-label="Saxham AI home">  
-        <div class="logo-box"><img src="/logo.svg" alt="Saxham AI logo"></div>  
-        <div>  
-          <div class="title">Saxham AI</div>  
-          <div class="sub">AI-driven automation &amp; infrastructure</div>  
-        </div>  
-      </a>  <nav class="nav" role="navigation" aria-label="Main navigation">  
-    <a href="/index.html" class="active">Home</a>  
-    <a href="/about.html">About</a>  
-    <a href="/contact.html">Contact</a>  
-  </nav>  
-</header>  
+.ts-title{font-size:20px;font-weight:900;margin:0;}
+.ts-desc{color:var(--muted);margin:6px 0;}
 
-<!-- hero -->  
-<section class="hero" aria-labelledby="hero-heading">  
-  <div>  
-    <span class="tag">Launching • Digital Products</span>  
-    <h1 id="hero-heading">Smart systems. Smarter decisions.</h1>  
-    <p class="lead">Saxham AI builds automation blueprints, observability dashboards and runbooks that reduce engineering time and operational risk.</p>  
+.ts-cta{
+  display:inline-block;
+  padding:12px 20px;
+  text-decoration:none;
+  font-weight:800;
+  font-size:15px;
+  border-radius:14px;
+  color:#fff;
+  background:linear-gradient(90deg,var(--neon),var(--cyan));
+  box-shadow:0 10px 30px rgba(46,209,255,0.25);
+  transition:0.25s;
+}
+.ts-cta:hover{transform:translateY(-4px);}
 
-    <div class="cta-row" role="group" aria-label="Primary actions">  
-      <a class="btn btn-primary" href="/products.html">Explore Products</a>  
-      <a class="btn btn-secondary" href="/contact.html">Contact Us</a>  
-    </div>  
+/* ------------------ PANELS ------------------ */
+.info-grid{
+  margin-top:32px;
+  display:grid;
+  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+}
+.panel{
+  padding:20px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.04);
+  box-shadow:var(--shadow);
+  transition:0.25s;
+}
+.panel:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 40px rgba(110,70,255,0.45);
+}
+.panel h3{margin-bottom:8px;color:#fff;}
+.panel p{color:var(--muted);font-size:15px;}
 
-    <!-- TechnoStar — SINGLE CTA -->  
-    <div class="technostar" role="region" aria-label="TechnoStar Infotech">  
-      <div class="ts-left">  
-        <img src="/technostar-logo.png" alt="TechnoStar logo" />  
-      </div>  
-      <div class="ts-body">  
-        <div class="ts-title">🚀 <strong>TechnoStar Infotech</strong></div>  
-        <div class="ts-desc">Professional doorstep laptop &amp; PC repair — now serving Navi Mumbai.</div>  
-        <div class="ts-actions">  
-          <!-- single clear CTA -->  
-          <a class="ts-cta" href="/technostar.html">Visit TechnoStar Laptop Repair Service</a>  
-        </div>  
-      </div>  
-    </div>  
+/* ------------------ FOOTER ------------------ */
+.footer{
+  margin-top:40px;
+  padding:20px 0;
+  text-align:center;
+  color:var(--muted-2);
+}
+.footer a{color:var(--muted);text-decoration:none;margin:0 8px;}
+</style>
+</head>
 
-    <!-- product cards -->  
-    <div class="grid" role="list" aria-label="Products list">  
-      <a class="card" href="/kafka-blueprint.html" role="listitem">  
-        <h3>Kafka Setup Blueprint</h3>  
-        <p>Production-ready architecture, install templates and monitoring runbook.</p>  
-        <span class="badge">Blueprint</span>  
-      </a>  
+<body>
 
-      <a class="card" href="/time-sync.html" role="listitem">  
-        <h3>Time-Drift Monitoring</h3>  
-        <p>Low-latency time drift detection, alerts and dashboard templates.</p>  
-        <span class="badge">Monitoring</span>  
-      </a>  
+<!-- Cursor glow -->
+<div id="cursor-glow"></div>
 
-      <a class="card" href="/market-feeds.html" role="listitem">  
-        <h3>Market Feeds Guide</h3>  
-        <p>Exchange feed architecture, failover patterns and operational SOPs.</p>  
-        <span class="badge">Guide</span>  
-      </a>  
+<!-- Floating Futuristic Particles -->
+<div class="particle" style="width:18px;height:18px;left:20%;top:30%;background:var(--neon);animation-duration:10s;"></div>
+<div class="particle" style="width:14px;height:14px;left:70%;top:20%;background:var(--cyan);animation-duration:12s;"></div>
+<div class="particle" style="width:22px;height:22px;left:50%;top:80%;background:var(--neon);animation-duration:9s;"></div>
 
-      <a class="card" href="/audit-sop-kit.html" role="listitem">  
-        <h3>Audit &amp; SOP Kits</h3>  
-        <p>Compliance-ready checklists and automation scripts for ops teams.</p>  
-        <span class="badge">SOP Kit</span>  
-      </a>  
-    </div>  
-  </div>  
+<!-- Main Wrapper -->
+<div class="wrap">
 
-  <!-- right column -->  
-  <aside class="feature" role="complementary" aria-labelledby="feat">  
-    <h4 id="feat">Featured: Kafka Setup Blueprint</h4>  
-    <p>Production architecture, HA design, monitoring templates and runbook. Ideal for trading infra and mission-critical pipelines.</p>  
-    <p style="margin-top:16px"><a class="btn btn-primary" href="/kafka-blueprint.html">View Product</a></p>  
-  </aside>  
-</section>  
+  <!-- Header -->
+  <header class="header">
+    <a class="brand" href="/index.html">
+      <div class="logo-box"><img src="/logo.svg"></div>
+      <div>
+        <div class="title">Saxham AI</div>
+        <div class="sub">AI-driven automation & infrastructure</div>
+      </div>
+    </a>
 
-<!-- footer -->  
-<footer class="footer" role="contentinfo">  
-  <div>© <span id="year"></span> Saxham AI</div>  
-  <div><a href="/about.html">About</a> &nbsp; • &nbsp; <a href="/contact.html">Contact</a></div>  
-</footer>
+    <nav class="nav">
+      <a href="/index.html" class="active">Home</a>
+      <a href="/about.html">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </header>
 
-  </div>    <script>  
-    // set current year  
-    document.getElementById('year').textContent = new Date().getFullYear();  
-  
-    // small keyboard focus helper  
-    document.addEventListener('keydown', function (e) {  
-      if (e.key === 'Tab') document.documentElement.classList.add('keyboard-focus');  
-    });  
-  </script>  </body>  
-</html> 
+  <!-- Hero -->
+  <section class="hero">
+    <span class="tag">Launching • Digital Products</span>
+
+    <h1>Smart systems.<br>Smarter decisions.</h1>
+
+    <p class="lead">
+      Saxham AI builds automation blueprints, observability dashboards and runbooks
+      that reduce engineering time and operational risk.
+    </p>
+
+    <!-- TechnoStar CTA -->
+    <div class="technostar">
+      <div class="ts-left"><img src="/technostar-logo.png"></div>
+      <div>
+        <div class="ts-title">🚀 TechnoStar Infotech</div>
+        <div class="ts-desc">Professional doorstep laptop & PC repair — now serving Navi Mumbai.</div>
+        <a class="ts-cta" href="/technostar.html">Visit TechnoStar Service</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Panels -->
+  <section class="info-grid">
+    <div class="panel">
+      <h3>Kafka Setup Blueprint</h3>
+      <p>Production architecture, install templates and monitoring runbook.</p>
+    </div>
+    <div class="panel">
+      <h3>Time-Drift Monitoring</h3>
+      <p>Low-latency drift detection and alerting for distributed systems.</p>
+    </div>
+    <div class="panel">
+      <h3>Market Feeds Guide</h3>
+      <p>Exchange feed handling, failover patterns and operational SOPs.</p>
+    </div>
+    <div class="panel">
+      <h3>Audit & SOP Kits</h3>
+      <p>Compliance-ready checklists and automation scripts.</p>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="footer">
+    © <span id="year"></span> Saxham AI • All rights reserved
+    <br>
+    <a href="/about.html">About</a> • <a href="/contact.html">Contact</a>
+  </footer>
+</div>
+
+<script>
+document.getElementById("year").textContent = new Date().getFullYear();
+
+/* Cursor Glow Movement */
+const glow=document.getElementById("cursor-glow");
+document.addEventListener("mousemove",e=>{
+  glow.style.transform=`translate(${e.clientX-120}px,${e.clientY-120}px)`;
+});
+</script>
+
+</body>
+</html>
