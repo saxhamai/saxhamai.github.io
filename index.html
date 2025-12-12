@@ -5,346 +5,300 @@
 <meta name="viewport" content="width=device-width,initial-scale=1" />
 <title>Saxham AI — Automation Blueprints</title>
 <link rel="icon" href="/logo.jpg" />
-<meta name="description" content="Saxham AI — automation blueprints, observability dashboards and operational runbooks for modern IT & DevOps." />
-
-<!-- Use Inter local fallback; you can remove Google font if you want absolute offline -->
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
+/* ------------------ ROOT VARIABLES ------------------ */
 :root{
-  --bg-1:#030313;         /* deep-space */
-  --bg-2:#07132a;
+  --bg-1:#02040a;
+  --bg-2:#07142d;
   --text:#eaf4ff;
-  --muted:rgba(234,244,255,0.72);
-  --muted-2:rgba(234,244,255,0.45);
+  --muted:rgba(255,255,255,0.7);
+  --muted-2:rgba(255,255,255,0.5);
   --neon:#7b66ff;
   --cyan:#2ed1ff;
-  --glass: rgba(255,255,255,0.03);
-  --glass-2: rgba(255,255,255,0.02);
-  --card-shadow: 0 18px 60px rgba(2,6,23,0.65);
+  --glass-b:rgba(255,255,255,0.06);
   --radius:16px;
+  --shadow:0 14px 40px rgba(0,0,0,0.55);
   --maxw:1180px;
 }
 
-/* Reset */
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%}
+*{margin:0;padding:0;box-sizing:border-box;}
 body{
-  font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,"Helvetica Neue",Arial;
-  color:var(--text);
+  font-family:Inter,system-ui;
   background:
-    radial-gradient(700px 420px at 12% 10%, rgba(46,209,255,0.03), transparent),
-    radial-gradient(600px 380px at 88% 80%, rgba(123,102,255,0.03), transparent),
+    radial-gradient(900px 600px at 10% 10%, rgba(123,102,255,0.08), transparent),
+    radial-gradient(800px 500px at 90% 80%, rgba(46,209,255,0.05), transparent),
     linear-gradient(180deg,var(--bg-1),var(--bg-2));
-  -webkit-font-smoothing:antialiased;-moz-osx-font-smoothing:grayscale;
+  color:var(--text);
   overflow-x:hidden;
 }
 
-/* wrapper */
-.wrap{max-width:var(--maxw);margin:28px auto;padding:26px;position:relative;z-index:5}
-
-/* Subtle animated noise overlay */
-.noise{
-  position:fixed; inset:0; pointer-events:none; mix-blend-mode:overlay; opacity:0.035;
-  background-image:radial-gradient(circle at 10% 20%, rgba(255,255,255,0.02) 0 1px, transparent 1px),
-                    radial-gradient(circle at 80% 80%, rgba(0,0,0,0.02) 0 1px, transparent 1px);
-  background-size: 3px 3px, 4px 4px;
-  z-index:1;
+/* ------------------ FLOATING PARTICLES ------------------ */
+.particle{
+  position:fixed;
+  border-radius:50%;
+  filter:blur(8px);
+  opacity:0.6;
+  animation: drift 12s infinite ease-in-out;
+}
+@keyframes drift{
+  0%{transform:translateY(0);}
+  50%{transform:translateY(-20px);}
+  100%{transform:translateY(0);}
 }
 
-/* header */
-.header{display:flex;align-items:center;justify-content:space-between;gap:18px;margin-bottom:18px}
-.brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit}
-.logo-box{width:64px;height:64px;padding:8px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.04);display:flex;align-items:center;justify-content:center;box-shadow:var(--card-shadow)}
-.logo-box img{width:48px;height:48px}
-.title{font-weight:800;font-size:20px}
-.sub{font-size:12px;color:var(--muted-2)}
-
-nav.nav{display:flex;gap:14px;align-items:center}
-nav.nav a{color:var(--muted);text-decoration:none;padding:8px 12px;border-radius:10px;font-weight:700;transition:all .12s}
-nav.nav a:hover{background:rgba(255,255,255,0.03);color:var(--text);transform:translateY(-2px)}
-nav.nav a.active{background:linear-gradient(90deg,rgba(123,102,255,0.12),rgba(46,209,255,0.06));color:var(--text)}
-
-/* hero */
-.hero{position:relative;padding:24px;border-radius:18px;overflow:visible}
-.hero-inner{position:relative;z-index:6}
-.tag{display:inline-block;padding:6px 12px;border-radius:999px;background:linear-gradient(90deg, rgba(123,102,255,0.12), rgba(46,209,255,0.06));color:var(--neon);font-weight:800;font-size:13px}
-h1{font-size:48px;line-height:1.02;margin:14px 0;color:var(--text);letter-spacing:-0.4px}
-.lead{color:var(--muted);max-width:72ch;font-size:16px}
-
-/* CTA button */
-.cta-row{display:flex;gap:12px;margin-top:18px}
-.btn{
-  padding:12px 18px;border-radius:12px;font-weight:800;text-decoration:none;display:inline-block;
-  box-shadow:0 10px 30px rgba(80,60,200,0.06);
-  transition:transform .18s, box-shadow .18s;
+/* ------------------ CURSOR GLOW ------------------ */
+#cursor-glow{
+  position:fixed;
+  width:240px;
+  height:240px;
+  background:radial-gradient(circle, rgba(46,209,255,0.22), transparent 70%);
+  border-radius:50%;
+  pointer-events:none;
+  filter:blur(40px);
+  opacity:0.4;
+  z-index:-1;
+  transition:transform .1s linear;
 }
-.btn-primary{background:linear-gradient(90deg,var(--neon),var(--cyan));color:#051028}
-.btn-secondary{background:transparent;border:1px solid rgba(255,255,255,0.04);color:var(--text)}
-.btn-primary:hover{transform:translateY(-4px)}
 
-/* Technostar block - holographic rings behind */
+/* ------------------ WRAPPER ------------------ */
+.wrap{max-width:var(--maxw);margin:30px auto;padding:20px;}
+
+/* ------------------ HEADER ------------------ */
+.header{
+  display:flex;justify-content:space-between;align-items:center;
+  padding:8px 4px;margin-bottom:20px;
+}
+.brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit;}
+.logo-box{
+  width:58px;height:58px;padding:6px;
+  border-radius:14px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid var(--glass-b);
+  box-shadow:var(--shadow);
+  display:flex;align-items:center;justify-content:center;
+}
+.logo-box img{width:44px;}
+
+.title{font-size:20px;font-weight:800;}
+.sub{font-size:12px;color:var(--muted-2);}
+
+nav.nav{display:flex;gap:16px;}
+nav.nav a{
+  padding:10px 14px;
+  border-radius:12px;
+  text-decoration:none;
+  color:var(--muted);
+  font-weight:700;
+  transition:.2s;
+}
+nav.nav a:hover{
+  color:white;
+  background:rgba(255,255,255,0.06);
+  transform:translateY(-2px);
+}
+nav.nav a.active{
+  background:rgba(123,102,255,0.18);
+  color:#fff;
+}
+
+/* ------------------ HERO ------------------ */
+.hero{
+  margin-top:20px;
+  animation:fadeIn 1.4s ease;
+}
+@keyframes fadeIn{from{opacity:0;transform:translateY(20px);}to{opacity:1;}}
+
+.tag{
+  display:inline-block;
+  padding:6px 12px;
+  border-radius:999px;
+  background:rgba(123,102,255,0.18);
+  color:var(--neon);
+  font-weight:800;font-size:13px;
+}
+h1{
+  font-size:48px;
+  margin:14px 0;
+  line-height:1.1;
+}
+.lead{
+  color:var(--muted);
+  max-width:70ch;
+  font-size:17px;
+}
+
+/* ------------------ TECHNOSTAR BLOCK ------------------ */
 .technostar{
-  margin-top:28px;padding:16px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-  border:1px solid rgba(255,255,255,0.04);display:flex;gap:14px;align-items:center;position:relative;overflow:visible;box-shadow:var(--card-shadow);
+  margin-top:30px;
+  padding:18px;
+  border-radius:var(--radius);
+  background:rgba(255,255,255,0.04);
+  border:1px solid rgba(255,255,255,0.08);
+  backdrop-filter:blur(10px);
+  display:flex;gap:16px;
+  box-shadow:var(--shadow);
+  position:relative;
+  overflow:hidden;
 }
-.technostar .ring{
-  position:absolute;right:-60px;top:-40px;width:260px;height:260px;border-radius:50%;pointer-events:none;mix-blend-mode:screen;opacity:0.18;
-  background:conic-gradient(from 0deg, rgba(123,102,255,0.14), rgba(46,209,255,0.08), transparent 40%);
-  transform:rotate(0deg);
-  animation:spinSlow 18s linear infinite;
+.technostar::before{
+  content:"";
+  position:absolute;
+  inset:0;
+  border-radius:inherit;
+  padding:1.5px;
+  background:linear-gradient(120deg,var(--neon),var(--cyan),transparent);
+  -webkit-mask:linear-gradient(#fff 0 0) content-box,linear-gradient(#fff 0 0);
+  -webkit-mask-composite:xor;
+  mask-composite:exclude;
+  animation:borderGlow 6s linear infinite;
 }
-@keyframes spinSlow{to{transform:rotate(360deg)}}
-.ts-left img{width:72px;height:72px;border-radius:12px;object-fit:cover}
-.ts-title{font-weight:900;font-size:18px}
-.ts-desc{color:var(--muted);margin-top:6px}
-.ts-cta{display:inline-block;padding:10px 16px;border-radius:12px;color:#fff;text-decoration:none;font-weight:900;background:linear-gradient(90deg,var(--neon),var(--cyan));box-shadow:0 12px 30px rgba(90,60,200,0.16);}
-
-/* panels (kept content same) */
-.info-grid{margin-top:36px;display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:18px}
-.panel{padding:18px;border-radius:14px;background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));border:1px solid rgba(255,255,255,0.03);box-shadow:var(--card-shadow);transition:transform .18s}
-.panel:hover{transform:translateY(-8px);box-shadow:0 24px 60px rgba(80,60,200,0.12)}
-.panel h3{margin-bottom:8px}
-.panel p{color:var(--muted)}
-
-/* footer */
-.footer{margin-top:40px;padding:16px 0;color:var(--muted-2);display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap}
-
-/* 3D parallax container */
-.scene{
-  position:absolute;inset:0;pointer-events:none;z-index:2;transform-style:preserve-3d;
+@keyframes borderGlow{
+  0%{transform:rotate(0deg);}
+  100%{transform:rotate(360deg);}
 }
 
-/* animated laser grid (canvas will draw) */
-.canvas-grid{position:fixed;inset:0;z-index:0;pointer-events:none;opacity:0.16;mix-blend-mode:screen}
+.ts-left img{width:70px;height:70px;border-radius:14px;}
 
-/* DNA rotating rings (decor) */
-.dna{
-  position:absolute;left:6%;top:22%;width:160px;height:160px;border-radius:50%;pointer-events:none;z-index:0;opacity:0.08;
-  background:
-    radial-gradient(circle at 40% 40%, rgba(123,102,255,0.12), transparent 20%),
-    radial-gradient(circle at 60% 60%, rgba(46,209,255,0.08), transparent 30%);
-  transform:translateZ(0);
-  animation:floaty 6s ease-in-out infinite;
+.ts-title{font-size:20px;font-weight:900;margin:0;}
+.ts-desc{color:var(--muted);margin:6px 0;}
+
+.ts-cta{
+  display:inline-block;
+  padding:12px 20px;
+  text-decoration:none;
+  font-weight:800;
+  font-size:15px;
+  border-radius:14px;
+  color:#fff;
+  background:linear-gradient(90deg,var(--neon),var(--cyan));
+  box-shadow:0 10px 30px rgba(46,209,255,0.25);
+  transition:0.25s;
 }
-@keyframes floaty{0%{transform:translateY(0)}50%{transform:translateY(-10px)}100%{transform:translateY(0)}}
+.ts-cta:hover{transform:translateY(-4px);}
 
-/* cursor magnetic attraction effect (for CTA) */
-.btn-primary[data-magnet] {position:relative;will-change:transform}
-.btn-primary[data-magnet].attract{transform:scale(1.06) translateY(-6px)}
+/* ------------------ PANELS ------------------ */
+.info-grid{
+  margin-top:32px;
+  display:grid;
+  gap:20px;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+}
+.panel{
+  padding:20px;
+  border-radius:16px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.04);
+  box-shadow:var(--shadow);
+  transition:0.25s;
+}
+.panel:hover{
+  transform:translateY(-6px);
+  box-shadow:0 12px 40px rgba(110,70,255,0.45);
+}
+.panel h3{margin-bottom:8px;color:#fff;}
+.panel p{color:var(--muted);font-size:15px;}
 
-/* responsive */
-@media(max-width:900px){h1{font-size:34px}.logo-box{width:56px;height:56px}.logo-box img{width:40px}}
-@media(max-width:560px){.technostar{flex-direction:column;align-items:flex-start}.ts-left img{width:56px;height:56px}}
+/* ------------------ FOOTER ------------------ */
+.footer{
+  margin-top:40px;
+  padding:20px 0;
+  text-align:center;
+  color:var(--muted-2);
+}
+.footer a{color:var(--muted);text-decoration:none;margin:0 8px;}
 </style>
 </head>
+
 <body>
 
-<!-- subtle noise -->
-<div class="noise" aria-hidden="true"></div>
+<!-- Cursor glow -->
+<div id="cursor-glow"></div>
 
-<!-- animated laser/grid canvas -->
-<canvas id="gridCanvas" class="canvas-grid" aria-hidden="true"></canvas>
+<!-- Floating Futuristic Particles -->
+<div class="particle" style="width:18px;height:18px;left:20%;top:30%;background:var(--neon);animation-duration:10s;"></div>
+<div class="particle" style="width:14px;height:14px;left:70%;top:20%;background:var(--cyan);animation-duration:12s;"></div>
+<div class="particle" style="width:22px;height:22px;left:50%;top:80%;background:var(--neon);animation-duration:9s;"></div>
 
-<!-- floating holographic rings -->
-<div class="scene" aria-hidden="true">
-  <div class="dna" aria-hidden="true"></div>
-</div>
+<!-- Main Wrapper -->
+<div class="wrap">
 
-<!-- cursor glow (big soft halo) -->
-<div id="cursorGlow" style="position:fixed;left:-400px;top:-400px;width:260px;height:260px;border-radius:50%;pointer-events:none;filter:blur(40px);opacity:0.45;z-index:1;background:radial-gradient(circle, rgba(46,209,255,0.16), rgba(123,102,255,0.06) 40%, transparent 60%)"></div>
-
-<div class="wrap" role="document">
-
-  <!-- header -->
-  <header class="header" role="banner">
-    <a class="brand" href="/index.html" aria-label="Saxham AI home">
-      <div class="logo-box"><img src="/logo.svg" alt="Saxham AI"></div>
+  <!-- Header -->
+  <header class="header">
+    <a class="brand" href="/index.html">
+      <div class="logo-box"><img src="/logo.svg"></div>
       <div>
         <div class="title">Saxham AI</div>
         <div class="sub">AI-driven automation & infrastructure</div>
       </div>
     </a>
 
-    <nav class="nav" role="navigation" aria-label="Main navigation">
+    <nav class="nav">
       <a href="/index.html" class="active">Home</a>
       <a href="/about.html">About</a>
       <a href="/contact.html">Contact</a>
     </nav>
   </header>
 
-  <!-- hero -->
-  <section class="hero" aria-labelledby="hero-heading">
-    <div class="hero-inner">
-      <span class="tag">Launching • Digital Products</span>
-      <h1 id="hero-heading">Smart systems. <br>Smarter decisions.</h1>
-      <p class="lead">Saxham AI builds automation blueprints, observability dashboards and runbooks that reduce engineering time and operational risk.</p>
+  <!-- Hero -->
+  <section class="hero">
+    <span class="tag">Launching • Digital Products</span>
 
-      <div class="cta-row" style="margin-top:18px">
-        <a class="btn btn-primary" href="/contact.html" data-magnet>Get in Touch</a>
-        <a class="btn btn-secondary" href="/about.html">Learn More</a>
+    <h1>Smart systems.<br>Smarter decisions.</h1>
+
+    <p class="lead">
+      Saxham AI builds automation blueprints, observability dashboards and runbooks
+      that reduce engineering time and operational risk.
+    </p>
+
+    <!-- TechnoStar CTA -->
+    <div class="technostar">
+      <div class="ts-left"><img src="/technostar-logo.png"></div>
+      <div>
+        <div class="ts-title">🚀 TechnoStar Infotech</div>
+        <div class="ts-desc">Professional doorstep laptop & PC repair — now serving Navi Mumbai.</div>
+        <a class="ts-cta" href="/technostar.html">Visit TechnoStar Service</a>
       </div>
-
-      <!-- TechnoStar highlight -->
-      <div class="technostar" role="region" aria-label="TechnoStar Infotech">
-        <div class="ring" aria-hidden="true"></div>
-        <div class="ts-left"><img src="/technostar-logo.png" alt="TechnoStar logo"></div>
-        <div class="ts-body">
-          <div class="ts-title">🚀 TechnoStar Infotech</div>
-          <div class="ts-desc">Professional doorstep laptop & PC repair — now serving Navi Mumbai.</div>
-          <div style="margin-top:10px"><a class="ts-cta" href="/technostar.html">Visit TechnoStar Service</a></div>
-        </div>
-      </div>
-
     </div>
   </section>
 
-  <!-- info panels -->
-  <section class="info-grid" aria-label="Products list">
+  <!-- Panels -->
+  <section class="info-grid">
     <div class="panel">
       <h3>Kafka Setup Blueprint</h3>
       <p>Production architecture, install templates and monitoring runbook.</p>
     </div>
-
     <div class="panel">
       <h3>Time-Drift Monitoring</h3>
       <p>Low-latency drift detection and alerting for distributed systems.</p>
     </div>
-
     <div class="panel">
       <h3>Market Feeds Guide</h3>
-      <p>Exchange feed architecture, failover patterns and operational SOPs.</p>
+      <p>Exchange feed handling, failover patterns and operational SOPs.</p>
     </div>
-
     <div class="panel">
       <h3>Audit & SOP Kits</h3>
       <p>Compliance-ready checklists and automation scripts.</p>
     </div>
   </section>
 
-  <!-- footer -->
-  <footer class="footer" role="contentinfo">
-    <div>© <span id="year"></span> Saxham AI</div>
-    <div><a href="/about.html">About</a> • <a href="/contact.html">Contact</a></div>
+  <!-- Footer -->
+  <footer class="footer">
+    © <span id="year"></span> Saxham AI • All rights reserved
+    <br>
+    <a href="/about.html">About</a> • <a href="/contact.html">Contact</a>
   </footer>
-
 </div>
 
 <script>
-/* -------------------- UTILS -------------------- */
-const clamp = (v,min,max)=>Math.max(min,Math.min(max,v));
+document.getElementById("year").textContent = new Date().getFullYear();
 
-/* -------------------- Cursor Glow + Magnetic CTA -------------------- */
-const glow = document.getElementById('cursorGlow');
-const magnetButtons = document.querySelectorAll('[data-magnet]');
-
-document.addEventListener('mousemove', e=>{
-  // Move big glow (slightly behind cursor)
-  glow.style.left = (e.clientX - 130) + 'px';
-  glow.style.top = (e.clientY - 130) + 'px';
-
-  // Magnetic attraction for CTA(s)
-  magnetButtons.forEach(btn=>{
-    const rect = btn.getBoundingClientRect();
-    const dx = e.clientX - (rect.left + rect.width/2);
-    const dy = e.clientY - (rect.top + rect.height/2);
-    const dist = Math.hypot(dx,dy);
-    const reach = 180; // magnet radius
-    if (dist < reach){
-      const force = (1 - (dist/reach)) * 0.18;
-      btn.style.transform = `translate(${dx*force}px, ${dy*force}px) scale(${1+force/6})`;
-      btn.classList.add('attract');
-    } else {
-      btn.style.transform = '';
-      btn.classList.remove('attract');
-    }
-  });
+/* Cursor Glow Movement */
+const glow=document.getElementById("cursor-glow");
+document.addEventListener("mousemove",e=>{
+  glow.style.transform=`translate(${e.clientX-120}px,${e.clientY-120}px)`;
 });
-
-/* -------------------- Animated Laser Grid (Canvas) -------------------- */
-const canvas = document.getElementById('gridCanvas');
-const ctx = canvas.getContext('2d');
-let w = canvas.width = innerWidth;
-let h = canvas.height = innerHeight;
-const cols = 32, rows = 20;
-const gapX = w / cols, gapY = h / rows;
-let t = 0;
-
-function resize(){
-  w = canvas.width = innerWidth;
-  h = canvas.height = innerHeight;
-}
-addEventListener('resize', resize);
-
-function drawGrid(){
-  ctx.clearRect(0,0,w,h);
-  // animated lines
-  ctx.lineWidth = 1;
-  for (let i=0;i<=cols;i++){
-    const x = i * gapX;
-    ctx.beginPath();
-    const sway = Math.sin((t + i*0.6)*0.6) * 18;
-    ctx.strokeStyle = `rgba(123,102,255,${0.06 + 0.02*Math.sin(t*0.8 + i)})`;
-    ctx.moveTo(x + sway, 0);
-    ctx.lineTo(x - sway*0.2, h);
-    ctx.stroke();
-  }
-  for (let j=0;j<=rows;j++){
-    const y = j * gapY;
-    ctx.beginPath();
-    const sway = Math.cos((t + j*0.4)*0.7) * 10;
-    ctx.strokeStyle = `rgba(46,209,255,${0.04 + 0.02*Math.cos(t*0.6 + j)})`;
-    ctx.moveTo(0, y + sway);
-    ctx.lineTo(w, y - sway*0.3);
-    ctx.stroke();
-  }
-
-  // pulsing focal points
-  for (let k=0;k<6;k++){
-    const cx = (k/w*0.7 + 0.2) * w * (0.6 + 0.4*Math.sin(t*0.3 + k));
-    const cy = (0.2 + (k%3)*0.26) * h;
-    const r = 30 + 20*Math.sin(t*0.9 + k);
-    const g = ctx.createRadialGradient(cx,cy,0,cx,cy,r*2);
-    g.addColorStop(0, 'rgba(123,102,255,0.06)');
-    g.addColorStop(1, 'rgba(123,102,255,0)');
-    ctx.fillStyle = g;
-    ctx.fillRect(cx-r, cy-r, r*2, r*2);
-  }
-  t += 0.016;
-  requestAnimationFrame(drawGrid);
-}
-drawGrid();
-
-/* -------------------- Parallax for scene elements -------------------- */
-const scene = document.querySelector('.scene');
-document.addEventListener('mousemove', e=>{
-  const cx = innerWidth/2, cy = innerHeight/2;
-  const rx = (e.clientX - cx) / cx;
-  const ry = (e.clientY - cy) / cy;
-  scene.style.transform = `translate3d(${rx*12}px,${ry*8}px,0)`;
-});
-
-/* -------------------- gentle float for .dna elements -------------------- */
-function floatElements(){
-  document.querySelectorAll('.dna').forEach((el,idx)=>{
-    const offset = Math.sin((performance.now()/1000) + idx) * 8;
-    el.style.transform = `translateY(${offset}px) rotate(${(performance.now()/1200) % 360}deg)`;
-  });
-  requestAnimationFrame(floatElements);
-}
-floatElements();
-
-/* -------------------- small performance guard for mobile -------------------- */
-(function adaptForMobile(){
-  const isMobile = /Mobi|Android/i.test(navigator.userAgent) || innerWidth < 600;
-  if (isMobile){
-    // reduce canvas opacity and stop heavy animation updates
-    canvas.style.opacity = '0.08';
-  }
-})();
-
-/* -------------------- Year in footer -------------------- */
-document.getElementById('year').textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>
