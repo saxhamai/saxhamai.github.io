@@ -2,54 +2,135 @@
 <html lang="en">
 <head>
   <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>About — Saxham AI</title>
+
   <link rel="icon" href="/logo.jpg">
   <link rel="stylesheet" href="/styles.css">
+
+  <style>
+    :root{
+      --bg:#071126;
+      --card:#081427;
+      --muted:rgba(255,255,255,0.72);
+      --muted2:rgba(255,255,255,0.56);
+      --accent:#7b66ff;
+      --text:#eef5ff;
+    }
+
+    body{
+      margin:0;
+      background:linear-gradient(180deg,#061024 0%, #07102a 100%);
+      font-family:Inter, system-ui;
+      color:var(--text);
+    }
+
+    .wrap{max-width:1100px; margin:auto; padding:26px;}
+
+    /* Section container */
+    .section{
+      background:rgba(255,255,255,0.03);
+      padding:22px;
+      border-radius:16px;
+      margin-top:26px;
+      box-shadow:0 6px 22px rgba(2,6,23,0.55);
+    }
+
+    h1{
+      font-size:40px;
+      margin-bottom:10px;
+    }
+
+    .lead{
+      font-size:16px;
+      color:var(--muted);
+      max-width:75ch;
+      margin-bottom:12px;
+    }
+
+    h3{margin-top:20px;}
+
+    ul li{
+      margin:6px 0;
+      color:var(--muted);
+      font-size:15px;
+    }
+
+    /* Footer */
+    .footer{
+      margin-top:40px;
+      display:flex;
+      justify-content:space-between;
+      color:var(--muted2);
+      padding-bottom:40px;
+    }
+    .footer a{text-decoration:none;color:var(--muted);margin-left:12px;}
+  </style>
 </head>
 <body>
-  <div class="container">
 
-    <header class="header">
-      <a class="brand" href="/index.html">
-        <div class="logo"><img src="/logo.svg" alt="Saxham AI" style="width:42px;height:42px"></div>
-        <div>
-          <div class="title">Saxham AI</div>
-          <div class="sub">AI-driven automation & infrastructure</div>
-        </div>
-      </a>
+<div class="wrap">
 
-      <nav class="nav">
-        <a href="/index.html" class="nav-home">Home</a>
-        <a href="/products.html" class="nav-products">Products</a>
-        <a href="/about.html" class="nav-about active">About</a>
-        <a href="/contact.html" class="nav-contact">Contact</a>
-      </nav>
-    </header>
-
-    <main>
-      <h1>About Saxham AI</h1>
-      <p class="lead">Saxham AI builds practical automation blueprints, monitoring dashboards, and SOP toolkits for modern IT and DevOps teams.</p>
-
-      <div style="margin-top:18px">
-        <h3>What we do</h3>
-        <ul>
-          <li>Production-ready infrastructure blueprints (Kafka, Redis, etc.)</li>
-          <li>Monitoring dashboards & alert playbooks</li>
-          <li>Operational SOPs for EOD/BOD & audit readiness</li>
-        </ul>
-
-        <h3>Why Saxham AI</h3>
-        <p class="lead">We focus on clarity, reliability and practical automation — deliverables that reduce time-to-production and lower operational risk.</p>
+  <!-- HEADER -->
+  <header class="header">
+    <a class="brand" href="/index.html">
+      <div class="logo"><img src="/logo.svg" alt="Saxham AI" style="width:48px;height:48px"></div>
+      <div>
+        <div class="title">Saxham AI</div>
+        <div class="sub">AI-driven automation & infrastructure</div>
       </div>
-    </main>
+    </a>
 
-    <footer class="footer">
-      <div class="left">© <span id="year"></span> Saxham AI</div>
-      <div class="right"><a href="/products.html">Products</a></div>
-    </footer>
-  </div>
+    <nav class="nav">
+      <a href="/index.html">Home</a>
+      <a href="/products.html">Products</a>
+      <a href="/about.html" class="active">About</a>
+      <a href="/contact.html">Contact</a>
+    </nav>
+  </header>
 
-  <script>document.getElementById('year').textContent = new Date().getFullYear();</script>
+  <!-- MAIN -->
+  <main>
+    <h1>About Saxham AI</h1>
+    <p class="lead">
+      Saxham AI builds practical automation blueprints, monitoring dashboards,
+      and SOP toolkits for modern IT and DevOps teams.
+    </p>
+
+    <!-- What we do section -->
+    <div class="section">
+      <h3>What we do</h3>
+      <ul>
+        <li>Production-ready infrastructure blueprints (Kafka, Redis, HA systems, etc.)</li>
+        <li>Monitoring dashboards & alert playbooks</li>
+        <li>Operational SOPs for EOD/BOD & audit readiness</li>
+      </ul>
+    </div>
+
+    <!-- Why choose us -->
+    <div class="section">
+      <h3>Why Saxham AI</h3>
+      <p class="lead">
+        We focus on clarity, reliability, and practical automation—deliverables that reduce time-to-production,
+        improve engineering efficiency, and lower operational risks.
+      </p>
+    </div>
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div>© <span id="year"></span> Saxham AI</div>
+    <div>
+      <a href="/products.html">Products</a>
+      <a href="/contact.html">Contact</a>
+    </div>
+  </footer>
+
+</div>
+
+<script>
+  document.getElementById("year").textContent = new Date().getFullYear();
+</script>
+
 </body>
 </html>
