@@ -6,6 +6,11 @@
   <title>About — Saxham AI</title>
   <link rel="icon" href="/logo.jpg" />
   <meta name="description" content="About Saxham AI — automation blueprints, observability, and operational SOP toolkits for IT & DevOps." />
+  <link rel="canonical" href="https://saxhamai.github.io/about.html" />
+  <meta name="theme-color" content="#07132a" />
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root{
@@ -22,6 +27,7 @@
       --card-shadow: 0 16px 50px rgba(2,6,23,0.6);
       --maxw:1100px;
       --accent-grad: linear-gradient(90deg,var(--neon),var(--cyan));
+      --focus: 3px solid rgba(123,102,255,0.22);
     }
     *{box-sizing:border-box;margin:0;padding:0}
     html,body{height:100%}
@@ -37,6 +43,12 @@
       line-height:1.5;
       padding-bottom:40px;
     }
+
+    /* Skip link */
+    .skip-link{
+      position:fixed;left:12px;top:12px;background:#07132a;color:var(--text);padding:8px 12px;border-radius:8px;z-index:9999;transform:translateY(-200%);transition:transform .18s;
+    }
+    .skip-link:focus{transform:translateY(0);outline:none;}
 
     /* Cursor glow */
     #cursor-glow{
@@ -100,24 +112,35 @@
       border:none;height:2px;margin-top:12px;border-radius:8px;background:linear-gradient(90deg,var(--neon),var(--cyan));opacity:0.12;
     }
 
+    /* accessibility focus */
+    a:focus, button:focus, input:focus, textarea:focus { outline: var(--focus); outline-offset:3px; border-radius:8px; }
+
     /* small screens */
     @media(max-width:520px){
       .logo-box{width:52px;height:52px}
       .page-head h1{font-size:28px}
       .brand .title{font-size:16px}
     }
+
+    /* reduced motion fallback */
+    @media (prefers-reduced-motion: reduce) {
+      .particle { animation: none !important; }
+      * { transition: none !important; animation: none !important; }
+    }
   </style>
 </head>
 
 <body>
+  <!-- skip link for keyboard users -->
+  <a class="skip-link" href="#main">Skip to content</a>
+
   <!-- cursor glow and particles -->
-  <div id="cursor-glow"></div>
-  <div class="particle" style="width:16px;height:16px;left:10%;top:20%;background:var(--neon);animation-duration:11s"></div>
-  <div class="particle" style="width:12px;height:12px;left:80%;top:15%;background:var(--cyan);animation-duration:13s"></div>
-  <div class="particle" style="width:20px;height:20px;left:50%;top:78%;background:var(--neon);animation-duration:9s"></div>
+  <div id="cursor-glow" aria-hidden="true"></div>
+  <div class="particle" style="width:16px;height:16px;left:10%;top:20%;background:var(--neon);animation-duration:11s" aria-hidden="true"></div>
+  <div class="particle" style="width:12px;height:12px;left:80%;top:15%;background:var(--cyan);animation-duration:13s" aria-hidden="true"></div>
+  <div class="particle" style="width:20px;height:20px;left:50%;top:78%;background:var(--neon);animation-duration:9s" aria-hidden="true"></div>
 
   <div class="wrap" role="document">
-
     <!-- TOP NAV / BRAND -->
     <header class="header" role="banner">
       <a class="brand" href="/index.html" aria-label="Saxham AI home">
@@ -130,13 +153,13 @@
 
       <nav class="nav" role="navigation" aria-label="Main navigation">
         <a href="/index.html">Home</a>
-        <a href="/about.html" class="active">About</a>
+        <a href="/about.html" class="active" aria-current="page">About</a>
         <a href="/contact.html">Contact</a>
       </nav>
     </header>
 
     <!-- PAGE HEADING -->
-    <header class="page-head" role="region" aria-label="About heading">
+    <header id="main" class="page-head" role="region" aria-label="About heading">
       <h1>About Saxham AI</h1>
       <p class="lead">Saxham AI builds practical automation blueprints, monitoring dashboards, and SOP toolkits for modern IT and DevOps teams.</p>
       <hr aria-hidden="true">
