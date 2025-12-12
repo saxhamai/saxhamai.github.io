@@ -25,10 +25,6 @@
       <nav class="nav" role="navigation" aria-label="Main navigation">
         <a href="/index.html" class="nav-home active">Home</a>
         <a href="/products.html" class="nav-products">Products</a>
-
-        <!-- ⭐ NEW TECHNOSTAR MENU LINK -->
-        <a href="/technostar.html" class="nav-service">TechnoStar Service</a>
-
         <a href="/about.html" class="nav-about">About</a>
         <a href="/contact.html" class="nav-contact">Contact</a>
       </nav>
@@ -50,14 +46,51 @@
           <a class="btn btn-secondary" href="/contact.html">Contact Us</a>
         </div>
 
-        <!-- ⭐ NEW TECHNOSTAR CTA BUTTON -->
-        <a class="btn btn-primary"
-           style="margin-top:16px;background:#0A2342"
-           href="/technostar.html">
-           Visit TechnoStar Laptop Repair Service
-        </a>
+        <!-- ⭐ PREMIUM TECHNOSTAR HIGHLIGHT BOX -->
+        <div style="
+            margin-top:28px;
+            padding:20px;
+            border:2px solid #0A2342;
+            border-radius:14px;
+            background:white;
+            animation: glowBox 2.5s infinite;
+            box-shadow:0 2px 12px rgba(0,0,0,0.12);
+          ">
+          
+          <h3 style="margin:0;color:#0A2342;font-size:22px;font-weight:700;">
+            🚀 TechnoStar Infotech
+          </h3>
 
-        <div class="grid" style="margin-top:18px">
+          <p style="margin:10px 0 18px 0;opacity:0.75;font-size:15px;">
+            Professional Doorstep Laptop & PC Repair Service now available in Navi Mumbai.
+          </p>
+
+          <a href="/technostar.html" 
+             style="
+               display:inline-block;
+               background:#0A2342;
+               color:white;
+               padding:12px 22px;
+               border-radius:8px;
+               text-decoration:none;
+               font-weight:600;
+               font-size:15px;
+               transition:0.3s;
+             ">
+             Visit TechnoStar Laptop Repair Service
+          </a>
+        </div>
+
+        <!-- GLOW ANIMATION -->
+        <style>
+          @keyframes glowBox {
+            0% { box-shadow:0 0 10px rgba(10,35,66,0.15); }
+            50% { box-shadow:0 0 18px rgba(10,35,66,0.45); }
+            100% { box-shadow:0 0 10px rgba(10,35,66,0.15); }
+          }
+        </style>
+
+        <div class="grid" style="margin-top:22px">
           <a class="card" href="/kafka-blueprint.html">
             <h3>Kafka Setup Blueprint</h3>
             <p>Production-ready architecture, install & config templates, monitoring and runbook.</p>
