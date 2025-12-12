@@ -1,99 +1,129 @@
 <!doctype html>
 <html lang="en">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
   <title>Contact — Saxham AI</title>
   <link rel="icon" href="/logo.jpg">
+  <meta name="description" content="Contact — Saxham AI. For product inquiries, early access, or partnerships." />
 
-  <!-- Embedded styles to match the site (replace with /styles.css if preferred) -->
   <style>
-    :root{
-      --bg:#071126;
-      --card:#081427;
-      --muted:rgba(255,255,255,0.72);
-      --muted2:rgba(255,255,255,0.56);
-      --accent:#7b66ff;
-      --accent-2:#5ec0ff;
-      --text:#eef5ff;
-      --radius:12px;
-      --maxw:1100px;
-    }
-    html,body{height:100%; margin:0; font-family:Inter,system-ui, -apple-system, "Segoe UI", Roboto, Arial;}
-    body{
-      background: linear-gradient(180deg,#061024 0%, #07102a 100%);
-      color:var(--text);
-      -webkit-font-smoothing:antialiased;
-      -moz-osx-font-smoothing:grayscale;
-    }
+  :root{
+    --bg-1:#02040a;
+    --bg-2:#07142d;
+    --text:#eaf4ff;
+    --muted:rgba(255,255,255,0.72);
+    --muted-2:rgba(255,255,255,0.48);
+    --neon:#7b66ff;
+    --cyan:#2ed1ff;
+    --glass:rgba(255,255,255,0.04);
+    --radius:14px;
+    --card-shadow:0 18px 45px rgba(0,0,0,0.55);
+    --maxw:1180px;
+  }
+  *{box-sizing:border-box;margin:0;padding:0}
+  body{
+    font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Arial;
+    background:
+      radial-gradient(900px 600px at 10% 10%, rgba(123,102,255,0.06), transparent),
+      radial-gradient(800px 500px at 90% 80%, rgba(46,209,255,0.04), transparent),
+      linear-gradient(180deg,var(--bg-1),var(--bg-2));
+    color:var(--text);
+    -webkit-font-smoothing:antialiased;
+    overflow-x:hidden;
+  }
 
-    .wrap{max-width:var(--maxw); margin:28px auto; padding:20px;}
+  /* cursor glow */
+  #cursor-glow{
+    position:fixed;
+    width:220px;height:220px;
+    background:radial-gradient(circle, rgba(46,209,255,0.18), transparent 60%);
+    border-radius:50%; pointer-events:none; filter:blur(36px); opacity:0.36; z-index:0;
+    transition:transform .08s linear;
+  }
 
-    /* Header */
-    .header{display:flex; align-items:center; justify-content:space-between; gap:20px;}
-    .brand{display:flex; align-items:center; gap:12px; text-decoration:none; color:inherit;}
-    .brand .logo{width:56px;height:56px;border-radius:10px; overflow:hidden; background:rgba(255,255,255,0.02); border:1px solid rgba(255,255,255,0.03); display:flex; align-items:center; justify-content:center;}
-    .brand .logo img{width:100%;height:100%;object-fit:cover;}
-    .brand .title{font-weight:700; font-size:18px;}
-    .brand .sub{font-size:13px; color:var(--muted2); margin-top:2px;}
+  /* floating particles */
+  .particle{position:fixed;border-radius:50%;filter:blur(8px);opacity:0.6;animation:drift 12s infinite ease-in-out;z-index:0}
+  @keyframes drift{0%{transform:translateY(0)}50%{transform:translateY(-20px)}100%{transform:translateY(0)}}
 
-    .nav{display:flex; gap:16px; align-items:center;}
-    .nav a{color:var(--muted); text-decoration:none; padding:6px 10px; border-radius:8px; font-weight:600;}
-    .nav a.active, .nav a:hover{color:var(--text); background:rgba(255,255,255,0.02);}
+  .wrap{max-width:var(--maxw);margin:28px auto;padding:22px;position:relative;z-index:2}
 
-    /* Page header */
-    h1{font-size:38px; margin:18px 0 6px; line-height:1.02;}
-    .lead{color:var(--muted); font-size:15px; margin-bottom:10px; max-width:80ch;}
+  /* header */
+  .header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+  .brand{display:flex;align-items:center;gap:14px;text-decoration:none;color:inherit}
+  .logo-box{width:60px;height:60px;padding:6px;border-radius:14px;background:rgba(255,255,255,0.03);border:1px solid rgba(255,255,255,0.06);box-shadow:var(--card-shadow);display:flex;align-items:center;justify-content:center}
+  .logo-box img{width:48px;height:48px}
+  .brand .title{font-size:20px;font-weight:800}
+  .brand .sub{font-size:12px;color:var(--muted-2)}
 
-    /* Grid */
-    .grid{display:grid; grid-template-columns:1fr 1fr; gap:16px; margin-top:18px;}
-    .card{
-      background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));
-      padding:18px; border-radius:var(--radius); box-shadow:0 8px 26px rgba(2,6,23,0.5); border:1px solid rgba(255,255,255,0.02);
-    }
-    .card h3{margin:0 0 8px; font-size:18px;}
-    .card p{margin:0;color:var(--muted); font-size:14px;}
-    .contact-link{color:var(--accent); text-decoration:none; font-weight:700;}
-    .small{color:var(--muted2); font-size:13px; margin-top:8px;}
+  nav.nav{display:flex;gap:14px}
+  nav.nav a{color:var(--muted);padding:10px 12px;border-radius:10px;text-decoration:none;font-weight:700;transition:.16s}
+  nav.nav a:hover{background:rgba(255,255,255,0.06);color:#fff;transform:translateY(-2px)}
+  nav.nav a.active{background:rgba(123,102,255,0.16);color:#fff}
 
-    /* Form */
-    form{display:flex; flex-direction:column; gap:10px; margin-top:8px;}
-    input[type="text"], input[type="email"], textarea{
-      width:100%; padding:10px 12px; border-radius:10px; border:1px solid rgba(255,255,255,0.04);
-      background:rgba(0,0,0,0.2); color:var(--text); font-size:14px;
-    }
-    textarea{min-height:110px; resize:vertical;}
-    .btn{display:inline-block; padding:10px 16px; border-radius:10px; background:linear-gradient(90deg,var(--accent), #6aa2ff); color:#fff; text-decoration:none; border:none; cursor:pointer; font-weight:700;}
+  /* heading */
+  h1{font-size:36px;margin:6px 0;color:var(--text);text-shadow:0 0 12px rgba(123,102,255,0.2)}
+  .lead{color:var(--muted);font-size:15px;max-width:72ch;margin-bottom:8px}
 
-    /* Footer */
-    .footer{margin-top:30px; color:var(--muted2); display:flex; justify-content:space-between; align-items:center; gap:12px; padding-bottom:40px;}
-    .footer a{color:var(--muted); text-decoration:none; margin-left:12px;}
+  /* grid */
+  .grid{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-top:18px}
+  .card{
+    background:rgba(255,255,255,0.03);
+    padding:20px;border-radius:14px;border:1px solid rgba(255,255,255,0.06);
+    box-shadow:var(--card-shadow);backdrop-filter:blur(8px);
+  }
+  .card h3{margin:0 0 8px;font-size:18px}
+  .card p{margin:0;color:var(--muted);font-size:14px}
+  .contact-link{color:var(--neon);text-decoration:none;font-weight:800}
+  .small{color:var(--muted-2);font-size:13px;margin-top:8px;display:block}
 
-    /* Responsive */
-    @media (max-width:900px){
-      .grid{grid-template-columns:1fr;}
-      h1{font-size:30px;}
-      .brand .logo{width:48px;height:48px;}
-    }
+  /* form inputs */
+  form{display:flex;flex-direction:column;gap:10px;margin-top:8px}
+  input[type="text"], input[type="email"], textarea{
+    width:100%;padding:12px;border-radius:12px;border:1px solid rgba(255,255,255,0.06);
+    background:rgba(0,0,0,0.18);color:var(--text);font-size:14px;
+  }
+  textarea{min-height:120px;resize:vertical}
+  .btn{
+    display:inline-block;padding:12px 16px;border-radius:12px;background:linear-gradient(90deg,var(--neon),var(--cyan));
+    color:#021026;text-decoration:none;border:none;font-weight:900;cursor:pointer;box-shadow:0 10px 28px rgba(46,209,255,0.12);
+  }
+  .btn.secondary{background:#0A2342;color:#fff}
+
+  /* footer */
+  .footer{margin-top:32px;color:var(--muted-2);display:flex;justify-content:space-between;align-items:center;padding-bottom:30px}
+  .footer a{color:var(--muted);text-decoration:none;margin-left:12px}
+
+  /* responsive */
+  @media(max-width:920px){.grid{grid-template-columns:1fr}.brand .title{font-size:18px}}
+  @media(max-width:520px){h1{font-size:28px}.logo-box{width:48px;height:48px}}
   </style>
 </head>
 <body>
-  <div class="wrap">
 
+  <!-- cursor glow -->
+  <div id="cursor-glow"></div>
+
+  <!-- floating particles -->
+  <div class="particle" style="width:18px;height:18px;left:12%;top:26%;background:var(--neon);animation-duration:11s"></div>
+  <div class="particle" style="width:14px;height:14px;left:82%;top:16%;background:var(--cyan);animation-duration:13s"></div>
+  <div class="particle" style="width:20px;height:20px;left:48%;top:78%;background:var(--neon);animation-duration:9s"></div>
+
+  <div class="wrap" role="document">
     <!-- HEADER -->
     <header class="header" role="banner">
-      <a class="brand" href="/index.html">
-        <div class="logo"><img src="/logo.svg" alt="Saxham AI"></div>
+      <a class="brand" href="/index.html" aria-label="Saxham AI home">
+        <div class="logo-box"><img src="/logo.svg" alt="Saxham AI logo"></div>
         <div>
           <div class="title">Saxham AI</div>
           <div class="sub">AI-driven automation &amp; infrastructure</div>
         </div>
       </a>
 
-      <nav class="nav" role="navigation">
-        <a href="/index.html" class="nav-home">Home</a>
-        <a href="/about.html" class="nav-about">About</a>
-        <a href="/contact.html" class="nav-contact active">Contact</a>
+      <nav class="nav" role="navigation" aria-label="Main navigation">
+        <a href="/index.html">Home</a>
+        <a href="/about.html">About</a>
+        <a href="/contact.html" class="active">Contact</a>
       </nav>
     </header>
 
@@ -106,13 +136,11 @@
         <!-- Card: Primary contact -->
         <section class="card" role="listitem">
           <h3>Email</h3>
-          <p>
-            <a class="contact-link" href="mailto:founder@saxhamai.com">founder@saxhamai.com</a>
-          </p>
+          <p><a class="contact-link" href="mailto:founder@saxhamai.com">founder@saxhamai.com</a></p>
 
           <h3 style="margin-top:14px">Phone & WhatsApp</h3>
           <p>
-            <a class="contact-link" href="tel:+917498380071">+91 74983 80071</a><br>
+            <a class="contact-link" href="tel:+917498380071">+91 74983 80071</a>
             <span class="small">(TechnoStar business WhatsApp also: +91 74983 80071)</span>
           </p>
 
@@ -133,15 +161,16 @@
           <h3 style="margin-top:14px">Request early access</h3>
           <p class="small">Want early builds or to trial a product? Fill the quick form and we’ll get back:</p>
 
-          <!-- Simple mailto form fallback (works even without server) -->
-          <form onsubmit="mailtoSubmit(event)">
+          <!-- Form (mailto fallback) -->
+          <form onsubmit="mailtoSubmit(event)" aria-label="Contact form">
             <input type="text" id="name" placeholder="Your name (required)" required>
             <input type="email" id="email" placeholder="Your email (required)" required>
             <input type="text" id="subject" placeholder="Subject (e.g., Early access)" value="Early access request">
             <textarea id="message" placeholder="Brief requirements / message"></textarea>
-            <div style="display:flex;gap:8px; margin-top:8px;">
+
+            <div style="display:flex;gap:8px;margin-top:10px;flex-wrap:wrap">
               <button class="btn" type="submit">Send request</button>
-              <a class="btn" style="background:#0A2342;" href="/technostar.html">Visit TechnoStar (services)</a>
+              <a class="btn secondary" href="/technostar.html">Visit TechnoStar (services)</a>
             </div>
           </form>
         </section>
@@ -149,7 +178,7 @@
     </main>
 
     <!-- FOOTER -->
-    <footer class="footer">
+    <footer class="footer" role="contentinfo">
       <div>© <span id="year"></span> Saxham AI</div>
       <div>
         <a href="/products.html">Products</a>
@@ -159,13 +188,32 @@
   </div>
 
   <script>
-    // Year
+    // set year
     document.getElementById('year').textContent = new Date().getFullYear();
 
-    // mailto fallback: compose an email using form contents
+    // cursor glow follow
+    const glow = document.getElementById('cursor-glow');
+    document.addEventListener('mousemove', e => {
+      glow.style.transform = `translate(${e.clientX - 110}px, ${e.clientY - 110}px)`;
+    });
+
+    // mailto fallback: compose email using form contents
     function mailtoSubmit(e){
       e.preventDefault();
-      var name = document.getElementById('name').value.trim();
-      var email = document.getElementById('email').value.trim();
-      var subject = document.getElementById('subject').value.trim() || 'Contact';
-      var message = document.get
+      const to = 'founder@saxhamai.com';
+      const name = encodeURIComponent(document.getElementById('name').value.trim());
+      const email = encodeURIComponent(document.getElementById('email').value.trim());
+      const subject = encodeURIComponent(document.getElementById('subject').value.trim() || 'Contact from saxhamai.github.io');
+      const msgRaw = document.getElementById('message').value.trim();
+      const body = encodeURIComponent(
+        `Name: ${decodeURIComponent(name)}\nEmail: ${decodeURIComponent(email)}\n\nMessage:\n${msgRaw}`
+      );
+
+      // Build mailto link
+      const mailto = `mailto:${to}?subject=${subject}&body=${body}`;
+      // open default mail client
+      window.location.href = mailto;
+    }
+  </script>
+</body>
+</html>
