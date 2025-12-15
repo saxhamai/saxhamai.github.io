@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TechnoStar Infotech | Laptop, PC Repair & Cyber Cafe</title>
+<title>TechnoStar Infotech | Repair, Printer & CCTV Services</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
@@ -42,18 +42,14 @@ header{
   color:#fff;
 }
 .brand img{
-  width:72px;
-  height:72px;
+  width:76px;
+  height:76px;
   object-fit:contain;
   border-radius:12px;
   background:#fff;
   padding:6px;
 }
-.brand h1{
-  font-size:26px;
-  margin:0;
-  font-weight:800;
-}
+.brand h1{margin:0;font-size:26px;font-weight:800}
 nav a{
   color:#dfe8ff;
   margin-left:18px;
@@ -71,16 +67,8 @@ nav a:hover{color:#fff}
   border-bottom-left-radius:32px;
   border-bottom-right-radius:32px;
 }
-.hero h2{
-  font-size:40px;
-  margin-bottom:10px;
-}
-.hero p{
-  max-width:720px;
-  margin:auto;
-  font-size:17px;
-  opacity:.9;
-}
+.hero h2{font-size:40px;margin-bottom:10px}
+.hero p{max-width:760px;margin:auto;font-size:17px;opacity:.9}
 .hero a{
   display:inline-block;
   margin-top:26px;
@@ -92,20 +80,16 @@ nav a:hover{color:#fff}
   font-size:18px;
   font-weight:700;
 }
-.hero a:hover{background:#1bb858}
 
-/* SECTION */
+/* SECTIONS */
 .section{
   max-width:1200px;
   margin:auto;
   padding:60px 22px;
 }
-.section h3{
-  font-size:30px;
-  margin-bottom:20px;
-}
+.section h3{font-size:30px;margin-bottom:20px}
 
-/* CARDS */
+/* GRID */
 .grid{
   display:grid;
   grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
@@ -129,11 +113,9 @@ nav a:hover{color:#fff}
   text-decoration:none;
 }
 
-/* WHY US */
-.why .card{
+/* SERVICE FLOW */
+.flow .card{
   border-left:6px solid var(--accent);
-  text-align:center;
-  font-weight:600;
 }
 
 /* LOCATION */
@@ -144,7 +126,7 @@ nav a:hover{color:#fff}
   box-shadow:var(--shadow);
 }
 
-/* FLOAT WHATSAPP */
+/* WHATSAPP FLOAT */
 .whatsapp{
   position:fixed;
   right:20px;
@@ -159,7 +141,6 @@ nav a:hover{color:#fff}
   color:#fff;
   font-size:30px;
   text-decoration:none;
-  box-shadow:0 4px 16px rgba(0,0,0,.25);
 }
 
 /* FOOTER */
@@ -183,19 +164,55 @@ footer{
     <h1>TechnoStar Infotech</h1>
   </div>
   <nav>
-    <a href="/index.html">SaxhamAI</a>
     <a href="#services">Services</a>
-    <a href="#cyber">Cyber Cafe</a>
+    <a href="#process">Process</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
 
 <section class="hero">
-  <h2>Doorstep Laptop & PC Repair</h2>
-  <p>Fast, reliable and professional computer repair services across Navi Mumbai with genuine parts & warranty.</p>
-  <a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20Laptop%20Repair%20service.">
+  <h2>Doorstep Repair. Workshop Precision.</h2>
+  <p>
+    We start every service with a <strong>doorstep visit</strong>.  
+    If the issue is complex, we safely take your device to our workshop for
+    <strong>detailed lab-level diagnosis & repair</strong>.
+  </p>
+  <a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20repair%20service.">
     💬 Book on WhatsApp
   </a>
+</section>
+
+<!-- SERVICE PROCESS -->
+<section class="section flow" id="process">
+<h3>How Our Service Works</h3>
+<div class="grid">
+
+<div class="card">
+<h4>1️⃣ Doorstep Diagnosis</h4>
+<p>
+Technician visits your home/office.<br>
+On-site inspection & issue identification.<br>
+Transparent cost estimate.
+</p>
+</div>
+
+<div class="card">
+<h4>2️⃣ Workshop Repair (If Required)</h4>
+<p>
+Complex issues → device picked up securely.<br>
+Lab-level diagnostics, motherboard / printer / CCTV repair.
+</p>
+</div>
+
+<div class="card">
+<h4>3️⃣ Testing & Handover</h4>
+<p>
+Repair proof & demo provided.<br>
+Device delivered back with warranty.
+</p>
+</div>
+
+</div>
 </section>
 
 <!-- SERVICES -->
@@ -204,74 +221,43 @@ footer{
 <div class="grid">
 
 <div class="card">
-<h4>💻 Laptop Repair</h4>
-<p>Heating, slow performance, WiFi & software issues</p>
-<strong>₹99 Diagnosis</strong>
+<h4>💻 Laptop & PC Repair</h4>
+<p>Performance, heating, software, hardware issues</p>
 <a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20Laptop%20Repair%20service.">Book Now</a>
 </div>
 
 <div class="card">
 <h4>🔧 Motherboard Repair</h4>
 <p>No power, liquid damage, charging faults</p>
-<strong>₹1499 – ₹2999</strong>
 <a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20Motherboard%20Repair%20service.">Book Now</a>
 </div>
 
 <div class="card">
-<h4>🖥 Screen Replacement</h4>
-<p>Broken or flickering display</p>
-<strong>₹2499 – ₹6999</strong>
-<a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20Screen%20Replacement%20service.">Book Now</a>
+<h4>🖨 Printer Repair</h4>
+<p>Laser & Inkjet printers – paper jam, board, print issues</p>
+<a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20Printer%20Repair%20service.">Book Now</a>
 </div>
 
 <div class="card">
-<h4>⚡ SSD Upgrade</h4>
-<p>10x faster performance</p>
-<strong>₹1699 – ₹3999</strong>
-<a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20SSD%20Upgrade%20service.">Book Now</a>
+<h4>📹 CCTV Installation & Repair</h4>
+<p>New setup, DVR/NVR repair, camera replacement</p>
+<a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20CCTV%20Service.">Book Now</a>
 </div>
 
-</div>
-</section>
-
-<!-- WHY US -->
-<section class="section why">
-<h3>Why Choose TechnoStar?</h3>
-<div class="grid">
-<div class="card">✔ Doorstep Service</div>
-<div class="card">✔ Certified Technicians</div>
-<div class="card">✔ Transparent Pricing</div>
-<div class="card">✔ Genuine Parts</div>
-<div class="card">✔ 30-Day Warranty</div>
-<div class="card">✔ Local Trusted Service</div>
-</div>
-</section>
-
-<!-- CYBER CAFE -->
-<section class="section" id="cyber">
-<h3>Cyber Cafe & Digital Services</h3>
-<div class="grid">
-<div class="card">📝 Online Form Filling</div>
-<div class="card">🖨 Printing / Xerox / Scan</div>
-<div class="card">📄 Resume Creation</div>
-<div class="card">🎟 Ticket Booking</div>
-<div class="card">💻 Computer Assistance</div>
 </div>
 </section>
 
 <!-- LOCATION -->
 <section class="section location" id="contact">
-<h3>Visit Our Cyber Cafe</h3>
+<h3>Workshop & Cyber Cafe Location</h3>
 <p>
-📍 <strong>Address:</strong><br>
-Sahyadri Apartment,<br>
-1st Floor, Arjunwadi,<br>
-Ghansoli Village,<br>
+📍 Sahyadri Apartment, 1st Floor,<br>
+Arjunwadi, Ghansoli Village,<br>
 Ghansoli, Navi Mumbai – 400701
 </p>
 
 <p>
-📱 <strong>WhatsApp:</strong> <a href="https://wa.me/917498380071">+91 7498380071</a><br>
+📱 <a href="https://wa.me/917498380071">+91 7498380071</a><br>
 📧 technostarinfotechindia@gmail.com
 </p>
 </section>
