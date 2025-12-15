@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TechnoStar Infotech | Repair & Cyber Cafe</title>
+<title>TechnoStar Infotech | Laptop Repair & Cyber Cafe</title>
 <meta name="viewport" content="width=device-width, initial-scale=1">
 
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
@@ -14,7 +14,7 @@
   --bg:#f4f7ff;
   --card:#ffffff;
   --radius:16px;
-  --shadow:0 10px 28px rgba(0,0,0,.12);
+  --shadow:0 12px 30px rgba(0,0,0,.12);
 }
 
 *{box-sizing:border-box}
@@ -25,7 +25,7 @@ body{
   color:#0A2342;
 }
 
-/* ===== HEADER ===== */
+/* HEADER */
 header{
   background:var(--primary);
   padding:14px 20px;
@@ -47,98 +47,62 @@ header{
   color:#fff;
 }
 .brand img{
-  width:64px;
-  height:64px;
+  width:60px;
+  height:60px;
   background:#fff;
   padding:6px;
   border-radius:14px;
 }
 .brand span{
-  font-size:22px;
+  font-size:20px;
   font-weight:800;
 }
-
-/* Desktop nav */
 nav{
   display:flex;
-  gap:20px;
+  gap:18px;
 }
 nav a{
   color:#dfe8ff;
   text-decoration:none;
   font-weight:600;
 }
-nav a:hover{color:#fff}
+.menu-btn{display:none;color:#fff;font-size:26px}
 
-/* Hamburger */
-.menu-btn{
-  display:none;
-  font-size:26px;
-  color:#fff;
-  cursor:pointer;
+/* MOBILE */
+@media(max-width:768px){
+  nav{display:none}
+  .menu-btn{display:block}
 }
 
-/* Mobile menu */
-.mobile-nav{
-  display:none;
-  flex-direction:column;
-  background:#081a33;
-  padding:14px;
-}
-.mobile-nav a{
-  color:#fff;
-  padding:10px 0;
-  text-decoration:none;
-  font-weight:600;
-  border-bottom:1px solid rgba(255,255,255,.1);
-}
-
-/* ===== HERO ===== */
+/* HERO */
 .hero{
   background:linear-gradient(135deg,#0A2342,#12406f);
   color:#fff;
-  text-align:center;
   padding:70px 20px;
+  text-align:center;
   border-bottom-left-radius:28px;
   border-bottom-right-radius:28px;
-  position:relative;
-  overflow:hidden;
-}
-.hero::before{
-  content:"";
-  position:absolute;
-  width:280px;
-  height:280px;
-  background:rgba(255,255,255,.08);
-  border-radius:50%;
-  top:-100px;
-  right:-100px;
 }
 .hero h1{
   font-size:clamp(28px,5vw,42px);
-  margin-bottom:12px;
 }
 .hero p{
-  max-width:780px;
-  margin:auto;
+  max-width:800px;
+  margin:14px auto 0;
   opacity:.9;
-  font-size:16px;
 }
 .hero a{
-  display:inline-flex;
-  align-items:center;
-  gap:10px;
-  margin-top:26px;
+  margin-top:28px;
+  display:inline-block;
   background:var(--accent);
   padding:14px 30px;
   border-radius:14px;
   color:#fff;
-  text-decoration:none;
   font-weight:700;
-  font-size:18px;
+  text-decoration:none;
 }
 
-/* ===== SECTIONS ===== */
+/* SECTIONS */
 .section{
   max-width:1200px;
   margin:auto;
@@ -146,7 +110,7 @@ nav a:hover{color:#fff}
 }
 .section h2{
   font-size:30px;
-  margin-bottom:24px;
+  margin-bottom:20px;
 }
 
 /* GRID */
@@ -157,14 +121,17 @@ nav a:hover{color:#fff}
 }
 .card{
   background:var(--card);
-  padding:22px;
+  padding:24px;
   border-radius:var(--radius);
   box-shadow:var(--shadow);
   border-left:6px solid var(--primary);
 }
-.card h3{margin:0 0 8px}
-.card p{opacity:.85;font-size:15px}
+.card h3{margin-top:0}
+
+/* CTA */
 .card a{
+  display:inline-block;
+  margin-top:10px;
   color:var(--accent);
   font-weight:700;
   text-decoration:none;
@@ -178,7 +145,7 @@ nav a:hover{color:#fff}
   box-shadow:var(--shadow);
 }
 
-/* FLOAT WHATSAPP */
+/* WHATSAPP FLOAT */
 .whatsapp{
   position:fixed;
   bottom:20px;
@@ -188,10 +155,10 @@ nav a:hover{color:#fff}
   background:var(--accent);
   color:#fff;
   font-size:30px;
+  border-radius:50%;
   display:flex;
   align-items:center;
   justify-content:center;
-  border-radius:50%;
   text-decoration:none;
 }
 
@@ -202,16 +169,6 @@ footer{
   text-align:center;
   padding:20px;
   margin-top:40px;
-  border-top-left-radius:20px;
-  border-top-right-radius:20px;
-}
-
-/* ===== RESPONSIVE ===== */
-@media(max-width:768px){
-  nav{display:none}
-  .menu-btn{display:block}
-  .brand span{font-size:18px}
-  .brand img{width:54px;height:54px}
 }
 </style>
 </head>
@@ -221,52 +178,100 @@ footer{
 <header>
   <div class="header-inner">
     <div class="brand">
-      <img src="/technostar-logo.png" alt="TechnoStar Logo">
+      <img src="/technostar-logo.png">
       <span>TechnoStar Infotech</span>
     </div>
     <nav>
+      <a href="#process">Process</a>
       <a href="#repair">Repair</a>
       <a href="#cyber">Cyber Cafe</a>
-      <a href="#process">Process</a>
       <a href="#contact">Contact</a>
     </nav>
-    <div class="menu-btn" onclick="toggleMenu()">☰</div>
-  </div>
-
-  <div class="mobile-nav" id="mobileNav">
-    <a href="#repair" onclick="toggleMenu()">Repair</a>
-    <a href="#cyber" onclick="toggleMenu()">Cyber Cafe</a>
-    <a href="#process" onclick="toggleMenu()">Process</a>
-    <a href="#contact" onclick="toggleMenu()">Contact</a>
+    <div class="menu-btn">☰</div>
   </div>
 </header>
 
 <section class="hero">
   <h1>Reliable Laptop & PC Repair + Cyber Cafe Services</h1>
   <p>
-    Professional doorstep repair and complete cyber cafe services for
-    students, individuals and working professionals.
+    Professional doorstep computer repair and complete cyber cafe services
+    for students, individuals and working professionals.
   </p>
   <a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20service%20assistance.">
     💬 Contact on WhatsApp
   </a>
 </section>
 
+<!-- HOW SERVICE WORKS -->
 <section class="section" id="process">
 <h2>How Our Service Works</h2>
 <div class="grid">
-  <div class="card"><h3>Doorstep Diagnosis</h3><p>Initial check at your location.</p></div>
-  <div class="card"><h3>Workshop Repair</h3><p>Advanced issues fixed in lab.</p></div>
-  <div class="card"><h3>Safe Handover</h3><p>Testing & secure delivery.</p></div>
+  <div class="card">
+    <h3>Doorstep Diagnosis</h3>
+    <p>
+      We first visit your location and perform a basic diagnosis.
+      Minor issues are fixed immediately at your doorstep.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Workshop / Lab Repair</h3>
+    <p>
+      If the issue is complex (motherboard, hardware fault, data recovery),
+      the device is safely taken to our workshop for detailed diagnostics
+      and repair.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Transparent Resolution</h3>
+    <p>
+      You receive a clear explanation, repair plan and cost estimate
+      before any major work is done.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Safe Testing & Handover</h3>
+    <p>
+      After repair, we thoroughly test the system and hand it over
+      securely with proper confirmation.
+    </p>
+  </div>
 </div>
 </section>
 
+<!-- LAPTOP & PC REPAIR -->
 <section class="section" id="repair">
-<h2>Laptop & PC Repair</h2>
+<h2>Laptop & PC Repair Services</h2>
+
+<h3>🔧 Hardware Services</h3>
 <div class="grid">
   <div class="card">
-    <h3>Laptop / Desktop Repair</h3>
-    <p>Hardware, software & performance issues.</p>
+    <p>
+      • Laptop / Desktop not powering on<br>
+      • Screen issues (blank, flickering, lines)<br>
+      • Keyboard, touchpad, hinge problems<br>
+      • Battery & charging issues<br>
+      • Overheating & fan noise<br>
+      • SSD / RAM upgrades
+    </p>
+  </div>
+</div>
+
+<br>
+
+<h3>💻 Software Services</h3>
+<div class="grid">
+  <div class="card">
+    <p>
+      • Windows installation & upgrade<br>
+      • System slow performance fix<br>
+      • Virus & malware removal<br>
+      • Driver & software issues<br>
+      • Data backup & basic recovery<br>
+      • Email & application setup
+    </p>
     <a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20Laptop%20or%20PC%20Repair%20service.">
       Book Repair
     </a>
@@ -274,15 +279,37 @@ footer{
 </div>
 </section>
 
+<!-- CYBER CAFE -->
 <section class="section" id="cyber">
 <h2>Cyber Cafe Services</h2>
 <div class="grid">
-  <div class="card"><h3>Online Form Filling</h3><p>Govt & private forms.</p></div>
-  <div class="card"><h3>Print / Xerox / Scan</h3><p>Documents & PDFs.</p></div>
-  <div class="card"><h3>Digital Assistance</h3><p>Email, uploads, payments.</p></div>
+  <div class="card">
+    <h3>Online Form Filling</h3>
+    <p>
+      Government & private forms, admissions, exams,
+      job applications and registrations.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Print / Xerox / Scan</h3>
+    <p>
+      Black & white / color print, scanning documents,
+      photocopy and PDF work.
+    </p>
+  </div>
+
+  <div class="card">
+    <h3>Digital Assistance</h3>
+    <p>
+      Email creation, uploads, online payments,
+      document editing and basic computer help.
+    </p>
+  </div>
 </div>
 </section>
 
+<!-- LOCATION -->
 <section class="section location" id="contact">
 <h2>Workshop & Cyber Cafe Location</h2>
 <p>
@@ -298,13 +325,6 @@ Navi Mumbai – 400701
 <footer>
 © <script>document.write(new Date().getFullYear())</script> TechnoStar Infotech
 </footer>
-
-<script>
-function toggleMenu(){
-  const nav=document.getElementById('mobileNav');
-  nav.style.display = nav.style.display==='flex' ? 'none' : 'flex';
-}
-</script>
 
 </body>
 </html>
