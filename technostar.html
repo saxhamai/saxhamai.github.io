@@ -1,345 +1,285 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <title>TechnoStar Infotech — Doorstep Laptop & PC Repair</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+<meta charset="UTF-8">
+<title>TechnoStar Infotech | Laptop, PC Repair & Cyber Cafe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
-  <style>
-    :root{
-      --primary:#0A2342;
-      --primary-light:#123c72;
-      --accent:#25D366;
-      --bg:#f2f5fb;
-      --card:#ffffff;
-      --text:#0A2342;
-      --muted:#5f6c7b;
-      --radius:18px;
-      --shadow:0 10px 30px rgba(0,0,0,0.12);
-    }
+<style>
+:root{
+  --primary:#0A2342;
+  --accent:#25D366;
+  --bg:#f4f7ff;
+  --card:#ffffff;
+  --radius:16px;
+  --shadow:0 8px 22px rgba(0,0,0,0.12);
+}
+*{box-sizing:border-box}
+body{
+  margin:0;
+  font-family:Inter,system-ui;
+  background:var(--bg);
+  color:#0A2342;
+}
 
-    *{box-sizing:border-box;margin:0;padding:0}
-    body{
-      font-family:Inter,system-ui;
-      background:var(--bg);
-      color:var(--text);
-      line-height:1.6;
-    }
+/* HEADER */
+header{
+  background:var(--primary);
+  padding:16px 26px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  position:sticky;
+  top:0;
+  z-index:999;
+}
+.brand{
+  display:flex;
+  align-items:center;
+  gap:14px;
+  color:#fff;
+}
+.brand img{
+  width:72px;
+  height:72px;
+  object-fit:contain;
+  border-radius:12px;
+  background:#fff;
+  padding:6px;
+}
+.brand h1{
+  font-size:26px;
+  margin:0;
+  font-weight:800;
+}
+nav a{
+  color:#dfe8ff;
+  margin-left:18px;
+  text-decoration:none;
+  font-weight:600;
+}
+nav a:hover{color:#fff}
 
-    /* ================= HEADER ================= */
-    header{
-      position:sticky; top:0; z-index:100;
-      background:linear-gradient(135deg,#0A2342,#123c72);
-      padding:18px 26px;
-      display:flex;
-      align-items:center;
-      justify-content:space-between;
-      box-shadow:0 6px 18px rgba(0,0,0,.25);
-    }
-    .brand{
-      display:flex;
-      align-items:center;
-      gap:14px;
-      color:#fff;
-    }
-    .brand img{
-      width:72px;
-      height:72px;
-      background:#fff;
-      padding:6px;
-      border-radius:16px;
-      object-fit:contain;
-      box-shadow:0 6px 20px rgba(0,0,0,.25);
-    }
-    .brand h1{
-      font-size:26px;
-      font-weight:800;
-      line-height:1.2;
-    }
-    .brand span{
-      font-size:13px;
-      opacity:.85;
-    }
-    nav a{
-      color:#dfe8ff;
-      text-decoration:none;
-      margin-left:22px;
-      font-weight:600;
-    }
-    nav a:hover{color:#fff}
+/* HERO */
+.hero{
+  padding:70px 20px;
+  text-align:center;
+  background:linear-gradient(135deg,#0A2342,#12406f);
+  color:#fff;
+  border-bottom-left-radius:32px;
+  border-bottom-right-radius:32px;
+}
+.hero h2{
+  font-size:40px;
+  margin-bottom:10px;
+}
+.hero p{
+  max-width:720px;
+  margin:auto;
+  font-size:17px;
+  opacity:.9;
+}
+.hero a{
+  display:inline-block;
+  margin-top:26px;
+  background:var(--accent);
+  padding:14px 28px;
+  border-radius:14px;
+  color:#fff;
+  text-decoration:none;
+  font-size:18px;
+  font-weight:700;
+}
+.hero a:hover{background:#1bb858}
 
-    /* ================= HERO ================= */
-    .hero{
-      padding:80px 20px;
-      text-align:center;
-      background:linear-gradient(135deg,#0A2342,#12406f);
-      color:#fff;
-      border-bottom-left-radius:40px;
-      border-bottom-right-radius:40px;
-    }
-    .hero h2{
-      font-size:42px;
-      font-weight:800;
-      margin-bottom:14px;
-    }
-    .hero p{
-      max-width:760px;
-      margin:auto;
-      font-size:18px;
-      opacity:.9;
-    }
-    .hero a{
-      display:inline-block;
-      margin-top:28px;
-      background:var(--accent);
-      color:#fff;
-      padding:16px 34px;
-      border-radius:14px;
-      text-decoration:none;
-      font-weight:800;
-      font-size:18px;
-      box-shadow:0 8px 26px rgba(0,0,0,.25);
-      transition:.25s;
-    }
-    .hero a:hover{
-      background:#1dbf5a;
-      transform:translateY(-4px);
-    }
+/* SECTION */
+.section{
+  max-width:1200px;
+  margin:auto;
+  padding:60px 22px;
+}
+.section h3{
+  font-size:30px;
+  margin-bottom:20px;
+}
 
-    /* ================= SECTION ================= */
-    .section{
-      max-width:1200px;
-      margin:auto;
-      padding:70px 24px;
-    }
-    .section h3{
-      font-size:32px;
-      font-weight:800;
-      margin-bottom:18px;
-    }
+/* CARDS */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
+  gap:22px;
+}
+.card{
+  background:var(--card);
+  padding:22px;
+  border-radius:var(--radius);
+  box-shadow:var(--shadow);
+  border-left:6px solid var(--primary);
+}
+.card h4{margin:0 0 6px}
+.card p{font-size:15px;opacity:.85}
+.card strong{display:block;margin:10px 0}
+.card a{
+  display:inline-block;
+  margin-top:8px;
+  color:var(--accent);
+  font-weight:700;
+  text-decoration:none;
+}
 
-    /* ================= SERVICES ================= */
-    .services{
-      display:grid;
-      grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-      gap:26px;
-      margin-top:26px;
-    }
-    .card{
-      background:var(--card);
-      padding:26px;
-      border-radius:var(--radius);
-      box-shadow:var(--shadow);
-      transition:.3s;
-      border-top:6px solid var(--primary);
-      display:flex;
-      flex-direction:column;
-      justify-content:space-between;
-    }
-    .card:hover{
-      transform:translateY(-6px);
-      box-shadow:0 16px 38px rgba(0,0,0,.22);
-    }
-    .card h4{
-      font-size:20px;
-      margin-bottom:6px;
-    }
-    .card p{
-      color:var(--muted);
-      font-size:15px;
-      margin-bottom:10px;
-    }
-    .price{
-      font-weight:800;
-      color:var(--primary-light);
-      margin-bottom:14px;
-    }
-    .book{
-      margin-top:auto;
-      display:inline-block;
-      text-align:center;
-      padding:12px 18px;
-      background:var(--accent);
-      color:#fff;
-      border-radius:12px;
-      text-decoration:none;
-      font-weight:700;
-      transition:.2s;
-    }
-    .book:hover{
-      background:#1dbf5a;
-    }
+/* WHY US */
+.why .card{
+  border-left:6px solid var(--accent);
+  text-align:center;
+  font-weight:600;
+}
 
-    /* ================= PROCESS ================= */
-    .steps{
-      display:grid;
-      gap:14px;
-      margin-top:20px;
-    }
-    .step{
-      background:#fff;
-      padding:16px 20px;
-      border-left:6px solid var(--primary);
-      border-radius:12px;
-      box-shadow:var(--shadow);
-      font-weight:600;
-    }
+/* LOCATION */
+.location{
+  background:#fff;
+  padding:26px;
+  border-radius:16px;
+  box-shadow:var(--shadow);
+}
 
-    /* ================= CONTACT ================= */
-    .contact p{
-      font-size:17px;
-      margin:10px 0;
-    }
-    .contact a{
-      color:var(--primary);
-      font-weight:700;
-      text-decoration:none;
-    }
+/* FLOAT WHATSAPP */
+.whatsapp{
+  position:fixed;
+  right:20px;
+  bottom:20px;
+  background:var(--accent);
+  width:62px;
+  height:62px;
+  border-radius:50%;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  color:#fff;
+  font-size:30px;
+  text-decoration:none;
+  box-shadow:0 4px 16px rgba(0,0,0,.25);
+}
 
-    /* ================= FLOATING WHATSAPP ================= */
-    .whatsapp-float{
-      position:fixed;
-      bottom:20px;
-      right:20px;
-      width:62px;
-      height:62px;
-      border-radius:50%;
-      background:var(--accent);
-      color:#fff;
-      font-size:32px;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      text-decoration:none;
-      box-shadow:0 6px 20px rgba(0,0,0,.3);
-      z-index:200;
-    }
-
-    /* ================= FOOTER ================= */
-    footer{
-      background:var(--primary);
-      color:#fff;
-      text-align:center;
-      padding:24px;
-      margin-top:50px;
-      border-top-left-radius:30px;
-      border-top-right-radius:30px;
-      font-size:14px;
-    }
-
-    @media(max-width:480px){
-      .hero h2{font-size:32px}
-      .brand img{width:64px;height:64px}
-    }
-  </style>
+/* FOOTER */
+footer{
+  background:var(--primary);
+  color:#fff;
+  text-align:center;
+  padding:20px;
+  margin-top:40px;
+  border-top-left-radius:20px;
+  border-top-right-radius:20px;
+}
+</style>
 </head>
 
 <body>
 
-<!-- HEADER -->
 <header>
   <div class="brand">
     <img src="/technostar-logo.png" alt="TechnoStar Logo">
-    <div>
-      <h1>TechnoStar Infotech</h1>
-      <span>Doorstep Laptop & PC Repair</span>
-    </div>
+    <h1>TechnoStar Infotech</h1>
   </div>
   <nav>
     <a href="/index.html">SaxhamAI</a>
     <a href="#services">Services</a>
-    <a href="#process">Process</a>
+    <a href="#cyber">Cyber Cafe</a>
     <a href="#contact">Contact</a>
   </nav>
 </header>
 
-<!-- HERO -->
 <section class="hero">
-  <h2>Expert Doorstep Laptop & PC Repair</h2>
-  <p>Fast, reliable & professional repair services in Navi Mumbai with genuine parts and warranty.</p>
-  <a href="https://wa.me/917498380071?text=Hi%20TechnoStar,%20I%20need%20laptop%20repair%20service.">
+  <h2>Doorstep Laptop & PC Repair</h2>
+  <p>Fast, reliable and professional computer repair services across Navi Mumbai with genuine parts & warranty.</p>
+  <a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20Laptop%20Repair%20service.">
     💬 Book on WhatsApp
   </a>
 </section>
 
 <!-- SERVICES -->
 <section class="section" id="services">
-  <h3>Our Services</h3>
+<h3>Our Services</h3>
+<div class="grid">
 
-  <div class="services">
+<div class="card">
+<h4>💻 Laptop Repair</h4>
+<p>Heating, slow performance, WiFi & software issues</p>
+<strong>₹99 Diagnosis</strong>
+<a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20Laptop%20Repair%20service.">Book Now</a>
+</div>
 
-    <div class="card">
-      <h4>💻 Laptop Repair</h4>
-      <p>Heating, slow performance, WiFi & software issues.</p>
-      <div class="price">₹99 Diagnosis</div>
-      <a class="book" href="https://wa.me/917498380071?text=I%20need%20Laptop%20Repair%20service.">Book Now</a>
-    </div>
+<div class="card">
+<h4>🔧 Motherboard Repair</h4>
+<p>No power, liquid damage, charging faults</p>
+<strong>₹1499 – ₹2999</strong>
+<a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20Motherboard%20Repair%20service.">Book Now</a>
+</div>
 
-    <div class="card">
-      <h4>🔧 Motherboard Repair</h4>
-      <p>No power, liquid damage, charging faults.</p>
-      <div class="price">₹1499 – ₹2999</div>
-      <a class="book" href="https://wa.me/917498380071?text=I%20need%20Motherboard%20Repair%20service.">Book Now</a>
-    </div>
+<div class="card">
+<h4>🖥 Screen Replacement</h4>
+<p>Broken or flickering display</p>
+<strong>₹2499 – ₹6999</strong>
+<a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20Screen%20Replacement%20service.">Book Now</a>
+</div>
 
-    <div class="card">
-      <h4>🖥 Screen Replacement</h4>
-      <p>Broken, flickering or black display.</p>
-      <div class="price">₹2499 – ₹6999</div>
-      <a class="book" href="https://wa.me/917498380071?text=I%20need%20Screen%20Replacement%20service.">Book Now</a>
-    </div>
+<div class="card">
+<h4>⚡ SSD Upgrade</h4>
+<p>10x faster performance</p>
+<strong>₹1699 – ₹3999</strong>
+<a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20SSD%20Upgrade%20service.">Book Now</a>
+</div>
 
-    <div class="card">
-      <h4>⚡ SSD Upgrade</h4>
-      <p>10× faster performance with SSD.</p>
-      <div class="price">₹1699 – ₹3999</div>
-      <a class="book" href="https://wa.me/917498380071?text=I%20need%20SSD%20Upgrade%20service.">Book Now</a>
-    </div>
-
-    <div class="card">
-      <h4>🪟 Windows Installation</h4>
-      <p>Genuine OS + drivers setup.</p>
-      <div class="price">₹499 – ₹699</div>
-      <a class="book" href="https://wa.me/917498380071?text=I%20need%20Windows%20Installation%20service.">Book Now</a>
-    </div>
-
-    <div class="card">
-      <h4>🧹 Cleaning + Thermal Paste</h4>
-      <p>Fan cleaning & overheating fix.</p>
-      <div class="price">₹499</div>
-      <a class="book" href="https://wa.me/917498380071?text=I%20need%20Cleaning%20and%20Thermal%20Paste%20service.">Book Now</a>
-    </div>
-
-  </div>
+</div>
 </section>
 
-<!-- PROCESS -->
-<section class="section" id="process">
-  <h3>How It Works</h3>
-  <div class="steps">
-    <div class="step">1️⃣ Share issue on WhatsApp</div>
-    <div class="step">2️⃣ Technician assigned</div>
-    <div class="step">3️⃣ Doorstep diagnosis</div>
-    <div class="step">4️⃣ Repair / Pickup</div>
-    <div class="step">5️⃣ Delivery + 30-day warranty</div>
-  </div>
+<!-- WHY US -->
+<section class="section why">
+<h3>Why Choose TechnoStar?</h3>
+<div class="grid">
+<div class="card">✔ Doorstep Service</div>
+<div class="card">✔ Certified Technicians</div>
+<div class="card">✔ Transparent Pricing</div>
+<div class="card">✔ Genuine Parts</div>
+<div class="card">✔ 30-Day Warranty</div>
+<div class="card">✔ Local Trusted Service</div>
+</div>
 </section>
 
-<!-- CONTACT -->
-<section class="section contact" id="contact">
-  <h3>Contact Us</h3>
-  <p>📱 WhatsApp: <a href="https://wa.me/917498380071">+91 7498380071</a></p>
-  <p>📧 Email: technostarinfotechindia@gmail.com</p>
-  <p>📍 Areas: Ghansoli · Rabale · Koparkhairne · Airoli · Vashi</p>
+<!-- CYBER CAFE -->
+<section class="section" id="cyber">
+<h3>Cyber Cafe & Digital Services</h3>
+<div class="grid">
+<div class="card">📝 Online Form Filling</div>
+<div class="card">🖨 Printing / Xerox / Scan</div>
+<div class="card">📄 Resume Creation</div>
+<div class="card">🎟 Ticket Booking</div>
+<div class="card">💻 Computer Assistance</div>
+</div>
 </section>
 
-<a class="whatsapp-float" href="https://wa.me/917498380071">💬</a>
+<!-- LOCATION -->
+<section class="section location" id="contact">
+<h3>Visit Our Cyber Cafe</h3>
+<p>
+📍 <strong>Address:</strong><br>
+Sahyadri Apartment,<br>
+1st Floor, Arjunwadi,<br>
+Ghansoli Village,<br>
+Ghansoli, Navi Mumbai – 400701
+</p>
+
+<p>
+📱 <strong>WhatsApp:</strong> <a href="https://wa.me/917498380071">+91 7498380071</a><br>
+📧 technostarinfotechindia@gmail.com
+</p>
+</section>
+
+<a class="whatsapp" href="https://wa.me/917498380071">💬</a>
 
 <footer>
-  © <script>document.write(new Date().getFullYear())</script> TechnoStar Infotech — Powered by SaxhamAI
+© <script>document.write(new Date().getFullYear())</script> TechnoStar Infotech — Powered by SaxhamAI
 </footer>
 
 </body>
