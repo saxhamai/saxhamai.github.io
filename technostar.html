@@ -2,40 +2,37 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>TechnoStar Infotech | Laptop Repair & Cyber Cafe</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>TechnoStar Infotech — Repair & Cyber Cafe</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800&display=swap" rel="stylesheet">
 
 <style>
 :root{
   --primary:#0A2342;
   --accent:#25D366;
-  --bg:#f4f7ff;
+  --bg:#f3f6fb;
   --card:#ffffff;
-  --radius:16px;
-  --shadow:0 12px 30px rgba(0,0,0,.12);
+  --muted:#4a5568;
+  --radius:18px;
+  --shadow:0 14px 40px rgba(0,0,0,.12);
 }
-
 *{box-sizing:border-box}
 body{
   margin:0;
-  font-family:Inter,system-ui;
+  font-family:Inter,sans-serif;
   background:var(--bg);
-  color:#0A2342;
+  color:var(--primary);
 }
 
 /* HEADER */
 header{
-  background:var(--primary);
-  padding:14px 20px;
   position:sticky;
   top:0;
-  z-index:999;
-}
-.header-inner{
-  max-width:1200px;
-  margin:auto;
+  z-index:1000;
+  background:rgba(10,35,66,.94);
+  backdrop-filter:blur(10px);
+  padding:14px 22px;
   display:flex;
   align-items:center;
   justify-content:space-between;
@@ -43,123 +40,117 @@ header{
 .brand{
   display:flex;
   align-items:center;
-  gap:12px;
+  gap:14px;
   color:#fff;
 }
 .brand img{
-  width:60px;
-  height:60px;
+  height:56px;
+  width:56px;
+  padding:8px;
   background:#fff;
-  padding:6px;
   border-radius:14px;
-}
-.brand span{
-  font-size:20px;
-  font-weight:800;
 }
 nav{
   display:flex;
   gap:18px;
 }
 nav a{
-  color:#dfe8ff;
+  color:#dbeafe;
   text-decoration:none;
   font-weight:600;
 }
-.menu-btn{display:none;color:#fff;font-size:26px}
-
-/* MOBILE */
-@media(max-width:768px){
-  nav{display:none}
-  .menu-btn{display:block}
-}
+nav a:hover{color:#fff}
 
 /* HERO */
 .hero{
   background:linear-gradient(135deg,#0A2342,#12406f);
   color:#fff;
-  padding:70px 20px;
   text-align:center;
-  border-bottom-left-radius:28px;
-  border-bottom-right-radius:28px;
+  padding:90px 20px;
+  border-bottom-left-radius:40px;
+  border-bottom-right-radius:40px;
 }
 .hero h1{
-  font-size:clamp(28px,5vw,42px);
+  font-size:42px;
+  font-weight:800;
+}
+.hero h1 span{
+  background:linear-gradient(90deg,#fff,#c7e0ff);
+  -webkit-background-clip:text;
+  color:transparent;
 }
 .hero p{
-  max-width:800px;
-  margin:14px auto 0;
+  max-width:760px;
+  margin:16px auto;
   opacity:.9;
+  line-height:1.6;
 }
-.hero a{
-  margin-top:28px;
+.cta{
+  margin-top:26px;
   display:inline-block;
   background:var(--accent);
-  padding:14px 30px;
-  border-radius:14px;
   color:#fff;
+  padding:16px 34px;
+  border-radius:14px;
+  font-size:18px;
   font-weight:700;
   text-decoration:none;
+  box-shadow:0 8px 22px rgba(0,0,0,.25);
 }
+.cta:hover{transform:translateY(-3px)}
 
-/* SECTIONS */
+/* SECTION */
 .section{
   max-width:1200px;
-  margin:auto;
-  padding:60px 20px;
+  margin:70px auto;
+  padding:0 22px;
 }
 .section h2{
-  font-size:30px;
-  margin-bottom:20px;
+  font-size:34px;
+  font-weight:800;
+  margin-bottom:14px;
+}
+.section p.sub{
+  color:var(--muted);
+  margin-bottom:28px;
 }
 
 /* GRID */
 .grid{
   display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:22px;
+  grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+  gap:24px;
 }
 .card{
   background:var(--card);
-  padding:24px;
+  padding:26px;
   border-radius:var(--radius);
   box-shadow:var(--shadow);
-  border-left:6px solid var(--primary);
+  transition:.25s;
 }
-.card h3{margin-top:0}
+.card:hover{
+  transform:translateY(-6px);
+}
 
-/* CTA */
-.card a{
+/* BUTTON */
+.book{
+  margin-top:14px;
   display:inline-block;
-  margin-top:10px;
   color:var(--accent);
   font-weight:700;
   text-decoration:none;
 }
 
-/* LOCATION */
-.location{
-  background:#fff;
-  padding:26px;
-  border-radius:16px;
-  box-shadow:var(--shadow);
+/* SERVICE WORK FLOW */
+.process .card{
+  border-left:6px solid var(--primary);
 }
 
-/* WHATSAPP FLOAT */
-.whatsapp{
-  position:fixed;
-  bottom:20px;
-  right:20px;
-  width:62px;
-  height:62px;
-  background:var(--accent);
-  color:#fff;
-  font-size:30px;
-  border-radius:50%;
-  display:flex;
-  align-items:center;
-  justify-content:center;
-  text-decoration:none;
+/* CYBER CAFE */
+.cyber{
+  background:#fff;
+  border-radius:40px;
+  padding:60px 22px;
 }
 
 /* FOOTER */
@@ -167,8 +158,9 @@ footer{
   background:var(--primary);
   color:#fff;
   text-align:center;
-  padding:20px;
-  margin-top:40px;
+  padding:40px 20px;
+  border-top-left-radius:30px;
+  border-top-right-radius:30px;
 }
 </style>
 </head>
@@ -176,154 +168,109 @@ footer{
 <body>
 
 <header>
-  <div class="header-inner">
-    <div class="brand">
-      <img src="/technostar-logo.png">
-      <span>TechnoStar Infotech</span>
-    </div>
-    <nav>
-      <a href="#process">Process</a>
-      <a href="#repair">Repair</a>
-      <a href="#cyber">Cyber Cafe</a>
-      <a href="#contact">Contact</a>
-    </nav>
-    <div class="menu-btn">☰</div>
+  <div class="brand">
+    <img src="/technostar-logo.png">
+    <strong>TechnoStar Infotech</strong>
   </div>
+  <nav>
+    <a href="#repair">Repair</a>
+    <a href="#cyber">Cyber Cafe</a>
+    <a href="#process">Process</a>
+    <a href="#contact">Contact</a>
+  </nav>
 </header>
 
 <section class="hero">
-  <h1>Reliable Laptop & PC Repair + Cyber Cafe Services</h1>
-  <p>
-    Professional doorstep computer repair and complete cyber cafe services
-    for students, individuals and working professionals.
-  </p>
-  <a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20service%20assistance.">
-    💬 Contact on WhatsApp
-  </a>
+  <h1><span>Reliable Laptop & PC Repair</span><br>+ Cyber Cafe Services</h1>
+  <p>Professional doorstep computer repair and complete cyber cafe services for individuals, students and professionals.</p>
+  <a class="cta" href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20assistance.">Contact on WhatsApp</a>
 </section>
 
-<!-- HOW SERVICE WORKS -->
-<section class="section" id="process">
-<h2>How Our Service Works</h2>
+<!-- WHY US -->
+<section class="section">
+<h2>Why Choose TechnoStar?</h2>
 <div class="grid">
-  <div class="card">
-    <h3>Doorstep Diagnosis</h3>
-    <p>
-      We first visit your location and perform a basic diagnosis.
-      Minor issues are fixed immediately at your doorstep.
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>Workshop / Lab Repair</h3>
-    <p>
-      If the issue is complex (motherboard, hardware fault, data recovery),
-      the device is safely taken to our workshop for detailed diagnostics
-      and repair.
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>Transparent Resolution</h3>
-    <p>
-      You receive a clear explanation, repair plan and cost estimate
-      before any major work is done.
-    </p>
-  </div>
-
-  <div class="card">
-    <h3>Safe Testing & Handover</h3>
-    <p>
-      After repair, we thoroughly test the system and hand it over
-      securely with proper confirmation.
-    </p>
-  </div>
+  <div class="card">✔ Doorstep Diagnosis & Honest Advice</div>
+  <div class="card">✔ Workshop Support for Complex Repairs</div>
+  <div class="card">✔ Data Safety & Transparent Pricing</div>
+  <div class="card">✔ Local Cyber Cafe Walk-in Support</div>
 </div>
 </section>
 
-<!-- LAPTOP & PC REPAIR -->
+<!-- REPAIR SERVICES -->
 <section class="section" id="repair">
 <h2>Laptop & PC Repair Services</h2>
 
-<h3>🔧 Hardware Services</h3>
 <div class="grid">
-  <div class="card">
-    <p>
-      • Laptop / Desktop not powering on<br>
-      • Screen issues (blank, flickering, lines)<br>
-      • Keyboard, touchpad, hinge problems<br>
-      • Battery & charging issues<br>
-      • Overheating & fan noise<br>
-      • SSD / RAM upgrades
-    </p>
-  </div>
+<div class="card">
+<h3>🔧 Hardware Services</h3>
+<ul>
+<li>No power / dead system</li>
+<li>Screen, keyboard, hinge issues</li>
+<li>Heating & fan noise</li>
+<li>SSD / RAM upgrades</li>
+</ul>
+<a class="book" href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20Hardware%20Repair%20Service.">Book Hardware Repair</a>
 </div>
 
-<br>
-
+<div class="card">
 <h3>💻 Software Services</h3>
+<ul>
+<li>Windows install & upgrade</li>
+<li>Slow system optimization</li>
+<li>Virus removal</li>
+<li>Data backup & recovery</li>
+</ul>
+<a class="book" href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20Software%20Repair%20Service.">Book Software Repair</a>
+</div>
+</div>
+</section>
+
+<!-- PROCESS -->
+<section class="section process" id="process">
+<h2>How Our Service Works</h2>
 <div class="grid">
-  <div class="card">
-    <p>
-      • Windows installation & upgrade<br>
-      • System slow performance fix<br>
-      • Virus & malware removal<br>
-      • Driver & software issues<br>
-      • Data backup & basic recovery<br>
-      • Email & application setup
-    </p>
-    <a href="https://wa.me/917498380071?text=Hi%20Team%20TechnoStar,%20I%20need%20Laptop%20or%20PC%20Repair%20service.">
-      Book Repair
-    </a>
-  </div>
+  <div class="card">🔍 Doorstep Diagnosis & Issue Explanation</div>
+  <div class="card">🛠 Repair at Home OR Secure Workshop Repair</div>
+  <div class="card">🧪 Full Testing & Quality Check</div>
+  <div class="card">🤝 Safe Handover with Support</div>
 </div>
 </section>
 
 <!-- CYBER CAFE -->
-<section class="section" id="cyber">
+<section class="section cyber" id="cyber">
 <h2>Cyber Cafe Services</h2>
+<p class="sub">Ideal for students, senior citizens & working professionals</p>
+
 <div class="grid">
-  <div class="card">
-    <h3>Online Form Filling</h3>
-    <p>
-      Government & private forms, admissions, exams,
-      job applications and registrations.
-    </p>
-  </div>
+<div class="card">
+<h3>📝 Online Form Filling</h3>
+<p>Govt & private forms, exams, admissions.</p>
+</div>
 
-  <div class="card">
-    <h3>Print / Xerox / Scan</h3>
-    <p>
-      Black & white / color print, scanning documents,
-      photocopy and PDF work.
-    </p>
-  </div>
+<div class="card">
+<h3>🖨 Print / Xerox / Scan</h3>
+<p>Documents, PDFs, photos.</p>
+</div>
 
-  <div class="card">
-    <h3>Digital Assistance</h3>
-    <p>
-      Email creation, uploads, online payments,
-      document editing and basic computer help.
-    </p>
-  </div>
+<div class="card">
+<h3>📧 Digital Assistance</h3>
+<p>Email, uploads, payments, resumes.</p>
+</div>
 </div>
 </section>
 
-<!-- LOCATION -->
-<section class="section location" id="contact">
-<h2>Workshop & Cyber Cafe Location</h2>
-<p>
-📍 Sahyadri Apartment, 1st Floor,<br>
-Arjunwadi, Ghansoli Village,<br>
-Navi Mumbai – 400701
-</p>
-<p>📱 +91 7498380071</p>
+<!-- CONTACT -->
+<section class="section" id="contact">
+<h2>Visit Us</h2>
+<p><strong>📍 Address:</strong> Sahyadri Apartment, 1st Floor, Arjunwadi, Ghansoli Village, Navi Mumbai – 400701</p>
+<p><strong>📞 WhatsApp:</strong> +91 7498380071</p>
 </section>
 
-<a class="whatsapp" href="https://wa.me/917498380071">💬</a>
-
 <footer>
-© <script>document.write(new Date().getFullYear())</script> TechnoStar Infotech
+<strong>TechnoStar Infotech</strong><br>
+Laptop & PC Repair • Cyber Cafe Services<br><br>
+© <script>document.write(new Date().getFullYear())</script>
 </footer>
 
 </body>
