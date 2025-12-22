@@ -2,25 +2,26 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>SaXhamAI | Practical Technology Solutions for India</title>
+  <title>SaXhamAI | Strategic Technology Consulting</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="theme-color" content="#0f172a">
   
-  <meta name="description" content="SaXhamAI is the parent technology company of TechnoStar Infotech and SaXhamOps.">
+  <meta name="description" content="SaXhamAI provides strategic technology consulting, brand identity, and digital presence services for Indian businesses. Parent of TechnoStar & SaXhamOps.">
   <link rel="icon" type="image/png" href="favicon.png">
 
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <style>
     :root {
-      /* Dark Theme Colors based on your Logo */
-      --bg-dark: #0f172a;       /* Deep Navy Black */
-      --bg-card: #1e293b;       /* Lighter Navy for cards */
-      --text-main: #f1f5f9;     /* Off-white text */
-      --text-muted: #94a3b8;    /* Muted text */
-      --accent-cyan: #38bdf8;   /* Cyan from logo */
-      --accent-purple: #a855f7; /* Purple from logo */
-      --glow: 0 0 20px rgba(56, 189, 248, 0.5); /* Neon Glow */
+      /* Dark Theme Colors */
+      --bg-dark: #0f172a;       
+      --bg-card: #1e293b;       
+      --text-main: #f1f5f9;     
+      --text-muted: #94a3b8;    
+      --accent-cyan: #38bdf8;   
+      --accent-purple: #a855f7; 
+      --danger: #f43f5e; 
+      --glow: 0 0 20px rgba(56, 189, 248, 0.5); 
     }
 
     * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -34,7 +35,7 @@
       overflow-x: hidden;
     }
 
-    /* Subtle Background Grid Animation */
+    /* Background Animation */
     body::before {
       content: "";
       position: fixed;
@@ -47,7 +48,7 @@
       pointer-events: none;
     }
 
-    /* Top Glow Spot */
+    /* Top Glow */
     body::after {
       content: "";
       position: absolute;
@@ -68,7 +69,7 @@
 
     /* HEADER */
     header {
-      background: rgba(15, 23, 42, 0.8); /* Glass effect */
+      background: rgba(15, 23, 42, 0.8);
       backdrop-filter: blur(10px);
       border-bottom: 1px solid rgba(255,255,255,0.05);
       padding: 18px 0;
@@ -83,19 +84,14 @@
       align-items: center;
     }
 
-    .brand {
-      display: flex;
-      align-items: center;
-    }
-
     .brand-logo {
-      height: 45px; /* Perfect size for header */
+      height: 45px;
       width: auto;
     }
 
     .nav-links {
       display: flex;
-      gap: 30px;
+      gap: 25px;
     }
     
     .nav-links a {
@@ -113,12 +109,12 @@
 
     /* HERO SECTION */
     .hero {
-      padding: 120px 0 100px;
+      padding: 100px 0 80px;
       text-align: center;
     }
 
     .hero h1 {
-      font-size: 3.5rem;
+      font-size: 3.2rem;
       font-weight: 800;
       background: linear-gradient(to right, #fff, #cbd5e1);
       -webkit-background-clip: text;
@@ -128,7 +124,6 @@
       letter-spacing: -1px;
     }
 
-    /* Gradient Text Highlight */
     .highlight {
       background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
       -webkit-background-clip: text;
@@ -140,7 +135,7 @@
       margin: auto;
       color: var(--text-muted);
       font-size: 1.2rem;
-      margin-bottom: 40px;
+      margin-bottom: 20px;
     }
 
     .trust-line {
@@ -153,8 +148,23 @@
       color: var(--accent-cyan);
       border: 1px solid rgba(56, 189, 248, 0.2);
     }
+    
+    .founder-note {
+      font-size: 0.9rem; 
+      color: var(--text-muted); 
+      margin-bottom: 5px; 
+      font-weight: 500;
+      opacity: 0.9;
+    }
+    
+    .trust-proof {
+      font-size: 0.85rem; 
+      opacity: 0.7; 
+      margin-top: 5px; 
+      margin-bottom: 40px;
+      color: var(--text-muted);
+    }
 
-    /* BUTTONS */
     .hero-buttons {
       display: flex;
       justify-content: center;
@@ -169,6 +179,7 @@
       text-decoration: none;
       transition: all 0.3s ease;
       font-size: 1rem;
+      display: inline-block;
     }
 
     .btn-primary {
@@ -207,11 +218,11 @@
     .section-subtitle {
       color: var(--text-muted);
       max-width: 600px;
+      margin-bottom: 40px;
     }
 
-    /* BUSINESS CARDS - Dark Glass Style */
+    /* CARDS */
     .business-grid {
-      margin-top: 50px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
       gap: 30px;
@@ -225,16 +236,16 @@
       transition: all 0.3s ease;
       position: relative;
       overflow: hidden;
+      display: flex;
+      flex-direction: column;
     }
 
-    /* Glow effect on hover */
     .business-card:hover {
       transform: translateY(-5px);
       border-color: var(--accent-cyan);
       box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
     }
 
-    /* Gradient line at top of card */
     .business-card::before {
       content: "";
       position: absolute;
@@ -261,27 +272,53 @@
 
     .business-card p {
       color: var(--text-muted);
-      margin-bottom: 25px;
+      margin-bottom: 20px;
+    }
+
+    .card-features {
+      list-style: none;
+      margin-bottom: 20px;
+      margin-top: auto;
+    }
+    
+    .card-features li {
+      margin-bottom: 10px;
+      color: var(--text-main);
+      display: flex;
+      gap: 10px;
+    }
+    
+    .card-features li span { color: var(--accent-cyan); }
+    
+    /* Pricing Hint */
+    .price-hint {
+      font-size: 0.85rem; 
+      opacity: 0.7; 
+      color: var(--text-muted);
+      margin-bottom: 15px;
+      font-style: italic;
     }
 
     .btn-card {
       display: block;
       width: 100%;
       text-align: center;
-      padding: 12px;
+      padding: 14px;
       border-radius: 8px;
       background: rgba(255,255,255,0.05);
       color: white;
       text-decoration: none;
-      font-weight: 500;
+      font-weight: 600;
       transition: 0.3s;
     }
     
-    .btn-card:hover { background: rgba(255,255,255,0.1); }
+    .btn-card:hover { 
+      background: var(--accent-cyan); 
+      color: #000;
+    }
 
-    /* PHILOSOPHY */
+    /* POINTS */
     .points {
-      margin-top: 30px;
       display: grid;
       grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 20px;
@@ -296,26 +333,35 @@
       display: flex;
       align-items: center;
       gap: 12px;
+      font-weight: 500;
     }
 
     .points li span { color: var(--accent-cyan); }
+    
+    /* Negative Points */
+    .points.negative li {
+      border-color: rgba(244, 63, 94, 0.2);
+    }
+    .points.negative li span {
+      color: var(--danger);
+      font-weight: bold;
+    }
 
     /* FOOTER */
     footer {
       border-top: 1px solid rgba(255,255,255,0.05);
       padding: 60px 0;
       text-align: center;
-      margin-top: 60px;
+      margin-top: 20px;
     }
 
     footer p { color: var(--text-muted); font-size: 0.9rem; margin-top: 10px; }
     
     .legal-line { font-size: 0.8rem; opacity: 0.5; }
 
-    /* MOBILE ADJUSTMENTS */
     @media (max-width: 768px) {
       .hero h1 { font-size: 2.5rem; }
-      .nav-links { display: none; } /* Mobile Menu hidden for simplicity */
+      .nav-links { display: none; }
       .brand-logo { height: 35px; }
     }
   </style>
@@ -327,20 +373,20 @@
   <div class="container header-content">
     <div class="brand">
       <img src="logo.png" alt="SaXhamAI" class="brand-logo">
-      
       <h1 style="position:absolute; left:-9999px;">SaXhamAI</h1>
     </div>
     
     <nav class="nav-links">
-      <a href="#businesses">Our Businesses</a>
-      <a href="mailto:founder@saxhamai.com">Contact</a>
+      <a href="#services">Services</a>
+      <a href="#ecosystem">Ecosystem</a>
+      <a href="mailto:founder@saxhamai.com">Email</a>
     </nav>
   </div>
 </header>
 
 <section class="hero">
   <div class="container">
-    <div class="trust-line">Trusted by Indian IT Operations</div>
+    <div class="trust-line">Strategic Technology Consulting</div>
     
     <h1 style="margin-top: 20px;">
       Practical Technology Solutions<br>
@@ -348,62 +394,146 @@
     </h1>
 
     <p>
-      SaXhamAI eliminates the hype. We build reliable, scalable systems — 
-      from local IT services to enterprise automation.
+      SaXhamAI helps businesses build trust, clarity, and operational strength. 
+      From brand identity to process automation.
+    </p>
+    
+    <p class="founder-note">
+      Founder-led consulting • Limited projects only
+    </p>
+    <p class="trust-proof">
+      Worked with local businesses, IT teams, and operations-driven founders
     </p>
 
     <div class="hero-buttons">
-      <a href="#businesses" class="btn btn-primary">Explore Our Businesses</a>
-      <a href="mailto:founder@saxhamai.com" class="btn btn-secondary">Contact Founder</a>
+      <a href="#services" class="btn btn-primary">View Consulting Services</a>
+      <a href="#ecosystem" class="btn btn-secondary">Our Ventures</a>
     </div>
   </div>
 </section>
 
 <section class="section">
   <div class="container">
-    <h2 class="section-title">Why SaXhamAI Exists</h2>
+    <h2 class="section-title">What We Help Businesses With</h2>
     <p class="section-subtitle">
-      Most tech solutions are too complex for Indian business environments.
-      We build systems that work today, not just in theory.
+      We help businesses look professional, trusted, and discoverable online.
     </p>
-    
+
     <ul class="points">
-      <li><span>✔</span> Problem-first approach</li>
-      <li><span>✔</span> Simple over complex</li>
-      <li><span>✔</span> Automation focused</li>
-      <li><span>✔</span> Zero dependency</li>
+      <li><span>✔</span> Business Name & Identity</li>
+      <li><span>✔</span> Logo & Visual Direction</li>
+      <li><span>✔</span> Google Maps Presence</li>
+      <li><span>✔</span> Website Structure</li>
     </ul>
   </div>
 </section>
 
-<section class="section" id="businesses">
+<section class="section" id="services" style="background: rgba(255,255,255,0.02);">
+  <div class="container">
+    <h2 class="section-title">SaXhamAI Consulting Services</h2>
+    <p class="section-subtitle">
+      Founder-led services for businesses who want clarity, trust, and growth.
+    </p>
+
+    <div class="business-grid">
+
+      <div class="business-card">
+        <span class="card-label">Starter</span>
+        <h3>Digital Trust Starter</h3>
+        <p>Perfect for small businesses starting their digital journey.</p>
+        
+        <ul class="card-features">
+          <li><span>✔</span> Business Name Review</li>
+          <li><span>✔</span> Logo Guidance</li>
+          <li><span>✔</span> Google Maps Setup</li>
+        </ul>
+        
+        <p class="price-hint">Engagement starts from ₹4,999</p>
+        
+        <a href="https://wa.me/917276380071?text=Hi%20SaXhamAI%2C%20I%20am%20interested%20in%20Digital%20Trust%20Starter" class="btn-card">Get Started</a>
+      </div>
+
+      <div class="business-card">
+        <span class="card-label">Professional</span>
+        <h3>Business Identity Pro</h3>
+        <p>Complete professional setup for serious businesses.</p>
+        
+        <ul class="card-features">
+          <li><span>✔</span> Brand Identity & Strategy</li>
+          <li><span>✔</span> Website Structure & Content</li>
+          <li><span>✔</span> Google Optimization</li>
+        </ul>
+        
+        <p class="price-hint">Engagement starts from ₹14,999</p>
+        
+        <a href="https://wa.me/917276380071?text=Hi%20SaXhamAI%2C%20I%20am%20interested%20in%20Business%20Identity%20Pro" class="btn-card">Talk to Founder</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title" style="opacity:0.9;">Who This Is NOT For</h2>
+    <p class="section-subtitle">To deliver real results, we intentionally do NOT work with everyone.</p>
+
+    <ul class="points negative">
+      <li><span>✖</span> Free logo seekers</li>
+      <li><span>✖</span> Cheap shortcut mindset</li>
+      <li><span>✖</span> One-day branding expectations</li>
+      <li><span>✖</span> No long-term vision</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" id="ecosystem" style="background: rgba(255,255,255,0.02);">
   <div class="container">
     <h2 class="section-title">Our Ecosystem</h2>
-    <p class="section-subtitle">Operating independent businesses solving specific problems.</p>
+    <p class="section-subtitle">We also operate independent businesses solving specific problems.</p>
 
     <div class="business-grid">
 
       <div class="business-card">
         <span class="card-label">Consumer Services</span>
         <h3>TechnoStar Infotech</h3>
-        <p>
-          Local IT services hub in Navi Mumbai. 
-          Expert hardware repair, cyber cafe operations, and trusted consumer support.
-        </p>
-        <a href="https://technostar.saxhamai.com" class="btn-card">Visit TechnoStar ↗</a>
+        <p>Local IT services, hardware repair, and cyber cafe operations in Navi Mumbai.</p>
+        <a href="https://technostar.saxhamai.com" class="btn-card" style="margin-top:auto;">Visit TechnoStar ↗</a>
       </div>
 
       <div class="business-card">
         <span class="card-label">B2B Automation</span>
         <h3>SaXhamOps</h3>
-        <p>
-          Enterprise Linux automation & SOPs.
-          Helping businesses reduce downtime and audit risks with standardized operations.
-        </p>
-        <a href="https://ops.saxhamai.com" class="btn-card">Explore SaXhamOps ↗</a>
+        <p>Enterprise Linux automation & SOPs reducing downtime and audit risks.</p>
+        <a href="https://ops.saxhamai.com" class="btn-card" style="margin-top:auto;">Explore SaXhamOps ↗</a>
       </div>
 
     </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <h2 class="section-title" style="font-size:1.5rem;">Upcoming from SaXhamAI</h2>
+    <p class="section-subtitle">Select services will be launched based on demand.</p>
+
+    <ul class="points" style="opacity:0.7;">
+      <li><span>→</span> SOP Templates for Businesses</li>
+      <li><span>→</span> Google Review Growth Playbooks</li>
+      <li><span>→</span> IT Ops Automation Packs</li>
+    </ul>
+  </div>
+</section>
+
+<section class="section" style="text-align:center; padding-bottom: 20px;">
+  <div class="container">
+    <h2 class="section-title">Ready to Build a Trusted Business Presence?</h2>
+    <p class="section-subtitle" style="margin:auto; margin-bottom: 25px;">
+      Start with clarity. Scale with confidence.
+    </p>
+    <a href="https://wa.me/917276380071?text=Hi%20SaXhamAI%2C%20I%20want%20to%20start%20building%20my%20business%20presence" class="btn btn-primary">
+      Message on WhatsApp
+    </a>
   </div>
 </section>
 
@@ -413,6 +543,9 @@
     <p>© 2025 SaXhamAI. Built in India.</p>
     <p class="legal-line">
       SaXhamAI operates TechnoStar Infotech and SaXhamOps as independent entities.
+    </p>
+    <p class="legal-line">
+      Prices and scope may vary based on business requirements.
     </p>
   </div>
 </footer>
