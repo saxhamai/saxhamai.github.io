@@ -1,244 +1,421 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="utf-8" />
-<meta name="viewport" content="width=device-width,initial-scale=1" />
-<title>Saxham AI — Automation Blueprints</title>
+  <meta charset="UTF-8">
+  <title>SaXhamAI | Practical Technology Solutions for India</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#0f172a">
+  
+  <meta name="description" content="SaXhamAI is the parent technology company of TechnoStar Infotech and SaXhamOps.">
+  <link rel="icon" type="image/png" href="favicon.png">
 
-<meta name="description" content="Saxham AI builds production-ready automation blueprints, observability dashboards and operational SOPs for modern infrastructure teams.">
-<meta name="theme-color" content="#07142d">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
-<link rel="icon" href="/logo.jpg" />
-<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      /* Dark Theme Colors based on your Logo */
+      --bg-dark: #0f172a;       /* Deep Navy Black */
+      --bg-card: #1e293b;       /* Lighter Navy for cards */
+      --text-main: #f1f5f9;     /* Off-white text */
+      --text-muted: #94a3b8;    /* Muted text */
+      --accent-cyan: #38bdf8;   /* Cyan from logo */
+      --accent-purple: #a855f7; /* Purple from logo */
+      --glow: 0 0 20px rgba(56, 189, 248, 0.5); /* Neon Glow */
+    }
 
-<style>
-:root{
-  --bg-1:#02040a; --bg-2:#07142d;
-  --text:#eaf4ff; --muted:rgba(255,255,255,.72); --muted-2:rgba(255,255,255,.5);
-  --neon:#7b66ff; --cyan:#2ed1ff;
-  --glass:rgba(255,255,255,.06);
-  --shadow:0 14px 40px rgba(0,0,0,.55);
-  --maxw:1180px;
-}
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
 
-*{box-sizing:border-box;margin:0;padding:0}
-html,body{height:100%;font-family:Inter,system-ui;color:var(--text)}
-body{
-  background:
-    radial-gradient(900px 600px at 10% 10%, rgba(123,102,255,.08), transparent),
-    radial-gradient(800px 500px at 90% 80%, rgba(46,209,255,.05), transparent),
-    linear-gradient(180deg,var(--bg-1),var(--bg-2));
-  overflow-x:hidden;
-}
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--bg-dark);
+      color: var(--text-main);
+      line-height: 1.6;
+      overflow-x: hidden;
+    }
 
-/* ===== BACKGROUND FX ===== */
-.bg-overlay,.grid-lines,.particles{position:fixed;inset:0;pointer-events:none}
-.bg-overlay{
-  background:linear-gradient(120deg,rgba(123,102,255,.04),rgba(46,209,255,.02));
-  mix-blend-mode:overlay;
-  filter:blur(24px);
-  animation:floatBg 18s linear infinite;
-}
-@keyframes floatBg{
-  50%{transform:translateY(-14px) rotate(2deg)}
-}
+    /* Subtle Background Grid Animation */
+    body::before {
+      content: "";
+      position: fixed;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-image: 
+        linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+      background-size: 40px 40px;
+      z-index: -1;
+      pointer-events: none;
+    }
 
-.grid-lines{
-  opacity:.05;
-  background:
-    linear-gradient(transparent 14px,rgba(255,255,255,.03) 15px),
-    linear-gradient(90deg,transparent 14px,rgba(255,255,255,.03) 15px);
-  background-size:30px 30px;
-  animation:gridMove 14s linear infinite;
-}
-@keyframes gridMove{to{transform:translateY(-30px)}}
+    /* Top Glow Spot */
+    body::after {
+      content: "";
+      position: absolute;
+      top: -100px; left: 50%;
+      transform: translateX(-50%);
+      width: 600px; height: 600px;
+      background: radial-gradient(circle, rgba(56, 189, 248, 0.15) 0%, transparent 70%);
+      z-index: -1;
+      pointer-events: none;
+    }
 
-.particle{
-  position:absolute;border-radius:50%;filter:blur(6px);opacity:.6;
-  animation:floatP linear infinite;
-}
-@keyframes floatP{
-  50%{transform:translateY(-20px) scale(1.08);opacity:.45}
-}
+    .container {
+      width: 90%;
+      max-width: 1100px;
+      margin: auto;
+      position: relative;
+    }
 
-/* ===== LAYOUT ===== */
-.wrap{max-width:var(--maxw);margin:24px auto;padding:18px;position:relative;z-index:2}
+    /* HEADER */
+    header {
+      background: rgba(15, 23, 42, 0.8); /* Glass effect */
+      backdrop-filter: blur(10px);
+      border-bottom: 1px solid rgba(255,255,255,0.05);
+      padding: 18px 0;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-.header{display:flex;justify-content:space-between;align-items:center}
-.brand{display:flex;gap:12px;text-decoration:none;color:inherit}
-.logo-box{
-  width:56px;height:56px;border-radius:12px;
-  background:rgba(255,255,255,.04);
-  display:flex;align-items:center;justify-content:center;
-  box-shadow:var(--shadow)
-}
-.logo-box img{width:44px}
+    .header-content {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
 
-.nav a{
-  color:var(--muted);text-decoration:none;
-  padding:8px 12px;border-radius:10px;font-weight:700;
-}
-.nav a:hover{background:rgba(255,255,255,.04);color:#fff}
-.nav a.active{background:rgba(123,102,255,.18);color:#fff}
+    .brand {
+      display: flex;
+      align-items: center;
+    }
 
-/* ===== HERO ===== */
-.hero{margin-top:20px;animation:fadeIn .9s ease}
-@keyframes fadeIn{from{opacity:0;transform:translateY(12px)}}
+    .brand-logo {
+      height: 45px; /* Perfect size for header */
+      width: auto;
+    }
 
-.tag{
-  display:inline-block;padding:6px 12px;border-radius:999px;
-  background:linear-gradient(90deg,rgba(123,102,255,.15),rgba(46,209,255,.08));
-  color:var(--neon);font-weight:800;font-size:13px
-}
+    .nav-links {
+      display: flex;
+      gap: 30px;
+    }
+    
+    .nav-links a {
+      text-decoration: none;
+      color: var(--text-muted);
+      font-weight: 500;
+      font-size: 0.95rem;
+      transition: all 0.3s;
+    }
 
-h1{
-  font-size:clamp(28px,7vw,48px);
-  margin:12px 0;
-  background:linear-gradient(90deg,#fff,rgba(255,255,255,.85));
-  -webkit-background-clip:text;color:transparent;
-}
+    .nav-links a:hover { 
+      color: var(--accent-cyan);
+      text-shadow: 0 0 10px rgba(56,189,248,0.4);
+    }
 
-.lead{max-width:70ch;color:var(--muted)}
+    /* HERO SECTION */
+    .hero {
+      padding: 120px 0 100px;
+      text-align: center;
+    }
 
-.reveal{display:inline-block;position:relative;overflow:hidden}
-.reveal::after{
-  content:"";position:absolute;inset:0;
-  background:linear-gradient(90deg,rgba(255,255,255,.1),rgba(255,255,255,.2));
-  transform:translateX(-120%);
-  animation:sweep 2.4s ease forwards;
-}
-.reveal:nth-child(1)::after{animation-delay:.4s}
-.reveal:nth-child(2)::after{animation-delay:.7s}
-@keyframes sweep{to{transform:translateX(120%)}}
+    .hero h1 {
+      font-size: 3.5rem;
+      font-weight: 800;
+      background: linear-gradient(to right, #fff, #cbd5e1);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      margin-bottom: 20px;
+      line-height: 1.1;
+      letter-spacing: -1px;
+    }
 
-/* ===== TECHNOSTAR CARD ===== */
-.technostar{
-  margin-top:22px;padding:14px;border-radius:14px;
-  background:rgba(255,255,255,.03);
-  border:1px solid rgba(255,255,255,.06);
-  display:flex;gap:12px;align-items:center;
-  position:relative;box-shadow:var(--shadow)
-}
-.technostar::before{
-  content:"";position:absolute;inset:-2px;border-radius:16px;
-  background:linear-gradient(90deg,rgba(123,102,255,.4),rgba(46,209,255,.3));
-  opacity:.6;pointer-events:none
-}
-.technostar img{width:64px;border-radius:12px}
-.ts-cta{
-  display:inline-block;padding:10px 14px;border-radius:12px;
-  background:linear-gradient(90deg,var(--neon),var(--cyan));
-  color:#fff;font-weight:800;text-decoration:none;
-  border:1px solid rgba(255,255,255,.25);
-}
+    /* Gradient Text Highlight */
+    .highlight {
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+    }
 
-/* ===== PANELS ===== */
-.info-grid{
-  margin-top:26px;
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(240px,1fr));
-  gap:16px
-}
-.panel{
-  position:relative;
-  padding:18px;border-radius:12px;
-  background:rgba(255,255,255,.02);
-  border:1px solid rgba(255,255,255,.04);
-  box-shadow:0 8px 26px rgba(0,0,0,.45);
-}
-.panel:hover{
-  transform:translateY(-8px);
-  box-shadow:0 22px 58px rgba(80,46,200,.22);
-}
-.panel h3{margin-bottom:8px}
+    .hero p {
+      max-width: 680px;
+      margin: auto;
+      color: var(--text-muted);
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+    }
 
-/* ===== FOOTER ===== */
-.footer{margin-top:34px;text-align:center;color:var(--muted-2)}
+    .trust-line {
+      display: inline-block;
+      margin-top: 15px;
+      padding: 6px 16px;
+      background: rgba(255,255,255,0.05);
+      border-radius: 50px;
+      font-size: 0.9rem;
+      color: var(--accent-cyan);
+      border: 1px solid rgba(56, 189, 248, 0.2);
+    }
 
-/* ===== RESPONSIVE ===== */
-@media(max-width:768px){
-  .bg-overlay,.grid-lines,.particles{display:none}
-}
-@media(prefers-reduced-motion:reduce){
-  *{animation:none!important;transition:none!important}
-}
-</style>
+    /* BUTTONS */
+    .hero-buttons {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    .btn {
+      padding: 16px 32px;
+      border-radius: 12px;
+      font-weight: 600;
+      text-decoration: none;
+      transition: all 0.3s ease;
+      font-size: 1rem;
+    }
+
+    .btn-primary {
+      background: linear-gradient(135deg, var(--accent-cyan), #0ea5e9);
+      color: #000;
+      box-shadow: 0 4px 15px rgba(56, 189, 248, 0.3);
+      border: 1px solid transparent;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 6px 25px rgba(56, 189, 248, 0.5);
+    }
+
+    .btn-secondary {
+      background: transparent;
+      color: var(--text-main);
+      border: 1px solid rgba(255,255,255,0.2);
+    }
+
+    .btn-secondary:hover {
+      background: rgba(255,255,255,0.05);
+      border-color: var(--text-main);
+    }
+
+    /* SECTIONS */
+    .section { padding: 80px 0; }
+
+    .section-title {
+      font-size: 2rem;
+      font-weight: 700;
+      color: var(--text-main);
+      margin-bottom: 10px;
+    }
+
+    .section-subtitle {
+      color: var(--text-muted);
+      max-width: 600px;
+    }
+
+    /* BUSINESS CARDS - Dark Glass Style */
+    .business-grid {
+      margin-top: 50px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+      gap: 30px;
+    }
+
+    .business-card {
+      background: var(--bg-card);
+      padding: 40px;
+      border-radius: 20px;
+      border: 1px solid rgba(255,255,255,0.05);
+      transition: all 0.3s ease;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* Glow effect on hover */
+    .business-card:hover {
+      transform: translateY(-5px);
+      border-color: var(--accent-cyan);
+      box-shadow: 0 10px 40px -10px rgba(0,0,0,0.5);
+    }
+
+    /* Gradient line at top of card */
+    .business-card::before {
+      content: "";
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 4px;
+      background: linear-gradient(90deg, var(--accent-cyan), var(--accent-purple));
+      opacity: 0.7;
+    }
+
+    .card-label {
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+      color: var(--accent-purple);
+      font-weight: 700;
+      margin-bottom: 10px;
+      display: block;
+    }
+
+    .business-card h3 {
+      font-size: 1.6rem;
+      color: white;
+      margin-bottom: 15px;
+    }
+
+    .business-card p {
+      color: var(--text-muted);
+      margin-bottom: 25px;
+    }
+
+    .btn-card {
+      display: block;
+      width: 100%;
+      text-align: center;
+      padding: 12px;
+      border-radius: 8px;
+      background: rgba(255,255,255,0.05);
+      color: white;
+      text-decoration: none;
+      font-weight: 500;
+      transition: 0.3s;
+    }
+    
+    .btn-card:hover { background: rgba(255,255,255,0.1); }
+
+    /* PHILOSOPHY */
+    .points {
+      margin-top: 30px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .points li {
+      background: rgba(255,255,255,0.03);
+      padding: 20px;
+      border-radius: 12px;
+      border: 1px solid rgba(255,255,255,0.05);
+      color: var(--text-main);
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .points li span { color: var(--accent-cyan); }
+
+    /* FOOTER */
+    footer {
+      border-top: 1px solid rgba(255,255,255,0.05);
+      padding: 60px 0;
+      text-align: center;
+      margin-top: 60px;
+    }
+
+    footer p { color: var(--text-muted); font-size: 0.9rem; margin-top: 10px; }
+    
+    .legal-line { font-size: 0.8rem; opacity: 0.5; }
+
+    /* MOBILE ADJUSTMENTS */
+    @media (max-width: 768px) {
+      .hero h1 { font-size: 2.5rem; }
+      .nav-links { display: none; } /* Mobile Menu hidden for simplicity */
+      .brand-logo { height: 35px; }
+    }
+  </style>
 </head>
 
 <body>
 
-<div class="bg-overlay"></div>
-<div class="grid-lines"></div>
-<div class="particles">
-  <div class="particle" style="width:20px;height:20px;left:15%;top:30%;background:var(--neon);animation-duration:10s"></div>
-  <div class="particle" style="width:14px;height:14px;left:70%;top:18%;background:var(--cyan);animation-duration:14s"></div>
-</div>
-
-<div class="wrap">
-
-<header class="header">
-  <a class="brand" href="/">
-    <div class="logo-box"><img src="/logo.svg" alt="Saxham AI"></div>
-    <div>
-      <strong>Saxham AI</strong>
-      <div style="font-size:12px;color:var(--muted-2)">AI-driven automation & infrastructure</div>
+<header>
+  <div class="container header-content">
+    <div class="brand">
+      <img src="logo.png" alt="SaXhamAI" class="brand-logo">
+      
+      <h1 style="position:absolute; left:-9999px;">SaXhamAI</h1>
     </div>
-  </a>
-  <nav class="nav">
-    <a class="active">Home</a>
-    <a href="/about.html">About</a>
-    <a href="/contact.html">Contact</a>
-  </nav>
+    
+    <nav class="nav-links">
+      <a href="#businesses">Our Businesses</a>
+      <a href="mailto:founder@saxhamai.com">Contact</a>
+    </nav>
+  </div>
 </header>
 
 <section class="hero">
-  <span class="tag">Launching • Digital Products</span>
-  <h1>
-    <span class="reveal">Smart systems.</span><br>
-    <span class="reveal">Smarter decisions.</span>
-  </h1>
-  <p class="lead">
-    Built from real production experience in BFSI & trading infrastructure.
-  </p>
+  <div class="container">
+    <div class="trust-line">Trusted by Indian IT Operations</div>
+    
+    <h1 style="margin-top: 20px;">
+      Practical Technology Solutions<br>
+      <span class="highlight">for Real Businesses</span>
+    </h1>
 
-  <div class="technostar">
-    <img src="/technostar-logo.png" alt="TechnoStar">
-    <div>
-      <strong>🚀 TechnoStar Infotech</strong>
-      <p class="lead">Doorstep laptop & PC repair — Navi Mumbai</p>
-      <a class="ts-cta" href="/technostar.html">Visit TechnoStar</a>
+    <p>
+      SaXhamAI eliminates the hype. We build reliable, scalable systems — 
+      from local IT services to enterprise automation.
+    </p>
+
+    <div class="hero-buttons">
+      <a href="#businesses" class="btn btn-primary">Explore Our Businesses</a>
+      <a href="mailto:founder@saxhamai.com" class="btn btn-secondary">Contact Founder</a>
     </div>
   </div>
 </section>
 
-<section class="info-grid">
-  <article class="panel">
-    <h3>Kafka Setup Blueprint</h3>
-    <p>Production architecture & monitoring SOPs.</p>
-  </article>
-  <article class="panel">
-    <h3>Time-Drift Monitoring</h3>
-    <p>Low-latency detection & alerts.</p>
-  </article>
-  <article class="panel">
-    <h3>Market Feeds Guide</h3>
-    <p>Exchange feed handling & failover.</p>
-  </article>
-  <article class="panel">
-    <h3>Audit & SOP Kits</h3>
-    <p>Compliance-ready automation.</p>
-  </article>
+<section class="section">
+  <div class="container">
+    <h2 class="section-title">Why SaXhamAI Exists</h2>
+    <p class="section-subtitle">
+      Most tech solutions are too complex for Indian business environments.
+      We build systems that work today, not just in theory.
+    </p>
+    
+    <ul class="points">
+      <li><span>✔</span> Problem-first approach</li>
+      <li><span>✔</span> Simple over complex</li>
+      <li><span>✔</span> Automation focused</li>
+      <li><span>✔</span> Zero dependency</li>
+    </ul>
+  </div>
 </section>
 
-<footer class="footer">
-  © <span id="year"></span> Saxham AI
+<section class="section" id="businesses">
+  <div class="container">
+    <h2 class="section-title">Our Ecosystem</h2>
+    <p class="section-subtitle">Operating independent businesses solving specific problems.</p>
+
+    <div class="business-grid">
+
+      <div class="business-card">
+        <span class="card-label">Consumer Services</span>
+        <h3>TechnoStar Infotech</h3>
+        <p>
+          Local IT services hub in Navi Mumbai. 
+          Expert hardware repair, cyber cafe operations, and trusted consumer support.
+        </p>
+        <a href="https://technostar.saxhamai.com" class="btn-card">Visit TechnoStar ↗</a>
+      </div>
+
+      <div class="business-card">
+        <span class="card-label">B2B Automation</span>
+        <h3>SaXhamOps</h3>
+        <p>
+          Enterprise Linux automation & SOPs.
+          Helping businesses reduce downtime and audit risks with standardized operations.
+        </p>
+        <a href="https://ops.saxhamai.com" class="btn-card">Explore SaXhamOps ↗</a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="container">
+    <img src="favicon.png" alt="Icon" style="height: 30px; opacity: 0.5; margin-bottom: 10px;">
+    <p>© 2025 SaXhamAI. Built in India.</p>
+    <p class="legal-line">
+      SaXhamAI operates TechnoStar Infotech and SaXhamOps as independent entities.
+    </p>
+  </div>
 </footer>
-
-</div>
-
-<script>
-document.getElementById("year").textContent=new Date().getFullYear();
-</script>
 
 </body>
 </html>
